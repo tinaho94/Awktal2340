@@ -1,0 +1,35 @@
+HBox {
+	-fx-padding: 10;
+}
+
+#noob {
+	-fx-background-radius: 10 0 0 10;
+}
+
+#noob:selected {
+	-fx-background-color: green;
+}
+
+#casual {
+	-fx-background-radius: 0 0 0 0;
+}
+
+#casual:selected {
+	-fx-background-color: blue;
+}
+
+#tryhard {
+	-fx-background-radius: 0 10 10 0;
+}
+
+#tryhard:selected {
+	-fx-background-color: red;
+}
+
+#traditional {
+	-fx-background-radius: 10 0 0 10;
+}
+
+#random {
+	-fx-background-radius: 0 10 10 0;
+}

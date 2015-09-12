@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.web.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@play_1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ExampleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@play_1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -15,28 +14,12 @@
                      <children>
                         <HBox alignment="CENTER">
                            <children>
-                              <Label text="Difficulty" />
+                              <Label text="Name" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button id="difficulty-0" mnemonicParsing="false" text="Noob" />
-                              <Button id="difficulty-1" mnemonicParsing="false" text="Wimp" />
-                              <Button id="difficulty-2" mnemonicParsing="false" text="Tryhard" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <VBox>
-                     <children>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Label text="Players" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER">
-                           <children>
-                              <Slider blockIncrement="1.0" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" prefHeight="38.0" prefWidth="404.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                              <TextField />
                            </children>
                         </HBox>
                      </children>
@@ -45,14 +28,28 @@
                      <children>
                         <HBox alignment="CENTER">
                            <children>
-                              <Label text="Map" />
+                              <Label text="Color" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button id="map-default-button" mnemonicParsing="false" text="Traditional" />
-                              <Button id="map-rich-button" mnemonicParsing="false" text="Rich" />
-                              <Button id="map-random-button" mnemonicParsing="false" text="Random" />
+                              <ColorPicker />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="Race" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button id="map-default-button" mnemonicParsing="false" text="Human" />
+                              <Button id="map-rich-button" mnemonicParsing="false" text="Other 1" />
+                              <Button id="map-random-button" mnemonicParsing="false" text="Other 2" />
                            </children>
                         </HBox>
                      </children>
