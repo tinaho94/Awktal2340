@@ -1,5 +1,6 @@
 package awkMULE;
 
+import java.awt.Color;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -8,10 +9,14 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Slider;
 
 public class GameConfigController {
     @FXML
     private Button done;
+
+    @FXML
+    private Slider numPlayers;
 
     private static Stage stage;
 
@@ -34,7 +39,8 @@ public class GameConfigController {
     private void startPlayerConfig() {
         try {
             Parent screen = FXMLLoader.load(getClass().getResource("player_config.fxml"));
-            Scene scene = new Scene(screen);
+            PlayerConfigController.setStage(stage);
+            Scene scene = new Scene(screen, stage.getScene().getWidth(), stage.getScene().getHeight());
             stage.setTitle("MULE");
             stage.setScene(scene);
             stage.show();
@@ -44,7 +50,7 @@ public class GameConfigController {
     }
 
     private void processGameConfig() {
-        System.out.println("I will save game state here");
+        GameState.getInstance().setNumPlayers((int) numPlayers.getValue());
     }
 
     public static void setStage(Stage stage) {

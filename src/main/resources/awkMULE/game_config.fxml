@@ -21,7 +21,7 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <ToggleButton id="noob" mnemonicParsing="false" text="Noob">
+                              <ToggleButton id="noob" mnemonicParsing="false" selected="true" text="Noob">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="difficulty" />
                                  </toggleGroup>
@@ -41,7 +41,7 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <Slider blockIncrement="1.0" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" prefHeight="38.0" prefWidth="404.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                              <Slider fx:id="numPlayers" blockIncrement="1.0" majorTickUnit="1.0" max="4.0" min="2.0" minorTickCount="0" prefHeight="38.0" prefWidth="404.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
                            </children>
                         </HBox>
                      </children>
@@ -55,7 +55,7 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <ToggleButton id="traditional" mnemonicParsing="false" text="Traditional">
+                              <ToggleButton id="traditional" mnemonicParsing="false" selected="true" text="Traditional">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="map" />
                                  </toggleGroup>

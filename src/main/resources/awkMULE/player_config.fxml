@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@play_1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane stylesheets="@play_1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awkMULE.PlayerConfigController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -19,7 +19,7 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <TextField />
+                              <TextField fx:id="nameInput" />
                            </children>
                         </HBox>
                      </children>
@@ -33,7 +33,7 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <ColorPicker />
+                              <ColorPicker fx:id="colorInput" />
                            </children>
                         </HBox>
                      </children>
@@ -47,16 +47,20 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <Button id="map-default-button" mnemonicParsing="false" text="Human" />
-                              <Button id="map-rich-button" mnemonicParsing="false" text="Other 1" />
-                              <Button id="map-random-button" mnemonicParsing="false" text="Other 2" />
+                              <ToggleButton mnemonicParsing="false" selected="true" text="Human">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="race" />
+                                 </toggleGroup>
+                              </ToggleButton>
+                              <ToggleButton mnemonicParsing="false" text="Other1" toggleGroup="$race" />
+                              <ToggleButton mnemonicParsing="false" text="Other2" toggleGroup="$race" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                   <VBox alignment="CENTER">
                      <children>
-                        <Button id="done-button" mnemonicParsing="false" text="Done" />
+                        <Button id="done" fx:id="done" mnemonicParsing="false" text="Done" />
                      </children>
                   </VBox>
                </children>
