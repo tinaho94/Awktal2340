@@ -12,6 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ColorPicker;
 
+/**
+ * PlayerConfigController controls the player configuration screen.
+ * This will be automatically created when the fxml is loaded.
+*/
 public class PlayerConfigController {
     @FXML
     private Button done;
@@ -24,10 +28,16 @@ public class PlayerConfigController {
 
     private static Stage stage;
 
+    /** 
+     * Constructor for a PlayerConfigController.
+    */
     public PlayerConfigController() {
         System.out.println("PlayerConfigController constructed");
     }
 
+    /**
+     * Will be called after the constructor when the fxml is loaded.
+    */
     @FXML
     private void initialize() {
         done.setOnAction(new EventHandler<ActionEvent>() {
@@ -36,7 +46,7 @@ public class PlayerConfigController {
                 GameState state = GameState.getInstance();
                 try {
                     processPlayerConfig();
-                    if (state.getPlayers().size() == state.getNumPlayers()) {
+                    if (state.getMaxPlayers() == state.getNumPlayers()) {
                         goToLandSelect();
                         return;
                     } else {
@@ -84,6 +94,11 @@ public class PlayerConfigController {
         System.out.println(GameState.getInstance().getPlayers());
     }
 
+    /**
+     * Sets the stage for the controller.
+     * This must be called before the controller is given control of the stage.
+     * @param stage the stage that the controller will take over (window).
+    */
     public static void setStage(Stage stage) {
         PlayerConfigController.stage = stage;
     }

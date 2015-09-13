@@ -11,6 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Slider;
 
+/**
+ * GameConfigController controls the game configuration screen.
+ * This will be automatically created when the fxml is loaded.
+*/
 public class GameConfigController {
     @FXML
     private Button done;
@@ -20,10 +24,16 @@ public class GameConfigController {
 
     private static Stage stage;
 
+    /** 
+     * Constructor for a GameConfigController.
+    */
     public GameConfigController() {
         System.out.println("I am constructed");
     }
 
+    /**
+     * Will be called after the constructor when the fxml is loaded.
+    */
     @FXML
     private void initialize() {
         done.setOnAction(new EventHandler<ActionEvent>() {
@@ -50,10 +60,15 @@ public class GameConfigController {
     }
 
     private void processGameConfig() {
-        GameState.getInstance().setNumPlayers((int) numPlayers.getValue());
+        GameState.getInstance().setMaxPlayers((int) numPlayers.getValue());
     }
 
-    public static void setStage(Stage stage) {
+    /**
+     * Sets the stage for the controller.
+     * This must be called before the controller is given control of the stage.
+     * @param stage the stage that the controller will take over (window).
+    */
+    protected static void setStage(Stage stage) {
         GameConfigController.stage = stage;
     }
 }

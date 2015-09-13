@@ -2,38 +2,87 @@ package awkMULE;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the state of the game.
+*/
 public class GameState {
 
 	private static GameState instance;
-	private int numPlayers;
+
+	private int maxPlayers;
 
 	private ArrayList<Player> players;
 
 	private int currentPlayerIndex;
 
-	public GameState(int numPlayers) {
-		players = new ArrayList<>();
-		this.numPlayers = numPlayers;
-		currentPlayerIndex = 0;
+	/**
+	 * The constructor for a GameState.
+	 * This can only be called once as this class should be a singleton.
+	 * If called again this will throw an exception.
+	*/
+	public GameState() {
+		if (instance == null) {
+			players = new ArrayList<>();
+			maxPlayers = 0;
+			currentPlayerIndex = 0;
+		} else {
+			throw new UncheckedGameStateConfigException("Tried to create a second GameState");
+		}
 	}
 
+	/**
+	 * Gets the players that are in the game.
+	 * If getPlayers.size() is not equal to getNumPlayers() then the GameState has not been fully initialized.
+	 * @return a list of players that are currently playing in no guaranteed order.
+	*/
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}
 
+	/** 
+	 * Gets the number of players.
+	 * If this is not equal to getPlayers().size() then the GameState has not been initialized fully.
+	 * @return the number of players.
+	*/
 	public int getNumPlayers() {
-		return numPlayers;
+		return players.size();
 	}
 
+	/**
+	 * Gets the current player.
+	 * @return the current player (the player whose turn it is)
+	*/
 	public Player getCurrentPlayer() {
 		return players.get(currentPlayerIndex);
 	}
 
-	public void setNumPlayers(int numPlayers) {
-		this.numPlayers = numPlayers;
+	/**
+	 * Sets the limit for the number of players.
+	 * @param numPlayers the max number of players allowed.
+	*/
+	protected void setMaxPlayers(int numPlayers) {
+		maxPlayers = numPlayers;
 	}
 
-	public void addPlayer(Player player) throws GameStateConfigException {
+	/**
+	 * Gets the max number of players that are allowed to be playing.
+	 * Usually only set at game config.
+	 * @return the max number of players for this game.
+	*/
+	protected int getMaxPlayers() {
+		return maxPlayers;
+	}
+
+	/**
+	 * Add a player to the game.
+	 * Requires that there are not numPlayers already in the game. (AKA just for initialization).
+	 * @param player the player to add to the game.
+	 * @throws GameStateConfigException if there is a duplicate name.
+	*/
+	protected void addPlayer(Player player) throws GameStateConfigException {
+		if (getNumPlayers() >= getMaxPlayers()) {
+			throw new UncheckedGameStateConfigException("tried to add more than the allowed number of players");
+		}
 		for (Player p: players) {
 			if (player.getName().equals(p.getName())) {
 				throw new GameStateConfigException("duplicate name");
@@ -42,9 +91,13 @@ public class GameState {
 		players.add(player);
 	}
 
+	/**
+	 * Gets the instance of this class that is saved (there should only ever be one GameState).
+	 * @return the game state singleton.
+	*/
 	public static GameState getInstance() {
 		if (GameState.instance == null) {
-			GameState.instance = new GameState(0);
+			GameState.instance = new GameState();
 		}
 		return GameState.instance;
 	}
