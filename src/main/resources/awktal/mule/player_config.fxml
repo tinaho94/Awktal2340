@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane stylesheets="@play_1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awkMULE.PlayerConfigController">
+<AnchorPane stylesheets="@play_1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.PlayerConfigController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -60,7 +60,7 @@
                   </VBox>
                   <VBox alignment="CENTER">
                      <children>
-                        <Button id="done" fx:id="done" mnemonicParsing="false" text="Done" />
+                        <Button id="done" fx:id="done" mnemonicParsing="false" onAction="#selectionFinished" text="Done" />
                      </children>
                   </VBox>
                </children>

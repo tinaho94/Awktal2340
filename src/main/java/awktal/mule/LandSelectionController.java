@@ -1,4 +1,4 @@
-package awkMULE;
+package awktal.mule;
 
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
