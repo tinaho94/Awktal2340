@@ -24,7 +24,7 @@ public class GameConfigController {
 
     private static Stage stage;
 
-    /** 
+    /**
      * Constructor for a GameConfigController.
     */
     public GameConfigController() {
@@ -36,13 +36,11 @@ public class GameConfigController {
     */
     @FXML
     private void initialize() {
-        done.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
+        done.setOnAction(e -> {
                 processGameConfig();
                 startPlayerConfig();
             }
-        });
+        );
         System.out.println("I am initialized");
     }
 
@@ -53,9 +51,9 @@ public class GameConfigController {
             Scene scene = new Scene(screen, stage.getScene().getWidth(), stage.getScene().getHeight());
             stage.setTitle("MULE");
             stage.setScene(scene);
-            stage.show();
         } catch(Exception e) {
             System.out.println("You have failed");
+            // Throw some runtime exception.
         }
     }
 
@@ -70,5 +68,9 @@ public class GameConfigController {
     */
     protected static void setStage(Stage stage) {
         GameConfigController.stage = stage;
+    }
+
+    public void exampleClicked() {
+        System.out.println("I was clicked");
     }
 }

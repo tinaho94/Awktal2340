@@ -39,7 +39,7 @@ public class GameState {
 		return players;
 	}
 
-	/** 
+	/**
 	 * Gets the number of players.
 	 * If this is not equal to getPlayers().size() then the GameState has not been initialized fully.
 	 * @return the number of players.
