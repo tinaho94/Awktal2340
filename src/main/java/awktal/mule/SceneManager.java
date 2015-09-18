@@ -8,13 +8,15 @@ import javafx.stage.Stage;
 
 public class SceneManager {
     private static Stage stage;
+    private static GameState state;
 
     /**
      * Initializes the scene manager with the stage that it will control.
      * @param stage the stage that the scene manager will show screens on.
     */
-    public static void initSceneManager(Stage stage) {
+    public static void initSceneManager(Stage stage, GameState state) {
         SceneManager.stage = stage;
+        SceneManager.state = state;
     }
 
     /**
@@ -23,13 +25,15 @@ public class SceneManager {
     */
     public static void loadScene(GameScene gameScene) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            Parent screen = loader.load(SceneManager.class.getResource(gameScene.getFXML()));
+            FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(gameScene.getFXML()));
+            Parent screen = loader.load();
+            SceneController controller = (SceneController) loader.getController();
+            controller.setGameState(SceneManager.state);
             Scene scene = new Scene(screen, stage.getWidth(), stage.getHeight());
             stage.setScene(scene);
         } catch(Exception e) {
-            // TODO(hvpeteet): Make better exception.
-            throw new RuntimeException("Cannot load file " + gameScene.getFXML() + " error: " + e.toString());
+            e.printStackTrace();
+            throw new RuntimeException("Cannot load scene " + gameScene.toString() + ". Check if file " + gameScene.getFXML() + "exists. \n" + " error: " + e.toString());
         }
     }
 }

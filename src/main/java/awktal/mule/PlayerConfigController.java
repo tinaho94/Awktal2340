@@ -4,12 +4,17 @@ import awktal.mule.Race;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * PlayerConfigController controls the player configuration screen.
  * This will be automatically created when the fxml is loaded.
 */
-public class PlayerConfigController {
+public class PlayerConfigController extends SceneController {
+
+    @FXML
+    private ToggleGroup race;
 
     @FXML
     private TextField nameInput;
@@ -36,10 +41,9 @@ public class PlayerConfigController {
      * This is registered as a handler in the FXML.
     */
     public void selectionFinished() {
-        GameState state = GameState.getInstance();
         try {
             validatePlayerConfig();
-            if (state.getMaxPlayers() == state.getNumPlayers()) {
+            if (gameState.getMaxPlayers() == gameState.getNumPlayers()) {
                 SceneManager.loadScene(GameScene.LAND_SELECTION);
                 return;
             } else {
@@ -59,7 +63,9 @@ public class PlayerConfigController {
      * TODO(hvpeteet): make this return useful error messages.
     */
     private void validatePlayerConfig() throws GameStateConfigException {
-        GameState.getInstance().addPlayer(new Player(nameInput.getCharacters().toString(), colorInput.getValue(), Race.HUMAN));
-        System.out.println(GameState.getInstance().getPlayers());
+        String raceString = ((ToggleButton)race.getSelectedToggle()).getId();
+        Race raceVal = Race.valueOf(raceString);
+        gameState.addPlayer(new Player(nameInput.getCharacters().toString(), colorInput.getValue(), raceVal));
+        System.out.println(gameState.getPlayers());
     }
 }

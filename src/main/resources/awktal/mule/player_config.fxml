@@ -47,13 +47,15 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <ToggleButton mnemonicParsing="false" selected="true" text="Human">
+                              <ToggleButton fx:id="HUMAN" mnemonicParsing="false" selected="true" text="Human">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="race" />
                                  </toggleGroup>
                               </ToggleButton>
-                              <ToggleButton mnemonicParsing="false" text="Other1" toggleGroup="$race" />
-                              <ToggleButton mnemonicParsing="false" text="Other2" toggleGroup="$race" />
+                              <ToggleButton fx:id="FLAPPER" mnemonicParsing="false" text="Flapper" toggleGroup="$race" />
+                              <ToggleButton fx:id="BONZOID" mnemonicParsing="false" text="Bonzoid" toggleGroup="$race" />
+                              <ToggleButton fx:id="UGAITE" mnemonicParsing="false" text="Ugaite" toggleGroup="$race" />
+                              <ToggleButton fx:id="BUZZITE" mnemonicParsing="false" text="Buzzite" toggleGroup="$race" />
                            </children>
                         </HBox>
                      </children>

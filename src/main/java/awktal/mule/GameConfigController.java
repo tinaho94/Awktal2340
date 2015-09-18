@@ -10,7 +10,7 @@ import javafx.scene.Scene;
  * GameConfigController controls the game configuration screen.
  * This will be automatically created when the fxml is loaded.
 */
-public class GameConfigController {
+public class GameConfigController extends SceneController{
 
     @FXML
     private Slider numPlayers;
@@ -34,7 +34,7 @@ public class GameConfigController {
      * This is registered as a handler in the FXML.
     */
     public void selectionFinished() {
-        GameState.getInstance().setMaxPlayers((int) numPlayers.getValue());
+        gameState.setMaxPlayers((int) numPlayers.getValue());
         SceneManager.loadScene(GameScene.PLAYER_CONFIG);
     }
 }

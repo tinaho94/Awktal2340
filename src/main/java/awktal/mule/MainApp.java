@@ -19,7 +19,7 @@ public class MainApp extends Application {
         stage.setWidth(600);
         stage.setHeight(600);
 
-        SceneManager.initSceneManager(stage);
+        SceneManager.initSceneManager(stage, new GameState());
         SceneManager.loadScene(GameScene.GAME_CONFIG);
         stage.show();
     }

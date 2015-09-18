@@ -7,8 +7,6 @@ import java.util.ArrayList;
 */
 public class GameState {
 
-    private static GameState instance;
-
     private int maxPlayers;
 
     private ArrayList<Player> players;
@@ -21,13 +19,9 @@ public class GameState {
      * If called again this will throw an exception.
     */
     public GameState() {
-        if (instance == null) {
-            players = new ArrayList<>();
-            maxPlayers = 0;
-            currentPlayerIndex = 0;
-        } else {
-            throw new UncheckedGameStateConfigException("Tried to create a second GameState");
-        }
+        players = new ArrayList<>();
+        maxPlayers = 0;
+        currentPlayerIndex = 0;
     }
 
     /**
@@ -89,16 +83,5 @@ public class GameState {
             }
         }
         players.add(player);
-    }
-
-    /**
-     * Gets the instance of this class that is saved (there should only ever be one GameState).
-     * @return the game state singleton.
-    */
-    public static GameState getInstance() {
-        if (GameState.instance == null) {
-            GameState.instance = new GameState();
-        }
-        return GameState.instance;
     }
 }

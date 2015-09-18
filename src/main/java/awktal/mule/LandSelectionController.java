@@ -3,20 +3,13 @@ package awktal.mule;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
-public class LandSelectionController {
-
-    private static Stage stage;
+public class LandSelectionController extends SceneController {
 
     public LandSelectionController() {
-        System.out.println("I am constructed");
     }
 
     @FXML
     private void initialize() {
         System.out.println("Land select screen is shown.");
-    }
-
-    public static void setStage(Stage stage) {
-        LandSelectionController.stage = stage;
     }
 }
