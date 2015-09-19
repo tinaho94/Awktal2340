@@ -1,0 +1,3 @@
+.Button:disabled, .Button:disabled {
+    -fx-background-color: transparent; -fx-border-color: #800080; -fx-border-width: 5px;
+}
