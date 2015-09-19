@@ -1,12 +1,13 @@
-package awkMULE;
+package awktal.mule;
 
 import javafx.scene.paint.Color;
+import awktal.mule.Race;
 
 public class Player {
 	private String name;
 	private Color color;
-	private String race;
-	public Player(String name, Color color, String race) {
+	private Race race;
+	public Player(String name, Color color, Race race) {
 		this.name = name;
 		this.color = color;
 		this.race = race;
@@ -17,7 +18,7 @@ public class Player {
 	public Color getColor() {
 		return this.color;
 	}
-	public String getRace() {
+	public Race getRace() {
 		return this.race;
 	}
 	public String toString() {
