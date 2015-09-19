@@ -29,229 +29,229 @@
             <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="79.0" fitWidth="65.0">
+            <ImageView fitHeight="82.0" fitWidth="67.0">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="66.0" GridPane.columnIndex="1">
+            <ImageView fitHeight="81.0" fitWidth="67.0" GridPane.columnIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="67.0" GridPane.columnIndex="2">
+            <ImageView fitHeight="80.0" fitWidth="66.0" GridPane.columnIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount1.png" />
+                  <Image url="@map_pictures/mount1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="67.0" GridPane.columnIndex="3">
+            <ImageView fitHeight="81.0" fitWidth="69.0" GridPane.columnIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="69.0" GridPane.columnIndex="4">
+            <ImageView fitHeight="81.0" fitWidth="68.0" GridPane.columnIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/water.png" />
+                  <Image url="@map_pictures/water.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="68.0" GridPane.columnIndex="5">
+            <ImageView fitHeight="80.0" fitWidth="69.0" GridPane.columnIndex="5">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="67.0" GridPane.columnIndex="6">
+            <ImageView fitHeight="81.0" fitWidth="67.0" GridPane.columnIndex="6">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount3.png" />
+                  <Image url="@map_pictures/mount3.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="67.0" GridPane.columnIndex="7">
+            <ImageView fitHeight="78.0" fitWidth="68.0" GridPane.columnIndex="7">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="68.0" GridPane.columnIndex="8">
+            <ImageView fitHeight="80.0" fitWidth="67.0" GridPane.columnIndex="8">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="68.0" GridPane.rowIndex="1">
+            <ImageView fitHeight="79.0" fitWidth="66.0" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ImageView fitHeight="80.0" fitWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount1.jpg" />
+                  <Image url="@map_pictures/mount1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="84.0" fitWidth="67.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <ImageView fitHeight="79.0" fitWidth="67.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="69.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <ImageView fitHeight="80.0" fitWidth="68.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="69.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+            <ImageView fitHeight="82.0" fitWidth="69.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/water.png" />
+                  <Image url="@map_pictures/water.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="82.0" fitWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
+            <ImageView fitHeight="80.0" fitWidth="68.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="68.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+            <ImageView fitHeight="79.0" fitWidth="67.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
+            <ImageView fitHeight="79.0" fitWidth="68.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="68.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
+            <ImageView fitHeight="82.0" fitWidth="68.0" GridPane.columnIndex="8" GridPane.rowIndex="1">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount3.png" />
+                  <Image url="@map_pictures/mount3.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="66.0" GridPane.rowIndex="2">
+            <ImageView fitHeight="78.0" fitWidth="67.0" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount3.png" />
+                  <Image url="@map_pictures/mount3.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="84.0" fitWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <ImageView fitHeight="78.0" fitWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="67.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <ImageView fitHeight="78.0" fitWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="69.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <ImageView fitHeight="79.0" fitWidth="69.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="69.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+            <ImageView fitHeight="80.0" fitWidth="68.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/building.png" />
+                  <Image url="@map_pictures/building.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="84.0" fitWidth="68.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
+            <ImageView fitHeight="80.0" fitWidth="68.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="69.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+            <ImageView fitHeight="79.0" fitWidth="70.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="68.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
+            <ImageView fitHeight="81.0" fitWidth="68.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="78.0" fitWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="2">
+            <ImageView fitHeight="81.0" fitWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="2">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount1.jpg" />
+                  <Image url="@map_pictures/mount1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="82.0" fitWidth="67.0" GridPane.rowIndex="3">
+            <ImageView fitHeight="81.0" fitWidth="68.0" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="84.0" fitWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <ImageView fitHeight="81.0" fitWidth="66.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount2.png" />
+                  <Image url="@map_pictures/mount2.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="68.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <ImageView fitHeight="78.0" fitWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <ImageView fitHeight="79.0" fitWidth="67.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="69.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
+            <ImageView fitHeight="79.0" fitWidth="68.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/water.png" />
+                  <Image url="@map_pictures/water.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="83.0" fitWidth="68.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
+            <ImageView fitHeight="80.0" fitWidth="68.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="68.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+            <ImageView fitHeight="83.0" fitWidth="66.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount2.png" />
+                  <Image url="@map_pictures/mount2.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
+            <ImageView fitHeight="78.0" fitWidth="66.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="82.0" fitWidth="68.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
+            <ImageView fitHeight="79.0" fitWidth="68.0" GridPane.columnIndex="8" GridPane.rowIndex="3">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="67.0" GridPane.rowIndex="4">
+            <ImageView fitHeight="81.0" fitWidth="66.0" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="68.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <ImageView fitHeight="80.0" fitWidth="67.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <ImageView fitHeight="78.0" fitWidth="66.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount2.png" />
+                  <Image url="@map_pictures/mount2.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="67.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
+            <ImageView fitHeight="81.0" fitWidth="66.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="68.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
+            <ImageView fitHeight="80.0" fitWidth="67.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/water.png" />
+                  <Image url="@map_pictures/water.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="67.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
+            <ImageView fitHeight="81.0" fitWidth="68.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="79.0" fitWidth="68.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
+            <ImageView fitHeight="81.0" fitWidth="68.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="69.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
+            <ImageView fitHeight="80.0" fitWidth="67.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/grass.png" />
+                  <Image url="@map_pictures/grass.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="78.0" fitWidth="66.0" GridPane.columnIndex="8" GridPane.rowIndex="4">
+            <ImageView fitHeight="80.0" fitWidth="67.0" GridPane.columnIndex="8" GridPane.rowIndex="4">
                <image>
-                  <Image url="@../../../../../../../Pictures/mount2.png" />
+                  <Image url="@map_pictures/mount2.png" />
                </image>
             </ImageView>
          </children>
