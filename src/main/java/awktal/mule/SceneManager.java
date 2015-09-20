@@ -13,6 +13,7 @@ public class SceneManager {
     /**
      * Initializes the scene manager with the stage that it will control.
      * @param stage the stage that the scene manager will show screens on.
+     * @param state the game state to use.
     */
     public static void initSceneManager(Stage stage, GameState state) {
         SceneManager.stage = stage;
