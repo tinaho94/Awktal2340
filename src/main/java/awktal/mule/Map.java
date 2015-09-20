@@ -1,6 +1,8 @@
 package awktal.mule;
 
-public class Map {
+import java.util.Iterator;
+
+public class Map implements Iterable<Tile> {
 
 	private Tile[][] tiles;
 
@@ -10,6 +12,10 @@ public class Map {
 
 	public Tile getTile(int x, int y) {
 		return this.tiles[x][y];
+	}
+
+	public Iterator<Tile> iterator() {
+		return new MapIterator(this);
 	}
 
 	public String toString() {
