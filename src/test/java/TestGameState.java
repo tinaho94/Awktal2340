@@ -12,8 +12,8 @@ public class TestGameState {
     @Test(expected=UncheckedGameStateConfigException.class)
     public void testAddPlayerFail() {
         try {
-            GameState state = GameState.getInstance();
-            state.addPlayer(new Player("Henry", null, "Orc"));
+            GameState state = new GameState();
+            state.addPlayer(new Player("Henry", null, Race.HUMAN));
         } catch (GameStateConfigException e) {
             return;
         }

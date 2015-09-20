@@ -71,17 +71,35 @@ public class GameState {
      * Add a player to the game.
      * Requires that there are not numPlayers already in the game. (AKA just for initialization).
      * @param player the player to add to the game.
-     * @throws GameStateConfigException if there is a duplicate name.
+     * @throws GameStateConfigException if there is invalid input.
     */
     protected void addPlayer(Player player) throws GameStateConfigException {
-        if (getNumPlayers() >= getMaxPlayers()) {
-            throw new UncheckedGameStateConfigException("tried to add more than the allowed number of players");
+        try {
+            validateNewPlayer(player);
+            players.add(player);
+        } catch(GameStateConfigException e) {
+            throw e;
         }
-        for (Player p: players) {
+    }
+
+    /**
+     * Checks if adding a player is valid.
+     * @param player the player to validate.
+     * @throws GameStateConfigException if the player does not match the criteria listed.
+     * The players must:
+     * <ul>
+     *  <li> Not have the same name as any other players </li>
+     *  <li> Not exceed the max number of players </li>
+     *  <li> Not have the same color as another player </li>
+     *  <li> The name must not be empty or be longer than 15 characters. </li>
+     * </ul>
+    */
+    private isValidNewPlayer(Player player) throws GameStateConfigException {
+        // TODO(alexvloomis): Implement this.
+        for (p : players) {
             if (player.getName().equals(p.getName())) {
                 throw new GameStateConfigException("duplicate name");
             }
         }
-        players.add(player);
     }
 }

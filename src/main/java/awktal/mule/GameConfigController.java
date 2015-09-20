@@ -19,7 +19,6 @@ public class GameConfigController extends SceneController{
      * Constructor for a GameConfigController.
     */
     public GameConfigController() {
-        System.out.println("I am constructed");
     }
 
     /**
