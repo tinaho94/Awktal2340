@@ -55,12 +55,12 @@
                         </HBox>
                         <HBox alignment="CENTER">
                            <children>
-                              <ToggleButton id="traditional" mnemonicParsing="false" selected="true" text="Traditional">
+                              <ToggleButton id="traditional" fx:id="traditional" mnemonicParsing="false" selected="true" text="Traditional">
                                  <toggleGroup>
-                                    <ToggleGroup fx:id="map" />
+                                    <ToggleGroup fx:id="mapType" />
                                  </toggleGroup>
                               </ToggleButton>
-                              <ToggleButton id="random" mnemonicParsing="false" text="Random" toggleGroup="$map" />
+                              <ToggleButton id="random" fx:id="random" mnemonicParsing="false" text="Random" toggleGroup="$mapType" />
                            </children>
                         </HBox>
                      </children>

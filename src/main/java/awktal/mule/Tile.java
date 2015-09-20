@@ -4,7 +4,8 @@ public class Tile {
 	
 	private TileType type;
 
-	public Tile (float row, float col) {
+	public Tile (int x, int y, TileType type) {
+		this.type = type;
 		//do nothing for now
 	}
 
