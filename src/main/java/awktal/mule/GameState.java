@@ -97,7 +97,7 @@ public class GameState {
      * </ul>
     */
     private void validateNewPlayer(Player player) throws GameStateConfigException {
-        // TODO(alexvloomis): Implement this.
+        // TODO(alex): Implement this.
         if (player.getName().equals("")) {
             throw new GameStateConfigException("empty name");
         }
