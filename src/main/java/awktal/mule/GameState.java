@@ -13,6 +13,8 @@ public class GameState {
 
     private int currentPlayerIndex;
 
+    private Map map;
+
     /**
      * The constructor for a GameState.
      * This can only be called once as this class should be a singleton.
@@ -101,5 +103,13 @@ public class GameState {
                 throw new GameStateConfigException("duplicate name");
             }
         }
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public Map getMap() {
+        return this.map;
     }
 }
