@@ -21,6 +21,7 @@ public class LandSelectionController extends SceneController {
 
     private int row;
     private int col;
+    private TileType type;
 
     public LandSelectionController() {
     }
@@ -49,11 +50,14 @@ public class LandSelectionController extends SceneController {
                         col = 0;
                     }
                     System.out.println("row: " + row + "and col: " + col);
+                    getTileType(newNode);
+                    System.out.println("type of tile: " + type);
                     //newNode.setStyle("-fx-background-color: transparent; -fx-border-color: #800080; -fx-border-width: 5px; ");
                 });
             }
             
         }
+
         /*field.setOnAction(e -> {
                 //trees1.setStyle("-fx-background-color: pink;");
                 System.out.println("Button Pressed");
@@ -66,5 +70,10 @@ public class LandSelectionController extends SceneController {
         );
         System.out.println("Land select screen is shown.");
         */
+    }
+
+    public void getTileType(Button node) {
+        String typeString = node.getId();
+        type = TileType.valueOf(typeString);
     }
 }
