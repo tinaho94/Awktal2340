@@ -26,9 +26,10 @@ public class MapGenerator {
 		Tile[][] tiles = new Tile[9][5];
 		for (int x = 0; x < tiles.length; x++) {
 			for (int y = 0; y < tiles[x].length; y++) {
-				tiles[x][y] = new Tile(x, y, tileTypes[rand.nextInt(tileTypes.length)]);
+				tiles[x][y] = new Tile(x, y, tileTypes[rand.nextInt(tileTypes.length - 1)]);
 			}
 		}
+		tiles[4][2] = new Tile(4, 2, TileType.BUILDING);
 		return new Map(tiles);
 	}
 
