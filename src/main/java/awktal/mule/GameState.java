@@ -96,9 +96,12 @@ public class GameState {
      *  <li> The name must not be empty or be longer than 15 characters. </li>
      * </ul>
     */
-    private isValidNewPlayer(Player player) throws GameStateConfigException {
+    private void validateNewPlayer(Player player) throws GameStateConfigException {
         // TODO(alexvloomis): Implement this.
-        for (p : players) {
+        if (player.getName().equals("")) {
+            throw new GameStateConfigException("empty name");
+        }
+        for (Player p : players) {
             if (player.getName().equals(p.getName())) {
                 throw new GameStateConfigException("duplicate name");
             }
