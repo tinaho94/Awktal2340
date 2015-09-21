@@ -9,14 +9,15 @@ import awktal.mule.Player;
 
 public class TestGameState {
 
-    @Test(expected=UncheckedGameStateConfigException.class)
+    @Test
     public void testAddPlayerFail() {
         try {
-            GameState state = GameState.getInstance();
-            state.addPlayer(new Player("Henry", null, "Orc"));
+            GameState state = new GameState();
+            state.addPlayer(new Player("", null, Race.HUMAN));
+            fail("addPlayer did not fail when player had empty string for name.");
         } catch (GameStateConfigException e) {
+            // test passes.
             return;
         }
-        fail("GameStateConfigException not thrown");
     }
 }
