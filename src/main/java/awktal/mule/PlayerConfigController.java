@@ -26,7 +26,6 @@ public class PlayerConfigController extends SceneController {
      * Constructor for a PlayerConfigController.
     */
     public PlayerConfigController() {
-        System.out.println("PlayerConfigController constructed");
     }
 
     /**
@@ -50,7 +49,7 @@ public class PlayerConfigController extends SceneController {
                 SceneManager.loadScene(GameScene.PLAYER_CONFIG);
                 return;
             }
-        } catch(Exception e) {
+        } catch(GameStateConfigException e) {
             // TODO(hvpeteet): replace this with creating an error message and setting a class = error.
             System.out.println(e.toString());
             nameInput.setStyle("-fx-border-color: red;");
