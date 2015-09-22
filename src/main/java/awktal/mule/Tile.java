@@ -3,7 +3,7 @@ package awktal.mule;
 public class Tile {
 
 	private int x, y;
-	
+	//x is col and y is row
 	private TileType type;
 
 	public Tile (int x, int y, TileType type) {

@@ -1,40 +1,57 @@
 package awktal.mule;
 
-import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.scene.control.Button;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import java.awt.Color;
 import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.scene.layout.Priority;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.Scene;
 
-public class LandSelectionController extends SceneController {
+public class LandSelectionController extends SceneController implements Initializable {
     
     @FXML
     private GridPane gridpane;
 
     private int row;
     private int col;
-    private TileType type;
+    private Map currMap;
 
     public LandSelectionController() {
     }
 
-    /*
-     * Initializes the land selection stage to be
-     * constantly checking for if a mouse event has
-     * happened and store the row and column of the
-     * tile
-     * 
-    */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //GameState currState = new GameState();
+        //currMap = currState.getMap();
+        currMap = MapGenerator.generateMap(MapType.TRADITIONAL);
+        createImageViews();
+        onClick();
+    }
+
     @FXML
-    private void initialize() {
+    private void createImageViews() {
+        for (Tile t: currMap) {
+            String type = t.getType().toString();
+            String path = TileType.valueOf(type).getPath();
+            Image img = new Image(LandSelectionController.class.getResourceAsStream(path));
+            ImageView imgView = new ImageView(img);
+            Button button = new Button("",imgView);
+            GridPane.setHgrow(button, Priority.ALWAYS);
+            GridPane.setVgrow(button, Priority.ALWAYS);
+            button.setMaxWidth(Double.MAX_VALUE);
+            button.setMaxHeight(Double.MAX_VALUE);
+            button.setId(type);
+            gridpane.add(button, t.getX(), t.getY(), 1, 1);
+            imgView.fitWidthProperty().bind(button.widthProperty());
+            imgView.fitHeightProperty().bind(button.heightProperty());
+        }
+    }
+
+    @FXML
+    private void onClick() {
         for (Node node: gridpane.getChildren()) {
             if (node instanceof Button) {
                 Button newNode = (Button)node;
@@ -50,30 +67,12 @@ public class LandSelectionController extends SceneController {
                         col = 0;
                     }
                     System.out.println("row: " + row + "and col: " + col);
-                    getTileType(newNode);
-                    System.out.println("type of tile: " + type);
-                    //newNode.setStyle("-fx-background-color: transparent; -fx-border-color: #800080; -fx-border-width: 5px; ");
+                    //getTileType(newNode);
+                    //System.out.println("type of tile: " + type);
+                       //newNode.setStyle("-fx-background-color: transparent; -fx-border-color: #800080; -fx-border-width: 5px; ");
                 });
             }
-            
+
         }
-
-        /*field.setOnAction(e -> {
-                //trees1.setStyle("-fx-background-color: pink;");
-                System.out.println("Button Pressed");
-                field.setDisable(true);
-                //field.getStylesheets().add(this.getClass().getResource("../../resources/awkMULE/DisabledButton.css").toExt‌​ernalForm());
-                //field.getStylesheets().add("DisabledButton.css");
-                field.setStyle("-fx-background-color: transparent; -fx-border-color: #800080; -fx-border-width: 5px; ");
-                //field.setStyle("-fx-base: #800080;");
-            }
-        );
-        System.out.println("Land select screen is shown.");
-        */
-    }
-
-    public void getTileType(Button node) {
-        String typeString = node.getId();
-        type = TileType.valueOf(typeString);
     }
 }

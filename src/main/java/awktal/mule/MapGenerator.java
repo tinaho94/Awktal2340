@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class MapGenerator {
 	private static int[][] traditionalMapTiles = {
-		{0,0,2,0,1,0,4,0,0},
-		{0,2,0,0,1,0,0,0,4},
-		{4,0,0,0,5,0,0,0,2},
-		{0,3,0,0,1,0,3,0,0},
-		{0,0,3,0,1,0,0,0,3}
+		{0,0,2,0,5,0,4,0,0},
+		{0,2,0,0,5,0,0,0,4},
+		{4,0,0,0,1,0,0,0,2},
+		{0,3,0,0,5,0,3,0,0},
+		{0,0,3,0,5,0,0,0,3}
 	};	
 	public static Map generateMap(MapType type) {
 		Map map = null;

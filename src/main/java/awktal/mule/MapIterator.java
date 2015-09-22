@@ -13,7 +13,7 @@ public class MapIterator implements Iterator<Tile> {
 	}
 
 	public boolean hasNext() {
-		return !((currX == 8) && (currY == 4));
+		return currX < 9 && currY < 5;
 	}
 
 	public Tile next() {
