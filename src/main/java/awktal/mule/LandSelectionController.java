@@ -28,11 +28,8 @@ public class LandSelectionController extends SceneController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //GameState currState = new GameState();
-        //currMap = currState.getMap();
-        currMap = MapGenerator.generateMap(MapType.TRADITIONAL);
-
-        //currMap = this.gameState.getMap();
+        currMap = gameState.getMap();
+        
         createImageViews();
         onClick();
 

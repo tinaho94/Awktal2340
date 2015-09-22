@@ -1,7 +1,7 @@
 package awktal.mule;
 
 public abstract class SceneController {
-    protected GameState gameState;
+    protected static GameState gameState;
 
     protected void setGameState(GameState gameState) {
         this.gameState = gameState;
