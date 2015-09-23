@@ -18,6 +18,7 @@ public class SceneManager {
     public static void initSceneManager(Stage stage, GameState state) {
         SceneManager.stage = stage;
         SceneManager.state = state;
+        SceneController.setGameState(SceneManager.state);
     }
 
     /**
@@ -29,7 +30,6 @@ public class SceneManager {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(gameScene.getFXML()));
             Parent screen = loader.load();
             SceneController controller = (SceneController) loader.getController();
-            controller.setGameState(SceneManager.state);
             Scene scene = new Scene(screen, stage.getWidth(), stage.getHeight());
             stage.setScene(scene);
         } catch(Exception e) {

@@ -15,6 +15,8 @@ public class GameState {
 
     private Map map;
 
+    private int round;
+
     /**
      * The constructor for a GameState.
      * This can only be called once as this class should be a singleton.
@@ -114,5 +116,18 @@ public class GameState {
 
     public Map getMap() {
         return this.map;
+    }
+
+    public void endPlayerTurn() {
+        currentPlayerIndex++;
+    }
+
+    public boolean isRoundOver() {
+        return currentPlayerIndex < players.size();
+    }
+
+    public void restartRound() {
+        currentPlayerIndex = 0;
+        round++;
     }
 }
