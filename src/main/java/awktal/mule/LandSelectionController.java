@@ -15,26 +15,30 @@ public class LandSelectionController extends SceneController implements Initiali
     @FXML
     private GridPane gridpane;
 
-    private int row;
-    private int col;
     private Map currMap;
 
+    /**
+    * These variables refer to the tiles that were clicked
+    */
+    private int rowClicked;
+    private int colClicked;
+    private TileType typeClicked;
 
-    
-    //private MapType map;
 
     public LandSelectionController() {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        currMap = gameState.getMap();
-        
+        currMap = gameState.getMap();        
         createImageViews();
         onClick();
-
     }
 
+    /**
+     * Creates an ImageView from Tile's path to picture and places the 
+     * ImageView in Button then add to parent GridPane.
+    */
     @FXML
     private void createImageViews() {
         for (Tile t: currMap) {
@@ -54,23 +58,20 @@ public class LandSelectionController extends SceneController implements Initiali
         }
     }
 
+    /**
+     * Checks for Tile Clicks
+    */
     @FXML
     private void onClick() {
         for (Node node: gridpane.getChildren()) {
             if (node instanceof Button) {
                 Button newNode = (Button)node;
                 newNode.setOnAction (e -> {
-                    try {
-                        row = gridpane.getRowIndex(newNode);
-                    } catch (Exception f) {
-                        row = 0;
-                    }
-                    try {
-                        col = gridpane.getColumnIndex(newNode);
-                    } catch (Exception g) {
-                        col = 0;
-                    }
+                    rowClicked = gridpane.getRowIndex(newNode);
+                    colClicked = gridpane.getColumnIndex(newNode);
+                    typeClicked = TileType.valueOf(newNode.getId());
                 });
+
                     //-----below checks if the tile is owned-----
                 //System.out.println(gameState.getPlayers());
                 //boolean isOwned = new Tile(row, col, type).isOwned();
