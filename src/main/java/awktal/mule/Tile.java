@@ -3,6 +3,7 @@ package awktal.mule;
 public class Tile {
 
 	private int x, y;
+
 	private Player owner; 	
 	private TileType type;
 
