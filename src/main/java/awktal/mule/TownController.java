@@ -24,8 +24,8 @@ public class TownController extends SceneController {
     }
 
 
-    public void helloWorld() {
-        System.out.println("yayyy is workinnnggg");
+    public void loadLandSelect() {
+        SceneManager.loadScene(GameScene.LAND_SELECTION);
     }
 
 
