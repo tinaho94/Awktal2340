@@ -7,7 +7,8 @@ package awktal.mule;
 public enum GameScene {
     GAME_CONFIG,
     PLAYER_CONFIG,
-    LAND_SELECTION;
+    LAND_SELECTION,
+    TOWN;
 
     private String fxml;
 
@@ -15,6 +16,7 @@ public enum GameScene {
         GAME_CONFIG.fxml = "game_config.fxml";
         PLAYER_CONFIG.fxml = "player_config.fxml";
         LAND_SELECTION.fxml = "land_selection.fxml";
+        TOWN.fxml = "town.fxml";
 
     }
 
