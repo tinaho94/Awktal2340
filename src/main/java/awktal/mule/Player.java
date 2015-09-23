@@ -23,11 +23,6 @@ public class Player {
 		this.race = race;
 		this.inventory = new Inventory(race.getStartingMoney(), 0, 0, 0);
 		this.tiles = new ArrayList<Tile>();
-		inventory.depositMoney(100);
-		String[] h = inventory.getHistory();
-		for (String p: h) {
-			System.out.println(p);
-		}
 	}
 	/**
 	 * Gets the name of the player.
