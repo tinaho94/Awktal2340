@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.layout.Priority;
 import javafx.scene.Node;
+import javafx.geometry.Pos;
 
 public class LandSelectionController extends SceneController implements Initializable {
     
@@ -23,7 +24,6 @@ public class LandSelectionController extends SceneController implements Initiali
     private int rowClicked;
     private int colClicked;
     private TileType typeClicked;
-
 
     public LandSelectionController() {
     }
@@ -44,22 +44,22 @@ public class LandSelectionController extends SceneController implements Initiali
         for (Tile t: currMap) {
             String type = t.getType().toString();
             String path = TileType.valueOf(type).getPath();
-            Image img = new Image(LandSelectionController.class.getResourceAsStream(path));
-            ImageView imgView = new ImageView(img);
-            Button button = new Button("",imgView);
-            GridPane.setHgrow(button, Priority.ALWAYS);
-            GridPane.setVgrow(button, Priority.ALWAYS);
+            Button button = new Button("");
+            String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
+            button.setStyle("-fx-background-image: url('" + imagePath + "'); " +
+            "-fx-background-position: center center; " +
+            "-fx-background-size: cover");
             button.setMaxWidth(Double.MAX_VALUE);
             button.setMaxHeight(Double.MAX_VALUE);
             button.setId(type);
             gridpane.add(button, t.getX(), t.getY(), 1, 1);
-            //imgView.fitWidthProperty().bind(button.widthProperty());
-            //imgView.fitHeightProperty().bind(button.heightProperty());
         }
     }
 
     /**
-     * Checks for Tile Clicks
+     * Checks for Tile Clicks and changes border color
+     * Right now, I only changed to coral but later on
+     * change to the current player
     */
     @FXML
     private void onClick() {
@@ -70,6 +70,13 @@ public class LandSelectionController extends SceneController implements Initiali
                     rowClicked = gridpane.getRowIndex(newNode);
                     colClicked = gridpane.getColumnIndex(newNode);
                     typeClicked = TileType.valueOf(newNode.getId());
+                    String path = TileType.valueOf(typeClicked.toString()).getPath();
+                    String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
+                    newNode.setStyle("-fx-background-image: url('" + imagePath + "'); " +
+                    "-fx-background-position: center center; " +
+                    "-fx-background-size: cover; -fx-border-color: coral; -fx-border-size: 50px");
+                    System.out.println("row: " + rowClicked + ", col: " +
+                        colClicked + ", type: " + typeClicked.toString());
                 });
 
                     //-----below checks if the tile is owned-----
