@@ -4,9 +4,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane fx:id="dat_pain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.TownController">
+<AnchorPane fx:id="main_pane" minHeight="800.0" minWidth="1350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.TownController">
    <children>
-      <Button fx:id="return_button" layoutX="340.0" layoutY="350.0" mnemonicParsing="false" onAction="#loadLandSelect" text="Return to Land Select" />
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+         <children>
+          <AnchorPane fx:id="town_pane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700.0" minWidth="1350.0" />
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="150.0" minWidth="1000.0">
+               <children>
+                  <Button fx:id="return_button" layoutX="425.0" layoutY="62.0" mnemonicParsing="false" onAction="#loadLandSelect" text="Return to Land Select" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="425.0" AnchorPane.rightAnchor="424.0" AnchorPane.topAnchor="62.0" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
