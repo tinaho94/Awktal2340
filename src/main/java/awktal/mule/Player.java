@@ -1,13 +1,15 @@
 package awktal.mule;
 
 import javafx.scene.paint.Color;
-import awktal.mule.Race;
+
+import java.util.ArrayList;
 
 public class Player {
 	private String name;
 	private Color color;
 	private Race race;
 	private Inventory inventory;
+	private ArrayList<Tile> tiles;
 
 	/**
 	 * The constructor for the player class.
@@ -20,6 +22,7 @@ public class Player {
 		this.color = color;
 		this.race = race;
 		this.inventory = new Inventory(race.getStartingMoney(), 0, 0, 0);
+		this.tiles = new ArrayList<Tile>();
 		inventory.depositMoney(100);
 		String[] h = inventory.getHistory();
 		for (String p: h) {
@@ -44,5 +47,11 @@ public class Player {
 	}
 	public Inventory getInventory() {
 		return this.inventory;
+	}
+	public void addTile(Tile tile) {
+		this.tiles.add(tile);
+	}
+	public Tile[] getTiles() {
+		return this.tiles.toArray(new Tile[tiles.size()]);
 	}
 }
