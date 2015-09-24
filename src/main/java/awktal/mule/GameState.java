@@ -26,6 +26,7 @@ public class GameState {
         players = new ArrayList<>();
         maxPlayers = 0;
         currentPlayerIndex = 0;
+        round = 1;
     }
 
     /**

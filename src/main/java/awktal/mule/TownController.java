@@ -29,6 +29,7 @@ public class TownController extends SceneController {
 
 
     public void loadLandSelect() {
+        gameState.newRound();
         SceneManager.loadScene(GameScene.LAND_SELECTION);
     }
 

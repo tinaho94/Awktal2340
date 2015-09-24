@@ -2,6 +2,7 @@ package awktal.mule;
 
 import javafx.fxml.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,6 +18,18 @@ public class LandSelectionController extends SceneController implements Initiali
     
     @FXML
     private GridPane gridpane;
+
+    @FXML
+    private Label playerLabel;
+
+    @FXML
+    private Label moneyLabel;
+
+    @FXML
+    private Label roundLabel;
+
+    @FXML
+    private Button passButton;
 
     private Map currMap;
 
@@ -38,9 +51,13 @@ public class LandSelectionController extends SceneController implements Initiali
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        currMap = gameState.getMap();        
+        currMap = gameState.getMap();
+        loadPlayerData();
         createImageViews();
         onClick();
+        passButton.setOnAction (e -> {
+            onPassClick();
+        });
     }
 
     /**
@@ -177,10 +194,26 @@ private void tileClicked(int row, int col, Node tileView) {
     "-fx-background-size: cover;");
 
     currentPlayerIndex++;
+    
     if(currentPlayerIndex >= players.size()) { 
         //go to world view
         SceneManager.loadScene(GameScene.TOWN);
-    } 
+    } else {
+        loadPlayerData();
+    }
+}
+
+private void loadPlayerData() {
+    Player currentPlayer = players.get(currentPlayerIndex);
+    playerLabel.setText(currentPlayer.getName());
+    moneyLabel.setText(String.valueOf(currentPlayer.getInventory().getMoney()));
+    roundLabel.setText(String.valueOf(gameState.getRound()));     
+}
+
+@FXML
+public void onPassClick() {
+    currentPlayerIndex++;
+    loadPlayerData();
 }
 
 
