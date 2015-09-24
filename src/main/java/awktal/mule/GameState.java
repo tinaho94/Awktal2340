@@ -153,4 +153,8 @@ public class GameState {
         currentPlayerIndex = 0;
         round++;
     }
+
+    public int getRound(){
+        return round;
+    }
 }
