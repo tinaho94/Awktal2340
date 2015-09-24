@@ -57,6 +57,13 @@ public class LandSelectionController extends SceneController implements Initiali
             button.setStyle("-fx-background-image: url('" + imagePath + "'); " +
             "-fx-background-position: center center; " +
             "-fx-background-size: cover");
+            if (t.isOwned()) {
+                button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor()) + ";" +
+                    "-fx-border-width: 5px;" +
+                    "-fx-background-image: url('" + imagePath + "'); " +
+                    "-fx-background-position: center center; " +
+                    "-fx-background-size: cover;");
+            }
             button.setMaxWidth(Double.MAX_VALUE);
             button.setMaxHeight(Double.MAX_VALUE);
             button.setId(type);
@@ -164,7 +171,7 @@ private void tileClicked(int row, int col, Node tileView) {
     String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
 
     tileView.setStyle("-fx-border-color: " + colorToHexString(currentPlayer.getColor()) + ";" +
-    "-fx-border-size: 50px;" +
+    "-fx-border-width: 5px;" +
     "-fx-background-image: url('" + imagePath + "'); " +
     "-fx-background-position: center center; " +
     "-fx-background-size: cover;");
