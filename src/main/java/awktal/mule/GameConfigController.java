@@ -11,9 +11,8 @@ import javafx.scene.Scene;
 
 /**
  * GameConfigController controls the game configuration screen.
- * This will be automatically created when the fxml is loaded.
 */
-public class GameConfigController extends SceneController{
+public class GameConfigController extends SceneController {
 
     @FXML
     private Slider numPlayers;

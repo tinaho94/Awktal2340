@@ -8,11 +8,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Main method that starts up the entire application.
+*/
 public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Starts the game.
+    */
     @Override
     public void start(Stage stage) throws Exception {
         stage.setTitle("MULE");
