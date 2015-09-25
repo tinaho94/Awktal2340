@@ -30,6 +30,10 @@ public class TownController extends SceneController {
 
     public void loadLandSelect() {
         gameState.newRound();
+        if (!gameState.getPropertySelectionEnabled()) {
+            System.out.println("Land selection has been disabled.");
+            return;
+        }
         SceneManager.loadScene(GameScene.LAND_SELECTION);
     }
 

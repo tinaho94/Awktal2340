@@ -33,6 +33,8 @@ public class LandSelectionController extends SceneController implements Initiali
 
     private Map currMap;
 
+    private int numPasses;
+
     /**
     * These variables refer to the tiles that were clicked
     */
@@ -167,6 +169,10 @@ public class LandSelectionController extends SceneController implements Initiali
     @FXML
     public void onPassClick() {
         currentPlayerIndex++;
+        numPasses++;
+        if (numPasses == players.size()) {
+            gameState.setPropertySelectionEnabled(false);
+        }
         if(currentPlayerIndex >= players.size()) {
             SceneManager.loadScene(GameScene.TOWN);
             return;
