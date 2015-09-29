@@ -37,7 +37,4 @@ public class TownController extends SceneController {
         SceneManager.loadScene(GameScene.LAND_SELECTION);
     }
 
-
-
-
 }
