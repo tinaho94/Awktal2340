@@ -107,7 +107,7 @@ public class TownController extends SceneController {
         switch (BUILDING_RANGES[currentCol]) {
             case PUB:
                 // System.out.println("Entering pub");
-                // SceneManager.loadScene(GameScene.PUB);
+                SceneManager.loadScene(GameScene.PUB);
                 break;
             case STORE:
                 // System.out.println("Entering store");
