@@ -43,7 +43,7 @@ public class TownController extends SceneController {
             for (int col = 0; col < 17; col++) {
                 String path = "town_pictures/town-" + row + "-" + col + ".jpeg";
                 Button button = new Button("");
-                System.out.println(path);
+                // System.out.println(path);
                 String imagePath = TownController.class.getResource(path).toExternalForm();
                 String style = "";
                 style += "-fx-background-image: url('" + imagePath + "'); ";
@@ -106,12 +106,12 @@ public class TownController extends SceneController {
     private void attemptEntrance() {
         switch (BUILDING_RANGES[currentCol]) {
             case PUB:
-                System.out.println("Entering pub");
+                // System.out.println("Entering pub");
                 // SceneManager.loadScene(GameScene.PUB);
                 break;
             case STORE:
-                System.out.println("Entering store");
-                // SceneManager.loadScene(GameScene.PLACEHOLDER); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
+                // System.out.println("Entering store");
+                SceneManager.loadScene(GameScene.STORE); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
             default:
                 break;
         }
