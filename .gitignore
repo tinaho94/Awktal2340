@@ -1,2 +1,4 @@
 .gradle/
 build/
+sed.exe.stackdump
+tr.exe.stackdump
