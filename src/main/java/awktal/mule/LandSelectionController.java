@@ -64,22 +64,6 @@ public class LandSelectionController extends SceneController implements Initiali
         }
     }
 
-
-    // /**
-    // * Everyone gets a turn. :)
-    // */
-    // @FXML
-    // private void landSelectionPhase(){
-    //     isClicked = false;
-    //     onClick();
-    //     if(isClicked){
-    //         System.out.println("Yeay the tile was clicked");
-    //         //turn.endPlayerTurn();
-    //     } else {
-    //         System.out.println("FAIL the check did not work");
-    //     }
-    // }
-
     /**
      * Checks for Tile Clicks and changes border color
      * Right now, I only changed to coral but later on
@@ -94,110 +78,61 @@ public class LandSelectionController extends SceneController implements Initiali
                     rowClicked = gridpane.getRowIndex(newNode);
                     colClicked = gridpane.getColumnIndex(newNode);
                     tileClicked(rowClicked, colClicked, newNode);
-
-                   // typeClicked = TileType.valueOf(newNode.getId());
-     //                String path = TileType.valueOf(typeClicked.toString()).getPath();
-     //                String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
-     //                newNode.setStyle("-fx-background-image: url('" + imagePath + "'); " +
-     //                "-fx-background-position: center center; " +
-     //                "-fx-background-size: cover; -fx-border-color: coral; -fx-border-size: 50px");
-     //                System.out.println("row: " + rowClicked + ", col: " +
-     //                    colClicked + ", type: " + typeClicked.toString());            
-     // //--------------------------
-     //                //check if theres a duplicate. row, col, type
-     //                String rowColType = rowClicked + colClicked + typeClicked.toString();
-     //                Tile value = map.get(rowColType);
-     //                Tile tile = null;
-     //                if (value != null) {//checking if the tile object exists...meaning some player owns it.
-     //                    tile = value;
-     //                } else { //it does not exist in the hashMap...meaning the tile is not owned
-     //                    tile = new Tile(rowClicked, colClicked, typeClicked);
-     //                    map.put(rowColType, tile);
-     //                    isClicked = true;
-     //                }
-
-     //                boolean isOwned = tile.isOwned();
-     //                if(isOwned) {
-     //                    System.out.println("Sorry the land is already owned.");
-     //                } else {
-     //                    tile.setOwner(gameState.getCurrentPlayer());
-     //                    System.out.println(tile.getOwner() + " has just bought land :)");
-     //                    //return true;
-     //                }
                 });
             }
         }
-
-         //return false;     
     }
 
-private String colorToHexString(Color color) {
-    return String.format("#%02X%02X%02X", (int) (color.getRed()*255), (int)(color.getGreen()*255), (int)(color.getBlue()*255));
-}
+    
+    private String colorToHexString(Color color) {
+        return String.format("#%02X%02X%02X", (int) (color.getRed()*255), (int)(color.getGreen()*255), (int)(color.getBlue()*255));
+    }
 
 
 
-private void tileClicked(int row, int col, Node tileView) {
-    Player currentPlayer = players.get(currentPlayerIndex);
+    /**
+    * Checks if the tile is owned by another player
+    * if no one owns it, then the player purchases it, and his $ is deducted
+    * @param row of the tile
+    * @param col of the tile
+    * @param tileView is a node reference to the tile object
+    */
+    private void tileClicked(int row, int col, Node tileView) {
+        Player currentPlayer = players.get(currentPlayerIndex);
 
-    Tile tile = gameState.getMap().getTile(col, row);
-    if(tile.isOwned()) {
-        System.out.println("already owned");
-        return;    
-    } 
-    if(gameState.getRound() >= 2) {
-        if(currentPlayer.getInventory().getMoney() < 300){
-            System.out.println("You aint got no $$$");
-            currentPlayerIndex++;
-            if(currentPlayerIndex >= players.size()) { 
-                SceneManager.loadScene(GameScene.TOWN);
-                return;
-            } 
-        } else {
-            currentPlayer.getInventory().withdrawMoney(300);
+        Tile tile = gameState.getMap().getTile(col, row);
+        if(tile.isOwned()) {
+            System.out.println("already owned");
+            return;    
+        } 
+        if(gameState.getRound() >= 2) {
+            if(currentPlayer.getInventory().getMoney() < 300){
+                System.out.println("You aint got no $$$");
+                currentPlayerIndex++;
+                if(currentPlayerIndex >= players.size()) { 
+                    SceneManager.loadScene(GameScene.TOWN);
+                    return;
+                } 
+            } else {
+                currentPlayer.getInventory().withdrawMoney(300);
+            }
         }
+        tile.setOwner(currentPlayer);
+        currentPlayer.addTile(tile);
+        TileType typeClicked = TileType.valueOf(tileView.getId());
+        String path = TileType.valueOf(typeClicked.toString()).getPath();
+        String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
+
+        tileView.setStyle("-fx-border-color: " + colorToHexString(currentPlayer.getColor()) + ";" +
+        "-fx-border-size: 50px;" +
+        "-fx-background-image: url('" + imagePath + "'); " +
+        "-fx-background-position: center center; " +
+        "-fx-background-size: cover;");
+
+        currentPlayerIndex++;
+        if(currentPlayerIndex >= players.size()) { 
+            //go to world view
+            SceneManager.loadScene(GameScene.TOWN);
+        } 
     }
-    tile.setOwner(currentPlayer);
-    currentPlayer.addTile(tile);
-    TileType typeClicked = TileType.valueOf(tileView.getId());
-    String path = TileType.valueOf(typeClicked.toString()).getPath();
-    String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
-
-    tileView.setStyle("-fx-border-color: " + colorToHexString(currentPlayer.getColor()) + ";" +
-    "-fx-border-size: 50px;" +
-    "-fx-background-image: url('" + imagePath + "'); " +
-    "-fx-background-position: center center; " +
-    "-fx-background-size: cover;");
-
-    currentPlayerIndex++;
-    if(currentPlayerIndex >= players.size()) { 
-        //go to world view
-        SceneManager.loadScene(GameScene.TOWN);
-    } 
-}
-
-
-
-/*
-    The method below does...
-   1) checks if player has enough $ to buy land
-   2) Checks if the land is owned by another player via a boolean
-   3) Deductd the land price from the players money
-*/
-
-    // public static int deductMoney(int playerMoney, int landCost, boolean owned) { //landCost...should I just pass in the enrtire land and access the price in the method?
-    //     if (!owned) {
-    //         if (landCost >= playerMoney) {
-    //             return playerMoney - landCost;
-    //         } else {
-    //             System.out.println("Player does not have enough $$$$.");
-    //             return 0;
-    //         }
-        
-    //     } else {
-    //         System.out.println("The land is owned by another player.");
-    //         return 0;
-        
-    //     }
-    // }
 }
