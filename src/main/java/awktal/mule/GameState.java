@@ -17,6 +17,8 @@ public class GameState {
 
     private int round;
 
+    private boolean propertySelectionEnabled;
+
     /**
      * The constructor for a GameState.
      * This can only be called once as this class should be a singleton.
@@ -26,6 +28,8 @@ public class GameState {
         players = new ArrayList<>();
         maxPlayers = 0;
         currentPlayerIndex = 0;
+        round = 1;
+        propertySelectionEnabled = true;
     }
 
     /**
@@ -35,6 +39,14 @@ public class GameState {
     */
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public boolean getPropertySelectionEnabled() {
+        return propertySelectionEnabled;
+    }
+
+    public void setPropertySelectionEnabled(Boolean enabled) {
+        propertySelectionEnabled = enabled;
     }
 
     /**
