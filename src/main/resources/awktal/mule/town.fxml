@@ -13,7 +13,7 @@
          <children>
           <AnchorPane fx:id="town_pane">
                <children>
-                  <GridPane layoutX="87.0" layoutY="378.0" prefHeight="678.0" prefWidth="1787.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="gridpane" layoutX="87.0" layoutY="378.0" prefHeight="678.0" prefWidth="1787.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
