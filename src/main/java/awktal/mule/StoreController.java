@@ -9,32 +9,45 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.GridPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 
 
 public class StoreController extends SceneController{
 
-    @FXML
-    AnchorPane main_pane;
-    @FXML
-    AnchorPane mule_pane;
-    @FXML
-    AnchorPane food_pane;
+
+    //@FXML
+    //JButton done;
     // @FXML
-    // AnchorPane mine_pane;
-    // @FXML
-    // AnchorPane energy_pane;
-   
+    // AnchorPane food_pane; 
 
     @FXML
     private void initialize() {
-        Image screen = new Image(StoreController.class.getResourceAsStream("store_pictures/store.png"));
-        BackgroundSize size = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
-        main_pane.setBackground(new Background(new BackgroundImage(screen, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, size)));
     }
 
 
-    public void loadLandSelect() {
-        SceneManager.loadScene(GameScene.STORE);
+    // public void loadLandSelect() {
+    //     SceneManager.loadScene(GameScene.STORE);
+    // }
+
+    @FXML
+    public void attemptExit() {
+        System.out.println("Entering town");
+        SceneManager.loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
     }
 
+    
+    private int buy(int cost, int playersMoney) {
+        if (cost > playersMoney) {
+            System.out.println("The player does not have enough money");
+            return 0;
+        } 
+        return playersMoney - cost;
+    }
+
+
+    private int sell(int baseCost, int playersMoney, int soldAmnt) {
+       return playersMoney + baseCost * soldAmnt;
+    }
 }
