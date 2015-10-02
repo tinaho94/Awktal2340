@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 
 
-public class StoreController extends SceneController{
+public class StoreController extends PlayerTurnSceneController {
 
 
     //@FXML
@@ -24,6 +24,7 @@ public class StoreController extends SceneController{
 
     @FXML
     private void initialize() {
+        loadPlayerData();
     }
 
 
@@ -34,7 +35,7 @@ public class StoreController extends SceneController{
     @FXML
     public void attemptExit() {
         System.out.println("Entering town");
-        SceneManager.loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
+        TurnManager.getInstance().loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
     }
 
     

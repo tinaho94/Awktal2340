@@ -13,7 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 
-public class TownController extends SceneController {
+public class TownController extends PlayerTurnSceneController {
 
     @FXML
     private Button return_button;
@@ -58,6 +58,7 @@ public class TownController extends SceneController {
         initializePlayer();
         setPlayerLocation(currentCol);
         initKeyListeners();
+        loadPlayerData();
     }
 
     private void initializePlayer() {
@@ -107,11 +108,11 @@ public class TownController extends SceneController {
         switch (BUILDING_RANGES[currentCol]) {
             case PUB:
                 // System.out.println("Entering pub");
-                SceneManager.loadScene(GameScene.PUB);
+                TurnManager.getInstance().loadScene(GameScene.PUB);
                 break;
             case STORE:
                 // System.out.println("Entering store");
-                SceneManager.loadScene(GameScene.STORE); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
+                TurnManager.getInstance().loadScene(GameScene.STORE); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
             default:
                 break;
         }
@@ -122,13 +123,7 @@ public class TownController extends SceneController {
         gridpane.add(player, col, PLAYER_ROW, 1, 1);
     }
 
-    public void loadLandSelect() {
-        gameState.newRound();
-        if (!gameState.getPropertySelectionEnabled()) {
-            System.out.println("Land selection has been disabled.");
-            return;
-        }
-        SceneManager.loadScene(GameScene.LAND_SELECTION);
+    public void onReturnButtonClick() {
+        TurnManager.getInstance().loadScene(GameScene.WORLD_VIEW);
     }
-
 }

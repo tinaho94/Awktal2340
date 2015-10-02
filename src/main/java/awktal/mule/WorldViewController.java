@@ -14,26 +14,12 @@ import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
 
-public class LandSelectionController extends SceneController implements Initializable {
+public class WorldViewController extends PlayerTurnSceneController implements Initializable {
 
     @FXML
     private GridPane gridpane;
 
-    @FXML
-    private Label playerLabel;
-
-    @FXML
-    private Label moneyLabel;
-
-    @FXML
-    private Label roundLabel;
-
-    @FXML
-    private Button passButton;
-
     private Map currMap;
-
-    private int numPasses;
 
     /**
     * These variables refer to the tiles that were clicked
@@ -41,24 +27,20 @@ public class LandSelectionController extends SceneController implements Initiali
     private int rowClicked;
     private int colClicked;
     private TileType typeClicked;
+    private int currentPlayerIndex;
     private ArrayList<Player> players;
 
 
 
-    public LandSelectionController() {
-        players = gameState.getPlayers();
-        
+    public WorldViewController() {
+
     }
 
-    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         loadPlayerData();
         createImageViews();
         registerOnClick();
-        passButton.setOnAction (e -> {
-            onPassClick();
-        });
     }
 
     /**
@@ -89,6 +71,9 @@ public class LandSelectionController extends SceneController implements Initiali
         }
     }
 
+    private String colorToHexString(Color color) {
+        return String.format("#%02X%02X%02X", (int) (color.getRed()*255), (int)(color.getGreen()*255), (int)(color.getBlue()*255));
+    }
 
     /**
      * Checks for Tile Clicks and changes border color
@@ -110,70 +95,12 @@ public class LandSelectionController extends SceneController implements Initiali
 
     }
 
-    private String colorToHexString(Color color) {
-        return String.format("#%02X%02X%02X", (int) (color.getRed()*255), (int)(color.getGreen()*255), (int)(color.getBlue()*255));
-    }
-
-
-
-    private void onTileClicked(int row, int col, Node tileView) {
-        Player currentPlayer = gameState.getCurrentPlayer();
-
-        Tile tile = gameState.getMap().getTile(col, row);
-        if(tile.isOwned()) {
-            System.out.println("already owned");
-            return;
-        }
+    private void onTileClicked(int row, int col, Node tileView) { 
+        Tile tile = gameState.getMap().getTile(col, row);    
         if (tile.getType().equals(TileType.BUILDING)) {
-            System.out.println("cannot buy the town");
-            return;
+            TurnManager.getInstance().loadScene(GameScene.TOWN);
         }
-        if(gameState.getRound() > 2) {
-            if(currentPlayer.getInventory().getMoney() < 300){
-                System.out.println("You aint got no $$$");
-                return;
-            } else {
-                currentPlayer.getInventory().withdrawMoney(300);
-            }
-        }
-        tile.setOwner(currentPlayer);
-        currentPlayer.addTile(tile);
-        TileType typeClicked = TileType.valueOf(tileView.getId());
-        String path = TileType.valueOf(typeClicked.toString()).getPath();
-        String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
-
-        tileView.setStyle("-fx-border-color: " + colorToHexString(currentPlayer.getColor()) + ";" +
-        "-fx-border-width: 5px;" +
-        "-fx-background-image: url('" + imagePath + "'); " +
-        "-fx-background-position: center center; " +
-        "-fx-background-size: cover;");
-
-        gameState.endPlayerTurn();
-
-        if(gameState.isRoundOver()) {
-            TurnManager.getInstance().beginPlayerTurns();
-        } else {
-            loadPlayerData();
-        }
+        
     }
 
-    private void loadPlayerData() {
-        Player currentPlayer = gameState.getCurrentPlayer();
-        playerLabel.setText(currentPlayer.getName());
-        moneyLabel.setText(String.valueOf(currentPlayer.getInventory().getMoney()));
-        roundLabel.setText(String.valueOf(gameState.getRound()));
-    }
-
-    @FXML
-    public void onPassClick() {
-        gameState.endPlayerTurn();
-        numPasses++;
-        if (numPasses == players.size()) {
-            gameState.setPropertySelectionEnabled(false);
-        }
-        if(gameState.isRoundOver()) {
-            TurnManager.getInstance().beginPlayerTurns();
-        }
-        loadPlayerData();
-    }
 }

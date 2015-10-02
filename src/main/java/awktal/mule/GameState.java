@@ -155,7 +155,7 @@ public class GameState {
      * @return if all players have taken their turns.
     */
     public boolean isRoundOver() {
-        return currentPlayerIndex < players.size();
+        return !(currentPlayerIndex < players.size());
     }
 
     /**
