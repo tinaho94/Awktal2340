@@ -29,6 +29,12 @@ public class LandSelectionController extends SceneController implements Initiali
     private Label roundLabel;
 
     @FXML
+    private Label scoreLabel;
+
+    @FXML
+    private Label foodLabel;
+
+    @FXML
     private Button passButton;
 
     private Map currMap;
@@ -47,7 +53,7 @@ public class LandSelectionController extends SceneController implements Initiali
 
     public LandSelectionController() {
         players = gameState.getPlayers();
-        
+
     }
 
     @Override
@@ -161,7 +167,9 @@ public class LandSelectionController extends SceneController implements Initiali
         Player currentPlayer = gameState.getCurrentPlayer();
         playerLabel.setText(currentPlayer.getName());
         moneyLabel.setText(String.valueOf(currentPlayer.getInventory().getMoney()));
+        foodLabel.setText(String.valueOf(currentPlayer.getInventory().getFood()));
         roundLabel.setText(String.valueOf(gameState.getRound()));
+        scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
     }
 
     @FXML
@@ -172,6 +180,7 @@ public class LandSelectionController extends SceneController implements Initiali
             gameState.setPropertySelectionEnabled(false);
         }
         if(gameState.isRoundOver()) {
+            gameState.resetRound();
             TurnManager.getInstance().beginPlayerTurns();
         }
         loadPlayerData();

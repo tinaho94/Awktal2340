@@ -20,7 +20,7 @@ public class TurnManager {
     private Timeline timeline;
     private PlayerTurnSceneController currentScene;
     private int currentTurnTime;
-    private int currentPlayerIndex;
+    // private int currentPlayerIndex;
 
     public static TurnManager getInstance() {
         if (instance == null) {
@@ -51,11 +51,16 @@ public class TurnManager {
     }
 
     public void beginPlayerTurns() {
-        currentPlayerIndex = 0;
+        gameState.newRound();
+        if (gameState.isGameOver()) {
+            System.out.println("Game is over");
+            return;
+        }
+        // currentPlayerIndex = 0;
         Collections.sort(gameState.getPlayers());
-        beginPlayerTurn(getCurrentPlayer());
+        beginPlayerTurn(gameState.getCurrentPlayer());
     }
-    
+
     public void beginPlayerTurn(Player player) {
         currentTurnTime = calculatePlayerTurnTime(player);
         loadScene(GameScene.WORLD_VIEW);
@@ -79,8 +84,8 @@ public class TurnManager {
     }
 
     public void loadScene(GameScene scene) {
-        currentScene = (PlayerTurnSceneController) SceneManager.loadScene(scene); 
-        currentScene.updateTurnTimer(currentTurnTime); 
+        currentScene = (PlayerTurnSceneController) SceneManager.loadScene(scene);
+        currentScene.updateTurnTimer(currentTurnTime);
     }
 
     // public void setCurrentScene(PlayerTurnSceneController currentScene) {
@@ -98,11 +103,13 @@ public class TurnManager {
 
     public void endPlayerTurn() {
         timeline.stop();
-        currentPlayerIndex++;
-        if (currentPlayerIndex == gameState.getPlayers().size()) {
+        gameState.endPlayerTurn();
+        // currentPlayerIndex++;
+        // if (currentPlayerIndex == gameState.getPlayers().size()) {
+        if (gameState.isRoundOver()) {
             endPlayerTurns();
         } else {
-            beginPlayerTurn(getCurrentPlayer());
+            beginPlayerTurn(gameState.getCurrentPlayer());
         }
     }
 
@@ -114,11 +121,15 @@ public class TurnManager {
         } else {
             SceneManager.loadScene(GameScene.LAND_SELECTION);
         }
-        
+
     }
 
+    // public Player getCurrentPlayer() {
+    //     return gameState.getPlayers().get(currentPlayerIndex);
+    // }
+
     public Player getCurrentPlayer() {
-        return gameState.getPlayers().get(currentPlayerIndex);
+        return gameState.getCurrentPlayer();
     }
 
     public int getCurrentTurnTime() {

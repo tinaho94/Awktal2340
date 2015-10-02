@@ -29,12 +29,46 @@
          <children>
             <HBox>
                <children>
-                  <Label text="Current Player: ">
+                  <Label text="Player: ">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Label>
                   <Label fx:id="playerLabel" text="Label">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Food:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="foodLabel" text="Label">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Money:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="moneyLabel" text="Label">
                      <font>
                         <Font size="17.0" />
                      </font>
