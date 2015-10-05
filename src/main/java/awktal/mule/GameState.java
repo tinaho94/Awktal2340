@@ -130,6 +130,12 @@ public class GameState {
             if (player.getName().equals(p.getName())) {
                 throw new GameStateConfigException("duplicate name");
             }
+            if (player.getColor().equals(p.getColor())) {
+                throw new GameStateConfigException("duplicate color");
+            }
+        }
+        if (player.getName().length() > 15) {
+            throw new GameStateConfigException("name is too long");
         }
     }
 
