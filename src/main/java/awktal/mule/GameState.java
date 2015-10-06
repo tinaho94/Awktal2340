@@ -21,6 +21,8 @@ public class GameState {
 
     private Inventory storeInventory;
     
+    private int maxRounds;
+
 
     /**
      * The constructor for a GameState.
@@ -34,6 +36,11 @@ public class GameState {
         currentPlayerIndex = 0;
         round = 1;
         propertySelectionEnabled = true;
+        maxRounds = 12;
+    }
+
+    public boolean isGameOver() {
+        return round > maxRounds;
     }
 
 
@@ -133,6 +140,12 @@ public class GameState {
             if (player.getName().equals(p.getName())) {
                 throw new GameStateConfigException("duplicate name");
             }
+            if (player.getColor().equals(p.getColor())) {
+                throw new GameStateConfigException("duplicate color");
+            }
+        }
+        if (player.getName().length() > 15) {
+            throw new GameStateConfigException("name is too long");
         }
     }
 
@@ -165,7 +178,12 @@ public class GameState {
      * @return if all players have taken their turns.
     */
     public boolean isRoundOver() {
-        return currentPlayerIndex < players.size();
+        return !(currentPlayerIndex < players.size());
+    }
+
+
+    public void resetRound() {
+        currentPlayerIndex = 0;
     }
 
     /**

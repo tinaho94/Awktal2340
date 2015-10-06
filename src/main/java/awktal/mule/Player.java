@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /**
  * Contains all the information pertaining to a player.
 */
-public class Player {
+public class Player implements Comparable<Player> {
 	private String name;
 	private Color color;
 	private Race race;
@@ -23,8 +23,22 @@ public class Player {
 		this.name = name;
 		this.color = color;
 		this.race = race;
-		this.inventory = new Inventory(race.getStartingMoney(), 0, 0, 0, 0);
+		this.inventory = new Inventory(race.getStartingMoney(), 5, 5, 5, 0);
 		this.tiles = new ArrayList<Tile>();
+	}
+
+	public int compareTo(Player player) {
+		return (this.getScore() - player.getScore());
+	} 
+
+	public int getScore() {
+		int score = 0;
+		score += tiles.size() * 500;
+		score += inventory.getMoney();
+		score += inventory.getFood() * 30;
+		score += inventory.getEnergy() * 25;
+		score += inventory.getOre() * 50;
+		return score;
 	}
 
 	/**

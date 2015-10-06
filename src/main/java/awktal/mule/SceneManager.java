@@ -19,22 +19,25 @@ public class SceneManager {
         SceneManager.stage = stage;
         SceneManager.state = state;
         SceneController.setGameState(SceneManager.state);
+        TurnManager.setGameState(SceneManager.state);
     }
 
     /**
      * Loads a new scene onto the stage.
      * @param gameScene the gameScene to be loaded.
     */
-    public static void loadScene(GameScene gameScene) {
+    public static SceneController loadScene(GameScene gameScene) {
+        SceneController controller = null;
         try {
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(gameScene.getFXML()));
             Parent screen = loader.load();
-            SceneController controller = (SceneController) loader.getController();
+            controller = (SceneController) loader.getController();
             Scene scene = new Scene(screen, stage.getWidth(), stage.getHeight());
             stage.setScene(scene);
         } catch(Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Cannot load scene " + gameScene.toString() + ". Check if file " + gameScene.getFXML() + "exists. \n" + " error: " + e.toString());
         }
+        return controller;
     }
 }

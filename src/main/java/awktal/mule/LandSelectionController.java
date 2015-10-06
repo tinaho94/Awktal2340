@@ -29,6 +29,12 @@ public class LandSelectionController extends SceneController implements Initiali
     private Label roundLabel;
 
     @FXML
+    private Label scoreLabel;
+
+    @FXML
+    private Label foodLabel;
+
+    @FXML
     private Button passButton;
 
     private Map currMap;
@@ -41,14 +47,13 @@ public class LandSelectionController extends SceneController implements Initiali
     private int rowClicked;
     private int colClicked;
     private TileType typeClicked;
-    private int currentPlayerIndex;
     private ArrayList<Player> players;
 
 
 
     public LandSelectionController() {
         players = gameState.getPlayers();
-        currentPlayerIndex = 0;
+
     }
 
     @Override
@@ -118,7 +123,7 @@ public class LandSelectionController extends SceneController implements Initiali
 
 
     private void onTileClicked(int row, int col, Node tileView) {
-        Player currentPlayer = players.get(currentPlayerIndex);
+        Player currentPlayer = gameState.getCurrentPlayer();
 
         Tile tile = gameState.getMap().getTile(col, row);
         if(tile.isOwned()) {
@@ -149,33 +154,34 @@ public class LandSelectionController extends SceneController implements Initiali
         "-fx-background-position: center center; " +
         "-fx-background-size: cover;");
 
-        currentPlayerIndex++;
+        gameState.endPlayerTurn();
 
-        if(currentPlayerIndex >= players.size()) {
-            //go to world view
-            SceneManager.loadScene(GameScene.TOWN);
+        if(gameState.isRoundOver()) {
+            TurnManager.getInstance().beginPlayerTurns();
         } else {
             loadPlayerData();
         }
     }
 
     private void loadPlayerData() {
-        Player currentPlayer = players.get(currentPlayerIndex);
+        Player currentPlayer = gameState.getCurrentPlayer();
         playerLabel.setText(currentPlayer.getName());
         moneyLabel.setText(String.valueOf(currentPlayer.getInventory().getMoney()));
+        foodLabel.setText(String.valueOf(currentPlayer.getInventory().getFood()));
         roundLabel.setText(String.valueOf(gameState.getRound()));
+        scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
     }
 
     @FXML
     public void onPassClick() {
-        currentPlayerIndex++;
+        gameState.endPlayerTurn();
         numPasses++;
         if (numPasses == players.size()) {
             gameState.setPropertySelectionEnabled(false);
         }
-        if(currentPlayerIndex >= players.size()) {
-            SceneManager.loadScene(GameScene.TOWN);
-            return;
+        if(gameState.isRoundOver()) {
+            gameState.resetRound();
+            TurnManager.getInstance().beginPlayerTurns();
         }
         loadPlayerData();
     }

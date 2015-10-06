@@ -10,7 +10,8 @@ public enum GameScene {
     LAND_SELECTION,
     TOWN,
     STORE,
-    PUB;
+    PUB,
+    WORLD_VIEW;
 
     private String fxml;
 
@@ -21,6 +22,7 @@ public enum GameScene {
         TOWN.fxml = "town.fxml";
         STORE.fxml = "store.fxml";
         PUB.fxml = "pub.fxml";
+        WORLD_VIEW.fxml = "world_view.fxml";
     }
 
     /**
