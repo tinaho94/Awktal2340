@@ -16,20 +16,22 @@ import javafx.scene.input.KeyCode;
 
 public class StoreController extends SceneController{
 
+// Store (Stephen)
+// Enter and leave store: done
+// Buy and sell resources at store: 
+// Can buy mule and outfit
 
-    //@FXML
-    //JButton done;
-    // @FXML
-    // AnchorPane food_pane; 
+    //Inventory playersMoney = new Inventory(50,4,5,1);
+    //use the connection of the GUI to parameters
+    Inventory playersMoney = new Inventory(0,0,0,0,0);//.getMoney();
+    Inventory baseCost = new Inventory(0,0,0,0,0);
+    Inventory cost = new Inventory(0,0,0,0,0);
+    //Player player = new Player();
+    //GameState inventory = new Inventory(); 
 
     @FXML
     private void initialize() {
     }
-
-
-    // public void loadLandSelect() {
-    //     SceneManager.loadScene(GameScene.STORE);
-    // }
 
     @FXML
     public void attemptExit() {
@@ -37,17 +39,27 @@ public class StoreController extends SceneController{
         SceneManager.loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
     }
 
-    
-    private int buy(int cost, int playersMoney) {
-        if (cost > playersMoney) {
+    public int buy() {
+        System.out.println("buy mule");
+        if (cost.getCost() >  playersMoney.getMoney()) {
             System.out.println("The player does not have enough money");
             return 0;
         } 
-        return playersMoney - cost;
+        int result =  playersMoney.getMoney() - cost.getCost();
+        return result;
     }
 
+    public int sell() {
+        System.out.println("sell mule");
+        int result =  playersMoney.getMoney() + baseCost.getSellBack();
+       return result;
+    }
 
-    private int sell(int baseCost, int playersMoney, int soldAmnt) {
-       return playersMoney + baseCost * soldAmnt;
+    /**
+    * detects when the user slides the bar for the amnt to buy or sell
+    */
+    public void buyMule() {
+        System.out.println("Buying mule");
     }
 }
+

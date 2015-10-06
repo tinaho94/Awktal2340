@@ -14,20 +14,18 @@
         <tabs>
           <Tab id="mule_pane" text="Mules">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="519.0" prefWidth="981.0">
+              <AnchorPane>
                      <children>
-                        <LineChart layoutX="7.0" layoutY="207.0" prefHeight="105.0" prefWidth="189.0">
+                        <Button id="done" layoutX="319.0" layoutY="314.0" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
+                        <BarChart layoutX="32.0" layoutY="124.0" prefHeight="184.0" prefWidth="324.0">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
                           <yAxis>
                             <NumberAxis side="LEFT" />
                           </yAxis>
-                        </LineChart>
-                        <RadioButton layoutX="14.0" layoutY="32.0" mnemonicParsing="false" text="Buy" />
-                        <RadioButton layoutX="15.0" layoutY="58.0" mnemonicParsing="false" text="Sell" />
-                        <Slider blockIncrement="1.0" layoutX="37.0" layoutY="172.0" max="10.0" showTickLabels="true" showTickMarks="true" />
-                        <Button id="done" layoutX="274.0" layoutY="314.0" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
+                        </BarChart>
+                        <Button layoutX="260.0" layoutY="314.0" mnemonicParsing="false" onAction="#buyMule" text="Buy" />
                      </children>
                   </AnchorPane>
             </content>
@@ -54,5 +52,6 @@
           </Tab>
         </tabs>
       </TabPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" />
    </children>
 </HBox>

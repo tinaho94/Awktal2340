@@ -19,6 +19,9 @@ public class GameState {
 
     private boolean propertySelectionEnabled;
 
+    private Inventory storeInventory;
+    
+
     /**
      * The constructor for a GameState.
      * This can only be called once as this class should be a singleton.
@@ -26,11 +29,18 @@ public class GameState {
     */
     public GameState() {
         players = new ArrayList<>();
+        storeInventory = new Inventory();
         maxPlayers = 0;
         currentPlayerIndex = 0;
         round = 1;
         propertySelectionEnabled = true;
     }
+
+
+
+    // public ArrayList<StoreInventory> getStoreInventory() {
+    //     return storeInventory;
+    // }
 
     /**
      * Gets the players that are in the game.

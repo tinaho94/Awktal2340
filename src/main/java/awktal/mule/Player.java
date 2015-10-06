@@ -23,7 +23,7 @@ public class Player {
 		this.name = name;
 		this.color = color;
 		this.race = race;
-		this.inventory = new Inventory(race.getStartingMoney(), 0, 0, 0);
+		this.inventory = new Inventory(race.getStartingMoney(), 0, 0, 0, 0);
 		this.tiles = new ArrayList<Tile>();
 	}
 

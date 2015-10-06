@@ -11,7 +11,14 @@ public class Inventory {
     private int energy;
     private int ore;
     private ArrayList<String> history;
+    private ArrayList<Mule> mules;
+    private int MULE = 5;
+    private final int COST = 50;
+    private final int BASE_BUY_BACK = 25;
 
+    public Inventory(){
+        this(0,0,0,0,0);//
+    }
     /**
      * Constructs a new Inventory.
      * @param money the starting money for the inventory.
@@ -19,12 +26,16 @@ public class Inventory {
      * @param energy the starting energy for the inventory.
      * @param ore the starting ore for the inventory.
     */
-    public Inventory(int money, int food, int energy, int ore) {
+    public Inventory(int money, int food, int energy, int ore, int numMules) {
         this.money = money;
         this.food = food;
         this.energy = energy;
         this.ore = ore;
         this.history = new ArrayList<String>();
+        this.mules = new ArrayList<Mule>();
+        for(int i = 0; i<numMules; i++){
+            this.mules.add(new Mule());
+        }
     }
 
     /**
@@ -130,5 +141,33 @@ public class Inventory {
     */
     public String[] getHistory() {
         return history.toArray(new String[history.size()]);
+    }
+
+//-----------------------------------------------------
+
+    /**
+    * gets the number of mules in the store
+    * @return the number of mules in the store
+    */
+    public int getMule() {
+        return MULE;
+    }
+
+    // public void setMule(int mule) {
+    //     mules = mule; 
+    // }
+    /**
+    * gets the cost of mules in the store
+    * @return the cost of mules in the store
+    */
+    public int getCost() {
+        return COST;
+    }
+    /**
+    * gets the cost at which the store will buy players resources
+    * @return the cost of mules in the store
+    */
+    public int getSellBack() {
+        return BASE_BUY_BACK;
     }
 }
