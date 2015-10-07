@@ -21,17 +21,14 @@ public class StoreController extends PlayerTurnSceneController {
 // Buy and sell resources at store: 
 // Can buy mule and outfit
 
-    //Inventory playersMoney = new Inventory(50,4,5,1);
-    //use the connection of the GUI to parameters
-    Inventory playersMoney = new Inventory(0,0,0,0,0);//.getMoney();
-    Inventory baseCost = new Inventory(0,0,0,0,0);
-    Inventory cost = new Inventory(0,0,0,0,0);
-    //Player player = new Player();
-    //GameState inventory = new Inventory(); 
+    Store store;
+    Player currentPlayer;
 
     @FXML
     private void initialize() {
         loadPlayerData();
+        store = gameState.getStore();
+        currentPlayer = gameState.getCurrentPlayer();
     }
 
     @FXML
@@ -40,21 +37,6 @@ public class StoreController extends PlayerTurnSceneController {
         TurnManager.getInstance().loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
     }
 
-    public int buy() {
-        System.out.println("buy mule");
-        if (cost.getCost() >  playersMoney.getMoney()) {
-            System.out.println("The player does not have enough money");
-            return 0;
-        } 
-        int result =  playersMoney.getMoney() - cost.getCost();
-        return result;
-    }
-
-    public int sell() {
-        System.out.println("sell mule");
-        int result =  playersMoney.getMoney() + baseCost.getSellBack();
-       return result;
-    }
 
     /**
     * detects when the user slides the bar for the amnt to buy or sell

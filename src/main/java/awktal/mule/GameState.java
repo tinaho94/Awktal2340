@@ -23,6 +23,8 @@ public class GameState {
     
     private int maxRounds;
 
+    private Store store;
+
 
     /**
      * The constructor for a GameState.
@@ -37,13 +39,16 @@ public class GameState {
         round = 1;
         propertySelectionEnabled = true;
         maxRounds = 12;
+        store = new Store();
     }
 
     public boolean isGameOver() {
         return round > maxRounds;
     }
 
-
+    public Store getStore() {
+        return this.store;
+    }
 
     // public ArrayList<StoreInventory> getStoreInventory() {
     //     return storeInventory;
