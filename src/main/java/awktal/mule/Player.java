@@ -12,6 +12,7 @@ public class Player implements Comparable<Player> {
 	private Race race;
 	private Inventory inventory;
 	private ArrayList<Tile> tiles;
+	private Mule mule;
 
 	/**
 	 * The constructor for the player class.
@@ -25,6 +26,7 @@ public class Player implements Comparable<Player> {
 		this.race = race;
 		this.inventory = new Inventory(race.getStartingMoney(), 5, 5, 5, 0);
 		this.tiles = new ArrayList<Tile>();
+		this.mule = new Mule();
 	}
 
 	public int compareTo(Player player) {
@@ -93,7 +95,19 @@ public class Player implements Comparable<Player> {
 	 * Gets the tiles owned by the player.
 	 * @return the tiles owned by the player.
 	*/
-	public Tile[] getTiles() {
-		return this.tiles.toArray(new Tile[tiles.size()]);
+	public ArrayList<Tile> getTiles() {
+		return tiles;
+	}
+
+	public Mule getMule() {
+		return this.mule;
+	}
+
+	public void setMule(Mule mule) {
+		this.mule = mule;
+	}
+
+	public boolean hasMule() {
+		return((mule.getType().equals(MuleType.NONE)) ? false:true);
 	}
 }
