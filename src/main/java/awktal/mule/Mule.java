@@ -12,6 +12,12 @@ public class Mule {
         this.tile = null; // none
     }
 
+    public Mule(MuleType type, Player owner) {
+        this.type = type;
+        this.owner = owner;
+        this.tile = tile;
+    }
+
     public void outfit(MuleType type) {
         this.type = type;
     }

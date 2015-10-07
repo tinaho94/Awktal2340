@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import javafx.scene.ImageCursor;
 
 public class WorldViewController extends PlayerTurnSceneController implements Initializable {
 
@@ -29,6 +30,9 @@ public class WorldViewController extends PlayerTurnSceneController implements In
     private TileType typeClicked;
     private int currentPlayerIndex;
     private ArrayList<Player> players;
+    private Player currPlayer;
+    private boolean hasMule;
+    private ArrayList<Tile> tiles;
 
 
 
@@ -82,6 +86,8 @@ public class WorldViewController extends PlayerTurnSceneController implements In
     */
     @FXML
     private void registerOnClick() {
+        currPlayer = TurnManager.getInstance().getCurrentPlayer();
+        tiles = currPlayer.getTiles();
         for (Node node: gridpane.getChildren()) {
             if (node instanceof Button) {
                 Button newNode = (Button)node;
@@ -89,18 +95,42 @@ public class WorldViewController extends PlayerTurnSceneController implements In
                     rowClicked = gridpane.getRowIndex(newNode);
                     colClicked = gridpane.getColumnIndex(newNode);
                     onTileClicked(rowClicked, colClicked, newNode);
+                    if(currPlayer.hasMule()) {
+                        Tile tile = currMap.getTile(colClicked, rowClicked);
+                        if(tiles.contains(tile)) {
+                            installMule(tile);
+                        } else {
+                            killMule();
+                        }
+                    }
                 });
             }
         }
+    }
 
+    private void killMule() {
+        System.out.println("mule is killed");
+        currPlayer.setMule(new Mule());
+    }
+
+    private void installMule(Tile tile) {
+        currPlayer.getMule().setTile(tile);
+        String type = currPlayer.getMule().getType().toString();
+        String path = MuleType.valueOf(type).getPath();
+        String imagePath = WorldViewController.class.getResource(path).toExternalForm();
+        Image image = new Image(imagePath);
+        ImageView muleImage = new ImageView(image);
+        muleImage.setFitWidth(50);
+        muleImage.setFitHeight(50);
+        gridpane.add(muleImage,colClicked, rowClicked);
+        currPlayer.setMule(new Mule());
     }
 
     private void onTileClicked(int row, int col, Node tileView) { 
         Tile tile = gameState.getMap().getTile(col, row);    
         if (tile.getType().equals(TileType.BUILDING)) {
             TurnManager.getInstance().loadScene(GameScene.TOWN);
-        }
-        
+        }        
     }
 
 }
