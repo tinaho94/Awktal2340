@@ -23,7 +23,7 @@ public class Store {
 		this.inventory = new Inventory(money, food, energy, ore, numMules);
 	}
 	public int getCost() {
-		return cost;
+		return inventory.getCost();
 	}
 	public int getNumMules() {
 		return numMules;

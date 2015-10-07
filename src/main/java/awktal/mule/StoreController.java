@@ -20,19 +20,13 @@ import javafx.scene.layout.HBox;
 
 public class StoreController extends PlayerTurnSceneController {
 
-// Store (Stephen)
-// Enter and leave store: done
-// Buy and sell resources at store: 
-// Can buy mule and outfit
 
     Store store;
     Player currentPlayer;
-    
-    //Inventory playersMoney = new Inventory(50,4,5,1);
-    //use the connection of the GUI to parameters
-    Inventory playersMoney = new Inventory(0,0,0,0,0);//.getMoney();
-    Inventory baseCost = new Inventory(0,0,0,0,0);
-    Inventory cost = new Inventory(0,0,0,0,0);
+
+    Inventory playersMoney = new Inventory();//0,0,0,0,0);//.getMoney();
+    Inventory baseCost = new Inventory();//0,0,0,0,0);
+    Inventory cost = new Inventory();//0,0,0,0,0);
 
     MuleType currMule = MuleType.NONE;
     HBox hbox = new HBox();
@@ -115,19 +109,25 @@ public class StoreController extends PlayerTurnSceneController {
         return result;
     }
 
-    public int sell() {
-        System.out.println("sell mule");
-        int result =  playersMoney.getMoney() + baseCost.getSellBack();
-        return result;
-    }
+    // public int sell() {
+    //     System.out.println("sell mule");
+    //     int result =  playersMoney.getMoney() + baseCost.getSellBack();
+    //     return result;
+    // }
 
     /**
     * detects when the user slides the bar for the amnt to buy or sell
     */
     public void buyMule() {
         Player currPlayer = TurnManager.getInstance().getCurrentPlayer();
-        Mule mule = new Mule(currMule, currPlayer);
-        currPlayer.setMule(mule);
+        if (currentPlayer.getInventory().getMoney() > store.getCost()) {
+            Mule mule = new Mule(currMule, currPlayer);
+            currPlayer.setMule(mule);
+            currentPlayer.getInventory().withdrawMoney(store.getCost());
+            System.out.println("YOU BOUGHT A MULE!!!!!!");
+        } else {
+            System.out.println("NOT ENOUGH $$$$$$$$$");
+        }
         TurnManager.getInstance().loadScene(GameScene.WORLD_VIEW);
     }
 }

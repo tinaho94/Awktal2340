@@ -110,4 +110,14 @@ public class Player implements Comparable<Player> {
 	public boolean hasMule() {
 		return((mule.getType().equals(MuleType.NONE)) ? false:true);
 	}
+
+	//gets and sets the players $$$
+	public int getMoney() {
+		return inventory.getMoney();
+	}
+
+	public void setMoney(int money) {
+		int i = inventory.getMoney() - money;
+		inventory.setMoney(i);
+	}
 }

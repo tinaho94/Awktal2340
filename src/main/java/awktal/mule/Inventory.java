@@ -46,6 +46,10 @@ public class Inventory {
         return money;
     }
 
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
     /**
      * Gets the amount of food in the inventory.
      * @return the amount of food in the inventory.
