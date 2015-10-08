@@ -72,6 +72,9 @@ public class WorldViewController extends PlayerTurnSceneController implements In
             button.setMaxHeight(Double.MAX_VALUE);
             button.setId(type);
             gridpane.add(button, t.getX(), t.getY(), 1, 1);
+            if(t.hasMule()) {
+                    installMule(t, t.getMule());
+            }
         }
     }
 
@@ -97,8 +100,10 @@ public class WorldViewController extends PlayerTurnSceneController implements In
                     onTileClicked(rowClicked, colClicked, newNode);
                     if(currPlayer.hasMule()) {
                         Tile tile = currMap.getTile(colClicked, rowClicked);
-                        if(tiles.contains(tile)) {
+                        if(tiles.contains(tile) && !tile.hasMule()) {
                             installMule(tile);
+                        } else if(tile.hasMule()) {
+                            System.out.println("Tile already has mule!");
                         } else {
                             killMule();
                         }
@@ -113,8 +118,10 @@ public class WorldViewController extends PlayerTurnSceneController implements In
         currPlayer.setMule(new Mule());
     }
 
+    //initial install of mule
     private void installMule(Tile tile) {
         currPlayer.getMule().setTile(tile);
+        tile.setMule(currPlayer.getMule());
         String type = currPlayer.getMule().getType().toString();
         String path = MuleType.valueOf(type).getPath();
         String imagePath = WorldViewController.class.getResource(path).toExternalForm();
@@ -124,6 +131,18 @@ public class WorldViewController extends PlayerTurnSceneController implements In
         muleImage.setFitHeight(50);
         gridpane.add(muleImage,colClicked, rowClicked);
         currPlayer.setMule(new Mule());
+    }
+
+    // for redraw of mule
+    private void installMule(Tile tile, Mule mule) {
+        String type = mule.getType().toString();
+        String path = MuleType.valueOf(type).getPath();
+        String imagePath = WorldViewController.class.getResource(path).toExternalForm();
+        Image image = new Image(imagePath);
+        ImageView muleImage = new ImageView(image);
+        muleImage.setFitWidth(50);
+        muleImage.setFitHeight(50);
+        gridpane.add(muleImage,tile.getX(), tile.getY());
     }
 
     private void onTileClicked(int row, int col, Node tileView) { 

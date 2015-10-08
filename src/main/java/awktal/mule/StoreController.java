@@ -117,14 +117,15 @@ public class StoreController extends PlayerTurnSceneController {
     public void buyMule() {
         //Player currPlayer = TurnManager.getInstance().getCurrentPlayer();
         if (currentPlayer.getInventory().getMoney() > store.getCost()) {
-            Mule mule = new Mule(currMule, currentPlayer);
+            Mule mule = new Mule(currMule);
+            mule.setOwner(currentPlayer);
             currentPlayer.setMule(mule);
             currentPlayer.getInventory().withdrawMoney(store.getCost());
             System.out.println("YOU BOUGHT A MULE!!!!!!");
         } else {
             System.out.println("NOT ENOUGH $$$$$$$$$");
         }
-        TurnManager.getInstance().loadScene(GameScene.WORLD_VIEW);
+        TurnManager.getInstance().loadScene(GameScene.TOWN);
     }
 }
 

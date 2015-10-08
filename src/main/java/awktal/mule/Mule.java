@@ -7,15 +7,11 @@ public class Mule {
     private Tile tile;
 
     public Mule() {
-        this.type = MuleType.NONE;
-        this.owner = null; // store
-        this.tile = null; // none
+        this(MuleType.NONE);
     }
 
-    public Mule(MuleType type, Player owner) {
+    public Mule(MuleType type) {
         this.type = type;
-        this.owner = owner;
-        this.tile = tile;
     }
 
     public void outfit(MuleType type) {
@@ -28,5 +24,8 @@ public class Mule {
 
     public void setTile(Tile tile) {
         this.tile = tile;
+    }
+    public void setOwner(Player owner) {
+        this.owner = owner;
     }
 }
