@@ -13,7 +13,11 @@ public class Inventory {
     private ArrayList<String> history;
     private ArrayList<Mule> mules;
     private int MULE = 5;
-    private final int COST = 50;
+    private final int COST_ENERGY_MULE = 100;
+    private final int COST_FOOD_MULE = 50;
+    private final int COST_ORE_MULE = 150;
+
+    private final int COST = 100;
     private final int BASE_BUY_BACK = 25;
 
     public Inventory(){
@@ -157,9 +161,6 @@ public class Inventory {
         return MULE;
     }
 
-    // public void setMule(int mule) {
-    //     mules = mule; 
-    // }
     /**
     * gets the cost of mules in the store
     * @return the cost of mules in the store
@@ -167,6 +168,31 @@ public class Inventory {
     public int getCost() {
         return COST;
     }
+
+    /**
+    * gets the cost of energy mules in the store
+    * @return the cost of mules in the store
+    */
+    public int getEnergyMule() {
+        return COST_ENERGY_MULE;
+    }
+    
+    /**
+    * gets the cost of food mules in the store
+    * @return the cost of mules in the store
+    */
+    public int getFoodMule() {
+        return COST_FOOD_MULE;
+    }
+    
+    /**
+    * gets the cost of Ore mules in the store
+    * @return the cost of mules in the store
+    */
+    public int getOreMule() {
+        return COST_ORE_MULE;
+    }
+    
     /**
     * gets the cost at which the store will buy players resources
     * @return the cost of mules in the store

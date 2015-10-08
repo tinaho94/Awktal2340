@@ -23,15 +23,9 @@ public class StoreController extends PlayerTurnSceneController {
 
     Store store;
     Player currentPlayer;
-
-    Inventory playersMoney = new Inventory();//0,0,0,0,0);//.getMoney();
-    Inventory baseCost = new Inventory();//0,0,0,0,0);
-    Inventory cost = new Inventory();//0,0,0,0,0);
-
     MuleType currMule = MuleType.NONE;
     HBox hbox = new HBox();
     TextArea muleTypeText = new TextArea();
-
 
     @FXML
     private AnchorPane anchorPane;
@@ -97,32 +91,34 @@ public class StoreController extends PlayerTurnSceneController {
         TurnManager.getInstance().loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
     }
 
-    public int buy() {
-        System.out.println("buy mule");
-        if (cost.getCost() >  playersMoney.getMoney()) {
-            System.out.println("The player does not have enough money");
-            return 0;
-        } 
-        int result =  playersMoney.getMoney() - cost.getCost();
-        ////Added this line after
-        //buyMule(currMule);
-        return result;
+
+    public void buyFood() {//check if they have enough $$ to buy food
+        if (currentPlayer.getInventory().getMoney() >= store.getFoodCost()) {
+            currentPlayer.getInventory().depositFood(store.getFoodBought());
+            currentPlayer.getInventory().withdrawMoney(store.getFoodCost());            
+        } else {
+            System.out.println("You do not have enough $$$ to buy food :(");
+        }
     }
 
-    // public int sell() {
-    //     System.out.println("sell mule");
-    //     int result =  playersMoney.getMoney() + baseCost.getSellBack();
-    //     return result;
-    // }
+
+    public void sellFood() {
+        if(currentPlayer.getInventory().getFood() > 0) {
+            currentPlayer.getInventory().withdrawFood(store.getFoodSold());
+            currentPlayer.getInventory().depositMoney(store.getFoodCost());
+        } else {
+            System.out.println("You have no food to sell :(");
+        }
+    }
 
     /**
     * detects when the user slides the bar for the amnt to buy or sell
     */
     public void buyMule() {
-        Player currPlayer = TurnManager.getInstance().getCurrentPlayer();
+        //Player currPlayer = TurnManager.getInstance().getCurrentPlayer();
         if (currentPlayer.getInventory().getMoney() > store.getCost()) {
-            Mule mule = new Mule(currMule, currPlayer);
-            currPlayer.setMule(mule);
+            Mule mule = new Mule(currMule, currentPlayer);
+            currentPlayer.setMule(mule);
             currentPlayer.getInventory().withdrawMoney(store.getCost());
             System.out.println("YOU BOUGHT A MULE!!!!!!");
         } else {

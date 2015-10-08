@@ -6,9 +6,9 @@ public class Store {
 	private int cost;
 	private int numMules;
 	
-	// private int MULE = 5;
- //    private final int COST = 50;
- //    private final int BASE_BUY_BACK = 25;
+	private final int FOOD_COST = 500;
+	private final int FOOD_BOUGHT = 2;
+    private final int FOOD_SOLD = 2;
 
 	public Store(int cost, int numMules){
 		this.cost = cost;
@@ -25,6 +25,19 @@ public class Store {
 	public int getCost() {
 		return inventory.getCost();
 	}
+
+	public int getFoodCost(){
+		return FOOD_COST;
+	}
+	public int getFoodBought(){
+		return FOOD_BOUGHT;
+	}
+	public int getFoodSold(){
+		return FOOD_SOLD;
+	}
+	public int getFood () {
+		return inventory.getFood();
+	}
 	public int getNumMules() {
 		return numMules;
 	}
@@ -32,6 +45,4 @@ public class Store {
 	public void setNumMules(int mules) {
 		numMules = numMules - mules;
 	}
-
-
 }
