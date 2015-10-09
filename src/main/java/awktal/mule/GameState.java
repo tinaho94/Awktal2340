@@ -174,6 +174,11 @@ public class GameState {
      * Progresses the current player to the next player.
     */
     public void endPlayerTurn() {
+        Player p = getCurrentPlayer();
+        if (p.hasMule()) {
+            p.takeMule();
+            System.out.println("Mule killed at end of turn");
+        }
         currentPlayerIndex++;
     }
 
