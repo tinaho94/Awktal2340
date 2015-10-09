@@ -45,6 +45,11 @@ public class WorldViewController extends PlayerTurnSceneController implements In
         loadPlayerData();
         createImageViews();
         registerOnClick();
+        if (gameState.getCurrentPlayer().getMule() == null) {
+            System.out.println("No mule");
+        } else {
+            System.out.println("Player has mule " + gameState.getCurrentPlayer().getMule().getType());
+        }
     }
 
     /**
@@ -115,14 +120,15 @@ public class WorldViewController extends PlayerTurnSceneController implements In
 
     private void killMule() {
         System.out.println("mule is killed");
-        currPlayer.setMule(new Mule());
+        currPlayer.takeMule();
     }
 
     //initial install of mule
     private void installMule(Tile tile) {
-        currPlayer.getMule().setTile(tile);
-        tile.setMule(currPlayer.getMule());
-        String type = currPlayer.getMule().getType().toString();
+        Mule m = currPlayer.takeMule();
+        m.setTile(tile);
+        tile.setMule(m);
+        String type = m.getType().toString();
         String path = MuleType.valueOf(type).getPath();
         String imagePath = WorldViewController.class.getResource(path).toExternalForm();
         Image image = new Image(imagePath);
@@ -130,7 +136,6 @@ public class WorldViewController extends PlayerTurnSceneController implements In
         muleImage.setFitWidth(50);
         muleImage.setFitHeight(50);
         gridpane.add(muleImage,colClicked, rowClicked);
-        currPlayer.setMule(new Mule());
     }
 
     // for redraw of mule
@@ -145,11 +150,11 @@ public class WorldViewController extends PlayerTurnSceneController implements In
         gridpane.add(muleImage,tile.getX(), tile.getY());
     }
 
-    private void onTileClicked(int row, int col, Node tileView) { 
-        Tile tile = gameState.getMap().getTile(col, row);    
+    private void onTileClicked(int row, int col, Node tileView) {
+        Tile tile = gameState.getMap().getTile(col, row);
         if (tile.getType().equals(TileType.BUILDING)) {
             TurnManager.getInstance().loadScene(GameScene.TOWN);
-        }        
+        }
     }
 
 }

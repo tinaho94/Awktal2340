@@ -17,6 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
 
 public class StoreController extends PlayerTurnSceneController {
 
@@ -26,6 +27,25 @@ public class StoreController extends PlayerTurnSceneController {
     MuleType currMule = MuleType.NONE;
     HBox hbox = new HBox();
     TextArea muleTypeText = new TextArea();
+
+
+    @FXML
+    private Label food_price_label;
+
+    @FXML
+    private Label food_stock_label;
+
+    @FXML
+    private Label energy_price_label;
+
+    @FXML
+    private Label energy_stock_label;
+
+    @FXML
+    private Label ore_price_label;
+
+    @FXML
+    private Label ore_stock_label;
 
     @FXML
     private AnchorPane anchorPane;
@@ -37,6 +57,7 @@ public class StoreController extends PlayerTurnSceneController {
         currentPlayer = gameState.getCurrentPlayer();
         loadMulePics();
         registerOnClick();
+        loadStoreData();
     }
 
     @FXML
@@ -59,7 +80,7 @@ public class StoreController extends PlayerTurnSceneController {
                 hbox.getChildren().add(mule);
             }
         }
-        anchorPane.getChildren().add(hbox);        
+        anchorPane.getChildren().add(hbox);
     }
 
     @FXML
@@ -75,13 +96,13 @@ public class StoreController extends PlayerTurnSceneController {
     }
 
     @FXML
-    private void onMuleClicked(String muleType) { 
+    private void onMuleClicked(String muleType) {
         currMule = MuleType.valueOf(muleType);
         muleTypeText = new TextArea("SELECTED " + muleType + " MULE!");
         muleTypeText.setEditable(false);
         muleTypeText.setPrefHeight(50);
         AnchorPane.setBottomAnchor(muleTypeText, 10.0);
-        anchorPane.getChildren().add(muleTypeText);       
+        anchorPane.getChildren().add(muleTypeText);
 
     }
 
@@ -93,38 +114,50 @@ public class StoreController extends PlayerTurnSceneController {
 
 
     public void buyFood() {//check if they have enough $$ to buy food
-        if (currentPlayer.getInventory().getMoney() >= store.getFoodCost()) {
-            currentPlayer.getInventory().depositFood(store.getFoodBought());
-            currentPlayer.getInventory().withdrawMoney(store.getFoodCost());            
-        } else {
-            System.out.println("You do not have enough $$$ to buy food :(");
-        }
+        store.buyResource(Resource.FOOD, 1, currentPlayer);
+        loadStoreData();
     }
 
 
     public void sellFood() {
-        if(currentPlayer.getInventory().getFood() > 0) {
-            currentPlayer.getInventory().withdrawFood(store.getFoodSold());
-            currentPlayer.getInventory().depositMoney(store.getFoodCost());
-        } else {
-            System.out.println("You have no food to sell :(");
-        }
+        store.sellResource(Resource.FOOD, 1, currentPlayer);
+        loadStoreData();
     }
 
-    /**
-    * detects when the user slides the bar for the amnt to buy or sell
-    */
+    public void buyEnergy() {//check if they have enough $$ to buy food
+        store.buyResource(Resource.ENERGY, 1, currentPlayer);
+        loadStoreData();
+    }
+
+
+    public void sellEnergy() {
+        store.sellResource(Resource.ENERGY, 1, currentPlayer);
+        loadStoreData();
+    }
+
+    public void buyOre() {//check if they have enough $$ to buy food
+        store.buyResource(Resource.ORE, 1, currentPlayer);
+        loadStoreData();
+    }
+
+
+    public void sellOre() {
+        store.sellResource(Resource.ORE, 1, currentPlayer);
+        loadStoreData();
+    }
+
+    private void loadStoreData() {
+        loadPlayerData();
+        food_price_label.setText(String.valueOf(store.getResourceCost(Resource.FOOD)));
+        food_stock_label.setText(String.valueOf(store.getStock(Resource.FOOD)));
+        energy_price_label.setText(String.valueOf(store.getResourceCost(Resource.ENERGY)));
+        energy_stock_label.setText(String.valueOf(store.getStock(Resource.ENERGY)));
+        ore_price_label.setText(String.valueOf(store.getResourceCost(Resource.ORE)));
+        ore_stock_label.setText(String.valueOf(store.getStock(Resource.ORE)));
+    }
+
     public void buyMule() {
-        //Player currPlayer = TurnManager.getInstance().getCurrentPlayer();
-        if (currentPlayer.getInventory().getMoney() > store.getCost()) {
-            Mule mule = new Mule(currMule);
-            mule.setOwner(currentPlayer);
-            currentPlayer.setMule(mule);
-            currentPlayer.getInventory().withdrawMoney(store.getCost());
-            System.out.println("YOU BOUGHT A MULE!!!!!!");
-        } else {
-            System.out.println("NOT ENOUGH $$$$$$$$$");
-        }
+        store.buyMule(currentPlayer, currMule);
         TurnManager.getInstance().loadScene(GameScene.TOWN);
     }
 }

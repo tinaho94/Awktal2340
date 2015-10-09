@@ -28,7 +28,7 @@ public class PubController extends PlayerTurnSceneController {
     public void gamble() {
         int moneyEarned = calculateGamblingEarnings();
         Player currentPlayer = TurnManager.getInstance().getCurrentPlayer();
-        currentPlayer.getInventory().depositMoney(moneyEarned);
+        currentPlayer.giveResource(Resource.MONEY, moneyEarned);
         System.out.println(currentPlayer.getName() + " has earned " + moneyEarned + " spacebucks gambling!");
         TurnManager.getInstance().endPlayerTurn();
     }

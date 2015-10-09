@@ -38,8 +38,8 @@ public abstract class PlayerTurnSceneController extends SceneController {
         playerLabel.setText(currentPlayer.getName());
         scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
         timeLabel.setText(String.valueOf(TurnManager.getInstance().getCurrentTurnTime()));
-        moneyLabel.setText(String.valueOf(currentPlayer.getInventory().getMoney()));
-        foodLabel.setText(String.valueOf(currentPlayer.getInventory().getFood()));
+        moneyLabel.setText(String.valueOf(currentPlayer.getResources(Resource.MONEY)));
+        foodLabel.setText(String.valueOf(currentPlayer.getResources(Resource.FOOD)));
 
     }
 

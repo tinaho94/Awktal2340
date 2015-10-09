@@ -24,22 +24,22 @@ public class Player implements Comparable<Player> {
 		this.name = name;
 		this.color = color;
 		this.race = race;
-		this.inventory = new Inventory(race.getStartingMoney(), 5, 5, 5, 0);
+		this.inventory = new Inventory(race.getStartingMoney(), 5, 5, 5);
 		this.tiles = new ArrayList<Tile>();
-		this.mule = new Mule();
+		this.mule = null;
 	}
 
 	public int compareTo(Player player) {
 		return (this.getScore() - player.getScore());
-	} 
+	}
 
 	public int getScore() {
 		int score = 0;
 		score += tiles.size() * 500;
-		score += inventory.getMoney();
-		score += inventory.getFood() * 30;
-		score += inventory.getEnergy() * 25;
-		score += inventory.getOre() * 50;
+		score += getResources(Resource.MONEY);
+		score += getResources(Resource.FOOD) * 30;
+		score += getResources(Resource.ENERGY) * 25;
+		score += getResources(Resource.ORE) * 50;
 		return score;
 	}
 
@@ -99,25 +99,33 @@ public class Player implements Comparable<Player> {
 		return tiles;
 	}
 
+	public Mule takeMule() {
+		Mule m = this.mule;
+		this.mule = null;
+		return m;
+	}
+
 	public Mule getMule() {
 		return this.mule;
 	}
 
-	public void setMule(Mule mule) {
+	public void giveMule(Mule mule) {
 		this.mule = mule;
 	}
 
 	public boolean hasMule() {
-		return((mule.getType().equals(MuleType.NONE)) ? false:true);
+		return this.mule != null;
 	}
 
-	//gets and sets the players $$$
-	public int getMoney() {
-		return inventory.getMoney();
+	public int getResources(Resource r) {
+		return inventory.getResources(r);
 	}
 
-	public void setMoney(int money) {
-		int i = inventory.getMoney() - money;
-		inventory.setMoney(i);
+	public void giveResource(Resource r, int quantity) {
+		inventory.giveResource(r, quantity);
+	}
+
+	public void takeResource(Resource r, int quantity) {
+		inventory.takeResource(r, quantity);
 	}
 }

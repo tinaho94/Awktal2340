@@ -51,7 +51,7 @@ public class TurnManager {
     }
 
     public void beginPlayerTurns() {
-        gameState.newRound();
+        gameState.resetRound();
         if (gameState.isGameOver()) {
             System.out.println("Game is over");
             return;
@@ -69,14 +69,14 @@ public class TurnManager {
 
     private int calculatePlayerTurnTime(Player player) {
         int foodRequirement = roundFoodRequirements[gameState.getRound()-1];
-        int foodValue = player.getInventory().getFood();
+        int foodValue = player.getResources(Resource.FOOD);
         int turnTime;
         if (foodValue >= foodRequirement) {
             turnTime = 50;
-            player.getInventory().withdrawFood(foodRequirement);
+            player.takeResource(Resource.FOOD, foodRequirement);
         } else if (foodValue > 0) {
             turnTime = 30;
-            player.getInventory().withdrawFood(foodValue);
+            player.takeResource(Resource.FOOD, foodValue);
         } else {
             turnTime = 5;
         }

@@ -20,7 +20,7 @@ public class GameState {
     private boolean propertySelectionEnabled;
 
     private Inventory storeInventory;
-    
+
     private int maxRounds;
 
     private Store store;
@@ -197,6 +197,9 @@ public class GameState {
     public void newRound() {
         currentPlayerIndex = 0;
         round++;
+        if (round > 2) {
+            propertySelectionEnabled = false;
+        }
     }
 
     public int getRound(){

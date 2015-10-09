@@ -3,7 +3,7 @@ package awktal.mule;
 public class Tile {
 
 	private int x, y;
-	private Player owner; 	
+	private Player owner;
 	private TileType type;
 	private Mule mule;
 
@@ -11,7 +11,7 @@ public class Tile {
 		this.x = x;
 		this.y = y;
 		this.type = type;
-		mule = new Mule();
+		mule = null;
 	}
 
 	public TileType getType() {
@@ -20,9 +20,9 @@ public class Tile {
 
 	public Player setOwner(Player owner){
 		return this.owner = owner;
-	} 
+	}
 	public Player getOwner() {
-		return this.owner;  
+		return this.owner;
 	}
 	public boolean isOwned() {
 		return (owner != null);
@@ -40,6 +40,6 @@ public class Tile {
 		return mule;
 	}
 	public boolean hasMule() {
-		return (mule.getType().equals(MuleType.NONE) ? false : true);
+		return mule != null;
 	}
 }
