@@ -11,19 +11,19 @@ public class Store {
 	private HashMap<MuleType, Integer> outfitCosts;
 
 	private final static int MULE_COST = 100;
-	private final static int DEFAULT_FOOD_COST = 500;
-	private final static int DEFAULT_ENERGY_COST = 500;
-	private final static int DEFAULT_ORE_COST = 500;
-	private final static int DEFAULT_NUM_MULES = 20;
+	private final static int DEFAULT_FOOD_COST = 30;
+	private final static int DEFAULT_ENERGY_COST = 25;
+	private final static int DEFAULT_ORE_COST = 50;
+	private final static int DEFAULT_NUM_MULES = 25;
 
 	private final static int DEFAULT_STORE_MONEY = 100000;
-	private final static int DEFAULT_STORE_FOOD = 20;
-	private final static int DEFAULT_STORE_ENERGY = 20;
-	private final static int DEFAULT_STORE_ORE = 20;
+	private final static int DEFAULT_STORE_FOOD = 16;
+	private final static int DEFAULT_STORE_ENERGY = 16;
+	private final static int DEFAULT_STORE_ORE = 0;
 
-	private final static int DEFAULT_FOOD_OUTFIT_COST = 50;
+	private final static int DEFAULT_FOOD_OUTFIT_COST = 25;
 	private final static int DEFAULT_ENERGY_OUTFIT_COST = 50;
-	private final static int DEFAULT_ORE_OUTFIT_COST = 100;
+	private final static int DEFAULT_ORE_OUTFIT_COST = 75;
 
 	public Store(int money, int food, int energy, int ore, int numMules){
 		this.inventory = new Inventory(money, food, energy, ore);
@@ -65,6 +65,10 @@ public class Store {
 		return MULE_COST + outfitCosts.get(type);
 	}
 
+	public int getNumMules() {
+		return mules.size();
+	}
+
 	public void buyMule(Player p, MuleType type) {
 		int cost = getMuleCost(type);
 		if (p.getResources(Resource.MONEY) < cost) {
@@ -76,6 +80,9 @@ public class Store {
 		p.takeResource(Resource.MONEY, cost);
 		Mule m = mules.remove(mules.size() - 1);
 		m.outfit(type);
+		if (p.hasMule()) {
+			System.out.println("Current mule was lost");
+		}
 		p.giveMule(m);
 	}
 

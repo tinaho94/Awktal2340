@@ -24,7 +24,7 @@ public class Player implements Comparable<Player> {
 		this.name = name;
 		this.color = color;
 		this.race = race;
-		this.inventory = new Inventory(race.getStartingMoney(), 5, 5, 5);
+		this.inventory = new Inventory(race.getStartingMoney(), 8, 4, 0);
 		this.tiles = new ArrayList<Tile>();
 		this.mule = null;
 	}

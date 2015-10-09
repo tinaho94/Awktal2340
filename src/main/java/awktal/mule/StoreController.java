@@ -48,6 +48,9 @@ public class StoreController extends PlayerTurnSceneController {
     private Label ore_stock_label;
 
     @FXML
+    private Label mule_stock_label;
+
+    @FXML
     private AnchorPane anchorPane;
 
     @FXML
@@ -98,7 +101,7 @@ public class StoreController extends PlayerTurnSceneController {
     @FXML
     private void onMuleClicked(String muleType) {
         currMule = MuleType.valueOf(muleType);
-        muleTypeText = new TextArea("SELECTED " + muleType + " MULE!");
+        muleTypeText = new TextArea("SELECTED " + muleType + " MULE!\nCOST: " + store.getMuleCost(currMule) + " space-bucks");
         muleTypeText.setEditable(false);
         muleTypeText.setPrefHeight(50);
         AnchorPane.setBottomAnchor(muleTypeText, 10.0);
@@ -113,41 +116,54 @@ public class StoreController extends PlayerTurnSceneController {
     }
 
 
-    public void buyFood() {//check if they have enough $$ to buy food
-        store.buyResource(Resource.FOOD, 1, currentPlayer);
+    private void buyResource(Resource r) {
+        try {
+            store.buyResource(r, 1, currentPlayer);
+        } catch(RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
         loadStoreData();
+    }
+
+    private void sellResource(Resource r) {
+        try {
+            store.sellResource(r, 1, currentPlayer);
+        } catch(RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+        loadStoreData();
+    }
+
+    public void buyFood() {//check if they have enough $$ to buy food
+        buyResource(Resource.FOOD);
     }
 
 
     public void sellFood() {
-        store.sellResource(Resource.FOOD, 1, currentPlayer);
-        loadStoreData();
+        sellResource(Resource.FOOD);
     }
 
     public void buyEnergy() {//check if they have enough $$ to buy food
-        store.buyResource(Resource.ENERGY, 1, currentPlayer);
-        loadStoreData();
+        buyResource(Resource.ENERGY);
     }
 
 
     public void sellEnergy() {
-        store.sellResource(Resource.ENERGY, 1, currentPlayer);
-        loadStoreData();
+        sellResource(Resource.ENERGY);
     }
 
     public void buyOre() {//check if they have enough $$ to buy food
-        store.buyResource(Resource.ORE, 1, currentPlayer);
-        loadStoreData();
+        buyResource(Resource.ORE);
     }
 
 
     public void sellOre() {
-        store.sellResource(Resource.ORE, 1, currentPlayer);
-        loadStoreData();
+        sellResource(Resource.ORE);
     }
 
     private void loadStoreData() {
         loadPlayerData();
+        mule_stock_label.setText(String.valueOf(store.getNumMules()));
         food_price_label.setText(String.valueOf(store.getResourceCost(Resource.FOOD)));
         food_stock_label.setText(String.valueOf(store.getStock(Resource.FOOD)));
         energy_price_label.setText(String.valueOf(store.getResourceCost(Resource.ENERGY)));
@@ -157,8 +173,12 @@ public class StoreController extends PlayerTurnSceneController {
     }
 
     public void buyMule() {
-        store.buyMule(currentPlayer, currMule);
-        TurnManager.getInstance().loadScene(GameScene.TOWN);
+        try {
+            store.buyMule(currentPlayer, currMule);
+            TurnManager.getInstance().loadScene(GameScene.TOWN);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
 

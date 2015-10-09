@@ -18,6 +18,8 @@
                      <children>
                         <Button id="done" layoutX="274.0" layoutY="314.0" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
                         <Button layoutX="222.0" layoutY="314.0" mnemonicParsing="false" onAction="#buyMule" text="Buy" />
+                        <Label layoutX="462.0" layoutY="46.0" text="Stock: " />
+                        <Label fx:id="mule_stock_label" layoutX="504.0" layoutY="46.0" text="stock_here" />
                      </children>
                   </AnchorPane>
                </content>

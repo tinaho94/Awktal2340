@@ -109,6 +109,7 @@ public class WorldViewController extends PlayerTurnSceneController implements In
                             installMule(tile);
                         } else if(tile.hasMule()) {
                             System.out.println("Tile already has mule!");
+                            killMule();
                         } else {
                             killMule();
                         }
