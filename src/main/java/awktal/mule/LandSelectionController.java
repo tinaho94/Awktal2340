@@ -92,7 +92,22 @@ public class LandSelectionController extends SceneController implements Initiali
             button.setMaxHeight(Double.MAX_VALUE);
             button.setId(type);
             gridpane.add(button, t.getX(), t.getY(), 1, 1);
+            if(t.hasMule()) {
+                installMule(t, t.getMule());
+            }
         }
+    }
+
+    // for redraw of mule
+    private void installMule(Tile tile, Mule mule) {
+        String type = mule.getType().toString();
+        String path = MuleType.valueOf(type).getPath();
+        String imagePath = WorldViewController.class.getResource(path).toExternalForm();
+        Image image = new Image(imagePath);
+        ImageView muleImage = new ImageView(image);
+        muleImage.setFitWidth(50);
+        muleImage.setFitHeight(50);
+        gridpane.add(muleImage,tile.getX(), tile.getY());
     }
 
 

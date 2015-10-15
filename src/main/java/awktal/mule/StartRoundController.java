@@ -13,7 +13,9 @@ import javafx.scene.Node;
 import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import javafx.scene.control.Label;
 import javafx.scene.ImageCursor;
+import java.util.Map.Entry;
 
 public class StartRoundController extends SceneController implements Initializable {
 
@@ -31,10 +33,32 @@ public class StartRoundController extends SceneController implements Initializab
                 Inventory i = t.calculateProduction();
                 owner.takeResource(Resource.ENERGY, 1);
                 System.out.println("taking energy from player " + owner.getName());
+
+                String text = createIncomeLabel(i);
+                Label label = new Label(text);
                 owner.giveResources(i);
-                // TODO(henry): show production on the tiles;
+                //label.setStyle("-fx-text-fill: " + colorToHexString(t.getOwner().getColor()) + ";");
+                gridpane.add(label, t.getX(), t.getY(), 1, 1);
             }
         }
+    }
+
+    private String createIncomeLabel(Inventory i) {
+        String message = "";
+        for (Entry<Resource, Integer> e : i.getResourcePairs()) {
+            int q = e.getValue();
+            Resource r = e.getKey();
+            if (q > 0) {
+                message += "+ ";
+            } else if (q < 0) {
+                message += "- ";
+            } else {
+                continue;
+            }
+            message += q + " " + r.name();
+            message += "\n";
+        }
+        return message + "- 1 Energy";
     }
 
     /**
@@ -68,7 +92,7 @@ public class StartRoundController extends SceneController implements Initializab
         }
     }
 
-        // for redraw of mule
+    // for redraw of mule
     private void installMule(Tile tile, Mule mule) {
         String type = mule.getType().toString();
         String path = MuleType.valueOf(type).getPath();

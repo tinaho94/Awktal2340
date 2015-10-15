@@ -3,6 +3,7 @@ package awktal.mule;
 import java.util.HashMap;
 
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Keeps track of resources that belong to a single game object.
@@ -44,5 +45,9 @@ public class Inventory {
         for (Map.Entry<Resource, Integer> pair : i.resources.entrySet()) {
             this.giveResource(pair.getKey(), pair.getValue());
         }
+    }
+
+    public Set<Map.Entry<Resource, Integer>> getResourcePairs() {
+        return resources.entrySet();
     }
 }
