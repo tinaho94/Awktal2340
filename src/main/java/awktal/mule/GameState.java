@@ -19,8 +19,6 @@ public class GameState {
 
     private boolean propertySelectionEnabled;
 
-    private Inventory storeInventory;
-
     private int maxRounds;
 
     private Store store;
@@ -33,7 +31,6 @@ public class GameState {
     */
     public GameState() {
         players = new ArrayList<>();
-        storeInventory = new Inventory();
         maxPlayers = 0;
         currentPlayerIndex = 0;
         round = 1;
@@ -50,9 +47,6 @@ public class GameState {
         return this.store;
     }
 
-    // public ArrayList<StoreInventory> getStoreInventory() {
-    //     return storeInventory;
-    // }
 
     /**
      * Gets the players that are in the game.

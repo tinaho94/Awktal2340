@@ -135,7 +135,7 @@ public class LandSelectionController extends SceneController implements Initiali
             return;
         }
         if(gameState.getRound() > 2) {
-            if(currentPlayer.getResources(Resource.MONEY) < 300){
+            if(currentPlayer.getResource(Resource.MONEY) < 300){
                 System.out.println("You aint got no $$$");
                 return;
             } else {
@@ -166,8 +166,8 @@ public class LandSelectionController extends SceneController implements Initiali
     private void loadPlayerData() {
         Player currentPlayer = gameState.getCurrentPlayer();
         playerLabel.setText(currentPlayer.getName());
-        moneyLabel.setText(String.valueOf(currentPlayer.getResources(Resource.MONEY)));
-        foodLabel.setText(String.valueOf(currentPlayer.getResources(Resource.FOOD)));
+        moneyLabel.setText(String.valueOf(currentPlayer.getResource(Resource.MONEY)));
+        foodLabel.setText(String.valueOf(currentPlayer.getResource(Resource.FOOD)));
         roundLabel.setText(String.valueOf(gameState.getRound()));
         scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
     }

@@ -71,7 +71,7 @@ public class Store {
 
 	public void buyMule(Player p, MuleType type) {
 		int cost = getMuleCost(type);
-		if (p.getResources(Resource.MONEY) < cost) {
+		if (p.getResource(Resource.MONEY) < cost) {
 			throw new RuntimeException("insufficient funds");
 		}
 		if (mules.size() == 0) {
@@ -91,7 +91,7 @@ public class Store {
 	}
 
 	public int getStock(Resource r) {
-		return inventory.getResources(r);
+		return inventory.getResource(r);
 	}
 
 	public void buyResource(Resource r, int quantity, Player p) {
@@ -99,7 +99,7 @@ public class Store {
 			throw new RuntimeException("Out of stock");
 		}
 		int total_cost = costs.get(r) * quantity;
-		if (p.getResources(Resource.MONEY) < total_cost) {
+		if (p.getResource(Resource.MONEY) < total_cost) {
 			throw new RuntimeException("Insufficient funds");
 		}
 		p.takeResource(Resource.MONEY, total_cost);
@@ -109,7 +109,7 @@ public class Store {
 	}
 
 	public void sellResource(Resource r, int quantity, Player p) {
-		if (p.getResources(r) < quantity) {
+		if (p.getResource(r) < quantity) {
 			throw new RuntimeException("Player has insufficient resources to sell " + quantity + " units");
 		}
 		p.takeResource(r, quantity);

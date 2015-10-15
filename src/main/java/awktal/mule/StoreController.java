@@ -1,17 +1,8 @@
 package awktal.mule;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Background;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.GridPane;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;

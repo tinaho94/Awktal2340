@@ -11,7 +11,8 @@ public enum GameScene {
     TOWN,
     STORE,
     PUB,
-    WORLD_VIEW;
+    WORLD_VIEW,
+    START_ROUND;
 
     private String fxml;
 
@@ -23,6 +24,7 @@ public enum GameScene {
         STORE.fxml = "store.fxml";
         PUB.fxml = "pub.fxml";
         WORLD_VIEW.fxml = "world_view.fxml";
+        START_ROUND.fxml = "start_round.fxml";
     }
 
     /**

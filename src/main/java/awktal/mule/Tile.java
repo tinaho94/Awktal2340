@@ -42,4 +42,11 @@ public class Tile {
 	public boolean hasMule() {
 		return mule != null;
 	}
+	public Inventory calculateProduction() {
+		if (mule == null) {
+			return new Inventory();
+		} else {
+			return type.calculateProduction(mule.getType().getProductionType());
+		}
+	}
 }

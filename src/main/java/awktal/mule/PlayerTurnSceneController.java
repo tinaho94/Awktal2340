@@ -33,14 +33,25 @@ public abstract class PlayerTurnSceneController extends SceneController {
     @FXML
     protected Label foodLabel;
 
+    @FXML
+    protected Label energyLabel;
+
+    @FXML
+    protected Label oreLabel;
+
+    @FXML
+    protected Label roundLabel;
+
     protected void loadPlayerData() {
         Player currentPlayer = TurnManager.getInstance().getCurrentPlayer();
         playerLabel.setText(currentPlayer.getName());
         scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
         timeLabel.setText(String.valueOf(TurnManager.getInstance().getCurrentTurnTime()));
-        moneyLabel.setText(String.valueOf(currentPlayer.getResources(Resource.MONEY)));
-        foodLabel.setText(String.valueOf(currentPlayer.getResources(Resource.FOOD)));
-
+        roundLabel.setText(String.valueOf(gameState.getRound()));
+        moneyLabel.setText(String.valueOf(currentPlayer.getResource(Resource.MONEY)));
+        foodLabel.setText(String.valueOf(currentPlayer.getResource(Resource.FOOD)));
+        energyLabel.setText(String.valueOf(currentPlayer.getResource(Resource.ENERGY)));
+        oreLabel.setText(String.valueOf(currentPlayer.getResource(Resource.ORE)));
     }
 
     public void updateTurnTimer(int currentTurnTime) {

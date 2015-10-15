@@ -43,7 +43,7 @@ public class PlayerConfigController extends SceneController {
         try {
             validatePlayerConfig();
             if (gameState.getMaxPlayers() == gameState.getNumPlayers()) {
-                SceneManager.loadScene(GameScene.LAND_SELECTION);
+                SceneManager.loadScene(GameScene.START_ROUND);
                 return;
             } else {
                 SceneManager.loadScene(GameScene.PLAYER_CONFIG);

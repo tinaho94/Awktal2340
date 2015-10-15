@@ -123,91 +123,165 @@
    <top>
       <HBox alignment="TOP_CENTER" spacing="30.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox>
+            <VBox spacing="10.0">
                <children>
-                  <Label text="Player:">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="playerLabel" text="Label">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
+                  <HBox spacing="20.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label text="Player:">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="playerLabel" text="Label">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT">
+                           <children>
+                              <Label text="Round:  ">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="roundLabel" text="Label">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER">
+                           <children>
+                              <Label text="Score: ">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="scoreLabel" text="Label">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT">
+                           <children>
+                              <Label text="Time: ">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="timeLabel" text="Label">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox spacing="20.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label text="Money:">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="moneyLabel" text="Label">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="TOP_RIGHT">
+                           <children>
+                              <Label text="Food:">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="foodLabel" text="Label">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets right="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label text="Energy: ">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="energyLabel" text="Label">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <Label text="Ore: ">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="oreLabel" text="Label">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" style="-fx-background-color: #eee;">
+                     <children>
+                        <Label fx:id="messageLabel" />
+                     </children>
+                  </HBox>
                </children>
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label text="Food:">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="foodLabel" text="Label">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label text="Money:">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="moneyLabel" text="Label">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </HBox>
-            <HBox alignment="TOP_CENTER">
-               <children>
-                  <Label text="Score: ">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="scoreLabel" text="Label">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="TOP_RIGHT" layoutX="576.0" layoutY="10.0">
-               <children>
-                  <Label text="Time: ">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-                  <Label fx:id="timeLabel" text="Label">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets right="5.0" />
-               </padding>
-            </HBox>
+            </VBox>
          </children>
       </HBox>
    </top>

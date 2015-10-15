@@ -69,7 +69,7 @@ public class TurnManager {
 
     private int calculatePlayerTurnTime(Player player) {
         int foodRequirement = roundFoodRequirements[gameState.getRound()-1];
-        int foodValue = player.getResources(Resource.FOOD);
+        int foodValue = player.getResource(Resource.FOOD);
         int turnTime;
         if (foodValue >= foodRequirement) {
             turnTime = 50;
@@ -115,13 +115,7 @@ public class TurnManager {
 
     private void endPlayerTurns() {
         gameState.newRound();
-        if (!gameState.getPropertySelectionEnabled()) {
-            System.out.println("Land selection has been disabled.");
-            TurnManager.getInstance().beginPlayerTurns();
-        } else {
-            SceneManager.loadScene(GameScene.LAND_SELECTION);
-        }
-
+        SceneManager.loadScene(GameScene.START_ROUND);
     }
 
     // public Player getCurrentPlayer() {

@@ -36,10 +36,10 @@ public class Player implements Comparable<Player> {
 	public int getScore() {
 		int score = 0;
 		score += tiles.size() * 500;
-		score += getResources(Resource.MONEY);
-		score += getResources(Resource.FOOD) * 30;
-		score += getResources(Resource.ENERGY) * 25;
-		score += getResources(Resource.ORE) * 50;
+		score += getResource(Resource.MONEY);
+		score += getResource(Resource.FOOD) * 30;
+		score += getResource(Resource.ENERGY) * 25;
+		score += getResource(Resource.ORE) * 50;
 		return score;
 	}
 
@@ -117,12 +117,16 @@ public class Player implements Comparable<Player> {
 		return this.mule != null;
 	}
 
-	public int getResources(Resource r) {
-		return inventory.getResources(r);
+	public int getResource(Resource r) {
+		return inventory.getResource(r);
 	}
 
 	public void giveResource(Resource r, int quantity) {
 		inventory.giveResource(r, quantity);
+	}
+
+	public void giveResources(Inventory i) {
+		this.inventory.giveResources(i);
 	}
 
 	public void takeResource(Resource r, int quantity) {
