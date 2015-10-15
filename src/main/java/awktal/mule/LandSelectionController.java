@@ -80,13 +80,13 @@ public class LandSelectionController extends SceneController implements Initiali
             String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
             button.setStyle("-fx-background-image: url('" + imagePath + "'); " +
             "-fx-background-position: center center; " +
-            "-fx-background-size: cover");
+            "-fx-background-size: stretch");
             if (t.isOwned()) {
                 button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor()) + ";" +
                     "-fx-border-width: 5px;" +
                     "-fx-background-image: url('" + imagePath + "'); " +
                     "-fx-background-position: center center; " +
-                    "-fx-background-size: cover;");
+                    "-fx-background-size: stretch;");
             }
             button.setMaxWidth(Double.MAX_VALUE);
             button.setMaxHeight(Double.MAX_VALUE);
@@ -167,7 +167,7 @@ public class LandSelectionController extends SceneController implements Initiali
         "-fx-border-width: 5px;" +
         "-fx-background-image: url('" + imagePath + "'); " +
         "-fx-background-position: center center; " +
-        "-fx-background-size: cover;");
+        "-fx-background-size: stretch;");
 
         gameState.endPlayerTurn();
 
