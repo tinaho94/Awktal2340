@@ -32,9 +32,6 @@ public class LandSelectionController extends SceneController implements Initiali
     private Label scoreLabel;
 
     @FXML
-    private Label foodLabel;
-
-    @FXML
     private Button passButton;
 
     private Map currMap;
@@ -182,7 +179,6 @@ public class LandSelectionController extends SceneController implements Initiali
         Player currentPlayer = gameState.getCurrentPlayer();
         playerLabel.setText(currentPlayer.getName());
         moneyLabel.setText(String.valueOf(currentPlayer.getResource(Resource.MONEY)));
-        foodLabel.setText(String.valueOf(currentPlayer.getResource(Resource.FOOD)));
         roundLabel.setText(String.valueOf(gameState.getRound()));
         scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
     }
