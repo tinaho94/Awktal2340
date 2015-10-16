@@ -63,7 +63,7 @@ public class TownController extends PlayerTurnSceneController {
 
     private void initializePlayer() {
         currentCol = LEFT_BOUNDRY;
-        String imagePath = TownController.class.getResource("player.gif").toExternalForm();
+        String imagePath = TownController.class.getResource("player_sprite.png").toExternalForm();
         String style = "-fx-background-image: url('" + imagePath + "'); ";
         style += "-fx-background-position: center center; ";
         style += "-fx-background-size: stretch";
