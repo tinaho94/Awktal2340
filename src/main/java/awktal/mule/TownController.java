@@ -66,7 +66,8 @@ public class TownController extends PlayerTurnSceneController {
         String imagePath = TownController.class.getResource("player_sprite.png").toExternalForm();
         String style = "-fx-background-image: url('" + imagePath + "'); ";
         style += "-fx-background-position: center center; ";
-        style += "-fx-background-size: stretch";
+        style += "-fx-background-size: stretch; ";
+        style += "-fx-background-color: transparent;";
         player = new Button("");
         player.setStyle(style);
     }
