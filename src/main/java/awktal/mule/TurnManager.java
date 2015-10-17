@@ -73,10 +73,10 @@ public class TurnManager {
         int turnTime;
         if (foodValue >= foodRequirement) {
             turnTime = 50;
-            player.takeResource(Resource.FOOD, foodRequirement);
+            //player.takeResource(Resource.FOOD, foodRequirement);
         } else if (foodValue > 0) {
             turnTime = 30;
-            player.takeResource(Resource.FOOD, foodValue);
+            //player.takeResource(Resource.FOOD, foodValue);
         } else {
             turnTime = 5;
         }
