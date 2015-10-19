@@ -15,11 +15,12 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import javafx.scene.ImageCursor;
 
+
 public class WorldViewController extends PlayerTurnSceneController implements Initializable {
 
     @FXML
     private GridPane gridpane;
-
+    private Label messageLabel;
     private Map currMap;
 
     /**
@@ -56,7 +57,6 @@ public class WorldViewController extends PlayerTurnSceneController implements In
      * Creates an ImageView from Tile's path to picture and places the
      * ImageView in Button then add to parent GridPane.
     */
-    @FXML
     private void createImageViews() {
         for (Tile t: currMap) {
             String type = t.getType().toString();
@@ -92,7 +92,6 @@ public class WorldViewController extends PlayerTurnSceneController implements In
      * Right now, I only changed to coral but later on
      * change to the current player
     */
-    @FXML
     private void registerOnClick() {
         currPlayer = TurnManager.getInstance().getCurrentPlayer();
         tiles = currPlayer.getTiles();
@@ -157,5 +156,7 @@ public class WorldViewController extends PlayerTurnSceneController implements In
             TurnManager.getInstance().loadScene(GameScene.TOWN);
         }
     }
+
+
 
 }

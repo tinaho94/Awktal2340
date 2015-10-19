@@ -50,4 +50,18 @@ public class Inventory {
     public Set<Map.Entry<Resource, Integer>> getResourcePairs() {
         return resources.entrySet();
     }
+
+    public Inventory scaleResource(double scale, Resource resource) {
+        Inventory i = this.copy();
+        int r = i.resources.get(resource);
+        r *= scale;
+        i.resources.put(resource, r);
+        return i;
+    }
+
+    public Inventory copy() {
+        return new Inventory(this.getResource(Resource.MONEY),
+            this.getResource(Resource.FOOD), this.getResource(Resource.ENERGY),
+            this.getResource(Resource.ORE));
+    }
 }

@@ -192,7 +192,7 @@ public class LandSelectionController extends SceneController implements Initiali
         }
         if(gameState.isRoundOver()) {
             gameState.resetRound();
-            TurnManager.getInstance().beginPlayerTurns();
+            SceneManager.loadScene(GameScene.START_ROUND);
         }
         loadPlayerData();
     }

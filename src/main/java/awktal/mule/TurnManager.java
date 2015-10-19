@@ -67,6 +67,10 @@ public class TurnManager {
         timeline.play();
     }
 
+    public void startPlayerTime() {
+        timeline.play();
+    }
+
     private int calculatePlayerTurnTime(Player player) {
         int foodRequirement = roundFoodRequirements[gameState.getRound()-1];
         int foodValue = player.getResource(Resource.FOOD);
