@@ -11,13 +11,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import com.google.gson.Gson;
+import javafx.scene.control.TextArea;
 
 public class StartTurnController extends SceneController implements Initializable {
 
     @FXML
-    private Label messageLabel;
-    @FXML
     private GridPane gridpane;
+    @FXML
+    private TextArea messageTextArea;
 
     private Map currMap;
 
@@ -28,18 +29,13 @@ public class StartTurnController extends SceneController implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         createImageViews();
-        boolean processRandomEvents = false;
-        Player currentPlayer = gameState.getCurrentPlayer();
-        for (Player p : gameState.getPlayers()) {
-            if (!(p.equals(currentPlayer))) {
-                if (currentPlayer.compareTo(p) > 0) {
-                    processRandomEvents = true;
-                }
+        if (gameState.getRound() > 1) {
+            Player currentPlayer = gameState.getCurrentPlayer();
+            if (gameState.getCurrentPlayerIndex() != 0) {
+                processRandomEvent();
             }
         }
-        if (processRandomEvents) {
-            processRandomEvent();
-        }
+
     }
 
     private void createImageViews() {
@@ -76,9 +72,8 @@ public class StartTurnController extends SceneController implements Initializabl
         int currentM = m[gameState.getRound() - 1];
         Player currentPlayer = gameState.getCurrentPlayer();
         int randomNum = r.nextInt(100) + 1;
-        clearMessageDisplay();
         if (randomNum <= RANDOM_EVENT_PROB) {
-            randomNum = r.nextInt(7) + 1;
+            randomNum = r.nextInt(7);
             RandomEvent randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {
                 currentPlayer.giveResources(randomEvent.inventory.scaleResource(0.5, Resource.FOOD));
@@ -90,10 +85,6 @@ public class StartTurnController extends SceneController implements Initializabl
                 displayRandomEvent(randomEvent, moneyAdded);
             }
         }
-    }
-
-    private void clearMessageDisplay() {
-        messageLabel.setText("");
     }
 
     private enum RandomEvent {
@@ -128,7 +119,7 @@ public class StartTurnController extends SceneController implements Initializabl
         if (randomEvent == RandomEvent.THREE || randomEvent == RandomEvent.FOUR || randomEvent == RandomEvent.FIVE || randomEvent == RandomEvent.SEVEN) {
             message = message + moneyAdded + ".";
         }
-        messageLabel.setText(message);
+        messageTextArea.setText(message);
     }
 
     public void continueOn() {

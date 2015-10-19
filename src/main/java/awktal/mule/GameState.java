@@ -209,4 +209,8 @@ public class GameState {
      public void recalculatePlayerOrder() {
         Collections.sort(players);
     }
+
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
+    }
 }
