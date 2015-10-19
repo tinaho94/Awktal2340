@@ -36,7 +36,7 @@
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <Label text="Turn Start" />
-            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" text="Message Label" textAlignment="CENTER" />
+            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" textAlignment="CENTER" />
          </children>
       </VBox>
    </top>

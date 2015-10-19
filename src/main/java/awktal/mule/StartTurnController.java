@@ -25,7 +25,18 @@ public class StartTurnController extends SceneController implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         createImageViews();
-        processRandomEvent();
+        boolean processRandomEvents = false;
+        Player currentPlayer = gameState.getCurrentPlayer();
+        for (Player p : gameState.getPlayers()) {
+            if (!(p.equals(currentPlayer))) {
+                if (currentPlayer.getScore().compareTo(p.getScore()) > 0) {
+                    processRandomEvents = true;
+                }
+            }
+        }
+        if (processRandomEvents) {
+            processRandomEvent();
+        }
     }
 
     private void createImageViews() {
@@ -59,7 +70,7 @@ public class StartTurnController extends SceneController implements Initializabl
         RandomEvent events[] = {RandomEvent.ONE, RandomEvent.TWO, RandomEvent.THREE, RandomEvent.FOUR,
             RandomEvent.FIVE, RandomEvent.SIX, RandomEvent.SEVEN};
         Random r = new Random();
-        int currentM = m[gameState.getRound()];
+        int currentM = m[gameState.getRound() - 1];
         Player currentPlayer = gameState.getCurrentPlayer();
         int randomNum = r.nextInt(100) + 1;
         clearMessageDisplay();
@@ -67,12 +78,12 @@ public class StartTurnController extends SceneController implements Initializabl
             randomNum = r.nextInt(7) + 1;
             RandomEvent randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {
-                currentPlayer.giveResources(randomEvent.inventory.scaleResource(currentPlayer.getResource(Resource.FOOD) / 2, Resource.FOOD));
+                currentPlayer.giveResources(randomEvent.inventory.scaleResource(0.5, Resource.FOOD));
                 displayRandomEvent(randomEvent, 0);
             } else {
-                currentPlayer.giveResources(randomEvent.getInventory().scaleResource(currentM, Resource.MONEY));
-                int moneyAdded = currentPlayer.getResource(Resource.MONEY)
-                    - randomEvent.getInventory().getResource(Resource.MONEY);
+                Inventory newResources = randomEvent.getInventory().scaleResource(currentM, Resource.MONEY);
+                currentPlayer.giveResources(newResources);
+                int moneyAdded = Math.abs(newResources.getResource(Resource.MONEY));
                 displayRandomEvent(randomEvent, moneyAdded);
             }
         }
@@ -111,7 +122,7 @@ public class StartTurnController extends SceneController implements Initializabl
 
     private void displayRandomEvent(RandomEvent randomEvent, int moneyAdded) {
         String message = randomEvent.getMessage();
-        if (randomEvent == RandomEvent.TWO || randomEvent == RandomEvent.THREE || randomEvent == RandomEvent.FOUR || randomEvent == RandomEvent.SIX) {
+        if (randomEvent == RandomEvent.THREE || randomEvent == RandomEvent.FOUR || randomEvent == RandomEvent.FIVE || randomEvent == RandomEvent.SEVEN) {
             message = message + moneyAdded + ".";
         }
         messageLabel.setText(message);
