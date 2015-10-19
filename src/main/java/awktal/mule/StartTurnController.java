@@ -67,7 +67,7 @@ public class StartTurnController extends SceneController implements Initializabl
             randomNum = r.nextInt(7) + 1;
             RandomEvent randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {
-                currentPlayer.giveResources(randomEvent.inventory.scaleResource(currentPlayer.getResource(Resource.FOOD), Resource.FOOD));
+                currentPlayer.giveResources(randomEvent.inventory.scaleResource(currentPlayer.getResource(Resource.FOOD) / 2, Resource.FOOD));
                 displayRandomEvent(randomEvent, 0);
             } else {
                 currentPlayer.giveResources(randomEvent.getInventory().scaleResource(currentM, Resource.MONEY));
