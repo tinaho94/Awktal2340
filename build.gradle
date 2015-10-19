@@ -1,4 +1,9 @@
 apply plugin: 'java'
+
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+
 apply plugin: 'application'
 defaultTasks 'run'
 
@@ -20,4 +25,5 @@ repositories {
 
 dependencies {
 	testCompile 'junit:junit:4.12'
+    compile 'com.google.code.gson:gson:2.4'
 }

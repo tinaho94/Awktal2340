@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import com.google.gson.Gson;
 
 public class StartTurnController extends SceneController implements Initializable {
 
