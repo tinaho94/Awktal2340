@@ -109,11 +109,11 @@ public class TownController extends PlayerTurnSceneController {
         switch (BUILDING_RANGES[currentCol]) {
             case PUB:
                 // System.out.println("Entering pub");
-                TurnManager.getInstance().loadScene(GameScene.PUB);
+                SceneManager.loadScene(GameScene.PUB);
                 break;
             case STORE:
                 // System.out.println("Entering store");
-                TurnManager.getInstance().loadScene(GameScene.STORE); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
+                SceneManager.loadScene(GameScene.STORE); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
             default:
                 break;
         }
@@ -125,6 +125,6 @@ public class TownController extends PlayerTurnSceneController {
     }
 
     public void onReturnButtonClick() {
-        TurnManager.getInstance().loadScene(GameScene.WORLD_VIEW);
+        SceneManager.loadScene(GameScene.WORLD_VIEW);
     }
 }

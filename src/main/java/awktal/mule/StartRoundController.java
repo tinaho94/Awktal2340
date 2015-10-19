@@ -27,13 +27,13 @@ public class StartRoundController extends SceneController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         createImageViews();
+        gameState.newRound();
         for (Tile t : currMap) {
             Player owner = t.getOwner();
             if (owner != null && t.getMule() != null && owner.getResource(Resource.ENERGY) > 0) {
                 Inventory i = t.calculateProduction();
                 owner.takeResource(Resource.ENERGY, 1);
                 System.out.println("taking energy from player " + owner.getName());
-
                 String text = createIncomeLabel(i);
                 Label label = new Label(text);
                 owner.giveResources(i);
@@ -41,6 +41,7 @@ public class StartRoundController extends SceneController implements Initializab
                 gridpane.add(label, t.getX(), t.getY(), 1, 1);
             }
         }
+        gameState.recalculatePlayerOrder();
     }
 
     private String createIncomeLabel(Inventory i) {
@@ -112,7 +113,7 @@ public class StartRoundController extends SceneController implements Initializab
     public void continueOn() {
         if (!gameState.getPropertySelectionEnabled()) {
             System.out.println("Land selection has been disabled.");
-            TurnManager.getInstance().beginPlayerTurns();
+            SceneManager.loadScene(GameScene.START_TURN);
         } else {
             SceneManager.loadScene(GameScene.LAND_SELECTION);
         }

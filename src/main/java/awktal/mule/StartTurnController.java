@@ -62,11 +62,12 @@ public class StartTurnController extends SceneController implements Initializabl
         int currentM = m[gameState.getRound()];
         Player currentPlayer = gameState.getCurrentPlayer();
         int randomNum = r.nextInt(100) + 1;
+        clearMessageDisplay();
         if (randomNum <= 27) {
             randomNum = r.nextInt(7) + 1;
             RandomEvent randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {
-                currentPlayer.giveResources(currentPlayer.getInventory().scaleResource(0.5, Resource.FOOD));
+                currentPlayer.giveResources(randomEvent.inventory.scaleResource(currentPlayer.getResource(Resource.FOOD), Resource.FOOD));
                 displayRandomEvent(randomEvent, 0);
             } else {
                 currentPlayer.giveResources(randomEvent.getInventory().scaleResource(currentM, Resource.MONEY));
@@ -77,14 +78,18 @@ public class StartTurnController extends SceneController implements Initializabl
         }
     }
 
+    private void clearMessageDisplay() {
+        messageLabel.setText("");
+    }
+
     private enum RandomEvent {
         ONE ("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.", new Inventory(0, 3, 2, 0)),
         TWO ("A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY LEAVING TWO BARS OF ORE.", new Inventory(0, 0, 0, 2)),
         THREE ("THE MUSEUM BOUGHT YOUR ANTIQUE PERSONAL COMPUTER FOR $", new Inventory(8, 0, 0, 0)),
         FOUR ("YOU FOUND A DEAD MOOSE RAT AND SOLD THE HIDE FOR $", new Inventory(2, 0, 0, 0)),
-        FIVE ("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $", new Inventory(4, 0, 0, 0)),
-        SIX ("MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.", new Inventory(0, 0, 0, 0)),
-        SEVEN ("YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. TO CLEAN IT UP, IT COST YOU $", new Inventory(6, 0, 0, 0));
+        FIVE ("FLYING CAT-BUGS ATE THE ROOF OFF YOUR HOUSE. REPAIRS COST $", new Inventory(-4, 0, 0, 0)),
+        SIX ("MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.", new Inventory(0, -1, 0, 0)),
+        SEVEN ("YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. TO CLEAN IT UP, IT COST YOU $", new Inventory(-6, 0, 0, 0));
 
         private String message;
         private Inventory inventory;
@@ -113,7 +118,7 @@ public class StartTurnController extends SceneController implements Initializabl
     }
 
     public void continueOn() {
-        TurnManager.getInstance().beginPlayerTurns();
+        TurnManager.getInstance().startCurrentPlayerClock();
         SceneManager.loadScene(GameScene.WORLD_VIEW);
     }
 

@@ -42,6 +42,10 @@ public abstract class PlayerTurnSceneController extends SceneController {
     @FXML
     protected Label roundLabel;
 
+    public PlayerTurnSceneController() {
+        TurnManager.getInstance().setCurrentScene(this);
+    }
+
     protected void loadPlayerData() {
         Player currentPlayer = TurnManager.getInstance().getCurrentPlayer();
         playerLabel.setText(currentPlayer.getName());

@@ -53,7 +53,7 @@ public class PubController extends PlayerTurnSceneController {
 
     @FXML
     public void returnToTown() {
-        TurnManager.getInstance().loadScene(GameScene.TOWN);
+        SceneManager.loadScene(GameScene.TOWN);
     }
 
 }

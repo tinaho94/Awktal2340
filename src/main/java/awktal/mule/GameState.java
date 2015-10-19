@@ -1,6 +1,7 @@
 package awktal.mule;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents the state of the game.
@@ -33,14 +34,14 @@ public class GameState {
         players = new ArrayList<>();
         maxPlayers = 0;
         currentPlayerIndex = 0;
-        round = 1;
+        round = 0;
         propertySelectionEnabled = true;
         maxRounds = 12;
         store = new Store();
     }
 
     public boolean isGameOver() {
-        return round > maxRounds;
+        return round >= maxRounds && currentPlayerIndex > players.size();
     }
 
     public Store getStore() {
@@ -203,5 +204,9 @@ public class GameState {
 
     public int getRound(){
         return round;
+    }
+
+     public void recalculatePlayerOrder() {
+        Collections.sort(players);
     }
 }

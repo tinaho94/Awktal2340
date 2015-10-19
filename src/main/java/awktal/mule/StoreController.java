@@ -103,7 +103,7 @@ public class StoreController extends PlayerTurnSceneController {
     @FXML
     public void attemptExit() {
         System.out.println("Entering town");
-        TurnManager.getInstance().loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
+        SceneManager.loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
     }
 
 
@@ -166,7 +166,7 @@ public class StoreController extends PlayerTurnSceneController {
     public void buyMule() {
         try {
             store.buyMule(currentPlayer, currMule);
-            TurnManager.getInstance().loadScene(GameScene.TOWN);
+            SceneManager.loadScene(GameScene.TOWN);
         } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }

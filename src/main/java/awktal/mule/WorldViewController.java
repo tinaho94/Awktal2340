@@ -153,7 +153,7 @@ public class WorldViewController extends PlayerTurnSceneController implements In
     private void onTileClicked(int row, int col, Node tileView) {
         Tile tile = gameState.getMap().getTile(col, row);
         if (tile.getType().equals(TileType.BUILDING)) {
-            TurnManager.getInstance().loadScene(GameScene.TOWN);
+            SceneManager.loadScene(GameScene.TOWN);
         }
     }
 
