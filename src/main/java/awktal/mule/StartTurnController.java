@@ -20,6 +20,8 @@ public class StartTurnController extends SceneController implements Initializabl
 
     private Map currMap;
 
+    private final static int RANDOM_EVENT_PROB = 100;
+
     private static final int[] m = {25, 25, 25, 50, 50, 50, 50, 75, 75, 75, 75, 100};
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,7 +31,7 @@ public class StartTurnController extends SceneController implements Initializabl
         Player currentPlayer = gameState.getCurrentPlayer();
         for (Player p : gameState.getPlayers()) {
             if (!(p.equals(currentPlayer))) {
-                if (currentPlayer.getScore().compareTo(p.getScore()) > 0) {
+                if (currentPlayer.compareTo(p) > 0) {
                     processRandomEvents = true;
                 }
             }
@@ -74,7 +76,7 @@ public class StartTurnController extends SceneController implements Initializabl
         Player currentPlayer = gameState.getCurrentPlayer();
         int randomNum = r.nextInt(100) + 1;
         clearMessageDisplay();
-        if (randomNum <= 27) {
+        if (randomNum <= RANDOM_EVENT_PROB) {
             randomNum = r.nextInt(7) + 1;
             RandomEvent randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {
