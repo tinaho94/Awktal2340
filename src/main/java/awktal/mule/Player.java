@@ -33,6 +33,20 @@ public class Player implements Comparable<Player> {
 		return (this.getScore() - player.getScore());
 	}
 
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof Player)) {
+			return false;
+		} else if (this == other) {
+			return true;
+		} else {
+			return this.name.equals(((Player) other).name);
+		}
+	}
+
+	public int hashCode() {
+		return this.name.hashCode();
+	}
+
 	public int getScore() {
 		int score = 0;
 		score += tiles.size() * 500;

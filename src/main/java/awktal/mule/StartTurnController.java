@@ -10,7 +10,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import com.google.gson.Gson;
 import javafx.scene.control.TextArea;
 
 public class StartTurnController extends SceneController implements Initializable {
@@ -29,11 +28,9 @@ public class StartTurnController extends SceneController implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         createImageViews();
-        if (gameState.getRound() > 1) {
-            Player currentPlayer = gameState.getCurrentPlayer();
-            if (gameState.getCurrentPlayerIndex() != 0) {
-                processRandomEvent();
-            }
+        // gameState.saveGame();
+        if (gameState.getRound() > 1 && gameState.getCurrentPlayerIndex() != 0) {
+            processRandomEvent();
         }
 
     }
@@ -123,8 +120,8 @@ public class StartTurnController extends SceneController implements Initializabl
     }
 
     public void continueOn() {
-        TurnManager.getInstance().startCurrentPlayerClock();
         SceneManager.loadScene(GameScene.WORLD_VIEW);
+        TurnManager.getInstance().startCurrentPlayerClock();
     }
 
     private String colorToHexString(Color color) {

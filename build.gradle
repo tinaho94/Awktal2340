@@ -23,7 +23,33 @@ repositories {
   mavenCentral()
 }
 
+task preCommit(dependsOn: ['javadoc', 'checkstyleMain', 'pmdMain', 'findbugsMain']) {
+}
+
+configurations {
+    checkstyleConfig {
+        transitive = false
+    }
+}
+
+def versions = [
+    checkstyle: '6.2',
+]
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+ }
+
+checkstyle {
+    toolVersion = "${versions.checkstyle}"
+    config = resources.text.fromArchiveEntry(configurations.checkstyleConfig, 'google_checks.xml')
+}
+
 dependencies {
-	testCompile 'junit:junit:4.12'
-    compile 'com.google.code.gson:gson:2.4'
+	  testCompile 'junit:junit:4.12'
+    compile 'com.google.code.gson:gson:2.4', "com.google.code.findbugs:annotations:2.0.0"
+    checkstyleConfig "com.puppycrawl.tools:checkstyle:${versions.checkstyle}"
 }

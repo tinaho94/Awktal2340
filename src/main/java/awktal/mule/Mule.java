@@ -3,8 +3,6 @@ package awktal.mule;
 public class Mule {
 
     private MuleType type;
-    private Player owner;
-    private Tile tile;
 
     public Mule() {
         this(MuleType.NONE);
@@ -20,12 +18,5 @@ public class Mule {
 
     public MuleType getType() {
         return this.type;
-    }
-
-    public void setTile(Tile tile) {
-        this.tile = tile;
-    }
-    public void setOwner(Player owner) {
-        this.owner = owner;
     }
 }

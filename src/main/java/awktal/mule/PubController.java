@@ -46,9 +46,9 @@ public class PubController extends PlayerTurnSceneController {
         } else {
             timeBonusMax = 50;
         }
-        int timeBonus = (int) (rand.nextDouble() * timeBonusMax);
+        int timeBonus = rand.nextInt(timeBonusMax);
         int totalBonus = timeBonus + roundBonus[gameState.getRound() - 1];
-        return (totalBonus > 250) ? 250 : totalBonus;
+        return totalBonus > 250 ? 250 : totalBonus;
     }
 
     @FXML

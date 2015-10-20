@@ -114,8 +114,8 @@ public class TownController extends PlayerTurnSceneController {
             case STORE:
                 // System.out.println("Entering store");
                 SceneManager.loadScene(GameScene.STORE); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
-            default:
                 break;
+            default: break;
         }
     }
 

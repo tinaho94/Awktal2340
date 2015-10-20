@@ -1,11 +1,13 @@
 package awktal.mule;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.Iterator;
 
 public class Map implements Iterable<Tile> {
 
 	private Tile[][] tiles;
 
+	@SuppressFBWarnings(value="EI2")
 	public Map(Tile[][] tiles) {
 		this.tiles = tiles;
 	}

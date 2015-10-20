@@ -126,7 +126,6 @@ public class WorldViewController extends PlayerTurnSceneController implements In
     //initial install of mule
     private void installMule(Tile tile) {
         Mule m = currPlayer.takeMule();
-        m.setTile(tile);
         tile.setMule(m);
         String type = m.getType().toString();
         String path = MuleType.valueOf(type).getPath();

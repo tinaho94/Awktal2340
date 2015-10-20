@@ -3,7 +3,7 @@ package awktal.mule;
 public class Tile {
 
 	private int x, y;
-	private Player owner;
+	private transient Player owner;
 	private TileType type;
 	private Mule mule;
 
@@ -25,7 +25,7 @@ public class Tile {
 		return this.owner;
 	}
 	public boolean isOwned() {
-		return (owner != null);
+		return owner != null;
 	}
 	public int getX() {
 		return x;

@@ -2,6 +2,7 @@ package awktal.mule;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import com.google.gson.Gson;
 
 /**
  * Represents the state of the game.
@@ -212,5 +213,10 @@ public class GameState {
 
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
+    }
+
+    public void saveGame() {
+        Gson converter = new Gson();
+        System.out.println(converter.toJson(this));
     }
 }

@@ -105,10 +105,8 @@ public class TurnManager {
         if (currentTurnTime == 0) {
             endPlayerTurn();
         } else {
-            try {
+            if (currentScene != null) {
                 currentScene.updateTurnTimer(currentTurnTime);
-            } catch(NullPointerException e) {
-                // Don't do anything as this will happen if a scene takes more than 1 second to load.
             }
         }
     }

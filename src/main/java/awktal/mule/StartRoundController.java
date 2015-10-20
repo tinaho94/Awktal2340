@@ -45,21 +45,22 @@ public class StartRoundController extends SceneController implements Initializab
     }
 
     private String createIncomeLabel(Inventory i) {
-        String message = "";
+        StringBuffer message = new StringBuffer();
         for (Entry<Resource, Integer> e : i.getResourcePairs()) {
             int q = e.getValue();
             Resource r = e.getKey();
             if (q > 0) {
-                message += "+ ";
+                message.append("+ ");
             } else if (q < 0) {
-                message += "- ";
+                message.append("- ");
             } else {
                 continue;
             }
-            message += q + " " + r.name();
-            message += "\n";
+            message.append(q + " " + r.name());
+            message.append("\n");
         }
-        return message + "- 1 Energy";
+        message.append("- 1 Energy");
+        return message.toString();
     }
 
     /**
