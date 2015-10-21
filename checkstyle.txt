@@ -1,69 +1,10 @@
 :compileJava
 :processResources UP-TO-DATE
 :classes
-:checkstyleMain[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:5: warning: ',' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:5:5: warning: Each variable declaration must be in its own statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:5:17: warning: Member name 'x' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:5:20: warning: Member name 'y' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:10:5: warning: Missing a Javadoc comment.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:10:17: warning: '(' is preceded with whitespace.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:10:22: warning: Parameter name 'x' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:10:29: warning: Parameter name 'y' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:21:41: warning: WhitespaceAround: '{' is not preceded with whitespace.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:24: warning: 'METHOD_DEF' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:27: warning: 'METHOD_DEF' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:30: warning: 'METHOD_DEF' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:33: warning: 'METHOD_DEF' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:36: warning: 'METHOD_DEF' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:39: warning: 'METHOD_DEF' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:42: warning: 'METHOD_DEF' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:45: warning: 'METHOD_DEF' should be separated from previous statement.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/Tile.java:45:5: warning: Missing a Javadoc comment.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TileType.java:29:5: warning: Missing a Javadoc comment.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TileType.java:29:51: warning: Parameter name 'r' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:7: warning: Wrong lexicographical order for 'javafx.scene.layout.Background' import. Should be before 'javafx.scene.layout.BackgroundImage'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:8: warning: Wrong lexicographical order for 'javafx.scene.image.Image' import. Should be before 'javafx.scene.layout.BackgroundImage'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:10: warning: Wrong lexicographical order for 'javafx.scene.layout.BackgroundPosition' import. Should be before 'javafx.scene.layout.BackgroundRepeat'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:13: warning: Wrong lexicographical order for 'javafx.scene.image.ImageView' import. Should be before 'javafx.scene.layout.GridPane'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:14: warning: Wrong lexicographical order for 'javafx.scene.input.KeyCode' import. Should be before 'javafx.scene.layout.GridPane'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:19:20: warning: Member name 'return_button' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:21:24: warning: Member name 'main_pane' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:23:24: warning: Member name 'town_pane' must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:46: warning: Distance between variable 'button' declaration and its first usage is 4, but allowed 3.  Consider to make that variable as final if you still need to store its value in advance (before method calls that might do side effect on original value).
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:94: warning: 'switch' have incorrect indentation level 12, expected level should be 16.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:95: warning: 'case' child have incorrect indentation level 16, expected level should be 20.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:96: warning: 'block' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:96: warning: 'method call' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:97: warning: 'block' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:98: warning: 'case' child have incorrect indentation level 16, expected level should be 20.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:99: warning: 'block' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:99: warning: 'method call' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:100: warning: 'block' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:101: warning: 'case' child have incorrect indentation level 16, expected level should be 20.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:102: warning: 'block' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:102: warning: 'method call' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:103: warning: 'block' child have incorrect indentation level 20, expected level should be 24.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:104: warning: 'case' child have incorrect indentation level 16, expected level should be 20.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:105: warning: 'switch rcurly' have incorrect indentation level 12, expected level should be 16.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:106: warning: 'block rcurly' have incorrect indentation level 8, expected level should be 12.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TownController.java:117: warning: Line is longer than 100 characters (found 184).
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:6: warning: Import statement for 'javafx.animation.*' is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group, expecting not assigned imports on this line.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:6: warning: Using the '.*' form of import should be avoided - javafx.animation.*.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:7: warning: Import statement for 'javafx.beans.property.*' is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group, expecting not assigned imports on this line.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:7: warning: Using the '.*' form of import should be avoided - javafx.beans.property.*.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:8: warning: Import statement for 'javafx.event.*' is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group, expecting not assigned imports on this line.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:8: warning: Using the '.*' form of import should be avoided - javafx.event.*.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:9: warning: Import statement for 'javafx.util.Duration' is in the wrong order. Should be in the 'THIRD_PARTY_PACKAGE' group, expecting not assigned imports on this line.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:10: warning: Wrong lexicographical order for 'java.util.List' import. Should be before 'java.util.TimerTask'.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:24:5: warning: Missing a Javadoc comment.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:63:5: warning: Missing a Javadoc comment.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:79:73: warning: WhitespaceAround: '-' is not preceded with whitespace.
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:79:74: warning: WhitespaceAround: '-' is not followed by whitespace. Empty blocks may only be represented as {} when not part of a multi-block statement (4.1.3)
-[ant:checkstyle] /Users/hvpeteet/Documents/github/Awktal2340/src/main/java/awktal/mule/TurnManager.java:114:5: warning: Missing a Javadoc comment.
-
+:checkstyleMain
 
 BUILD SUCCESSFUL
 
-Total time: 5.803 secs
+Total time: 5.702 secs
 
 This build could be faster, please consider using the Gradle Daemon: https://docs.gradle.org/2.8/userguide/gradle_daemon.html

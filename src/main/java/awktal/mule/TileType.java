@@ -26,9 +26,12 @@ public enum TileType {
         return path;
     }
 
-    public Inventory calculateProduction(Resource r) {
+    /**
+     * Calculates the production of the tile if worked for the specific resource.
+    */
+    public Inventory calculateProduction(Resource resource) {
         Inventory production = new Inventory();
-        production.giveResource(r, yields.get(r));
+        production.giveResource(resource, yields.get(resource));
         return production;
     }
 }

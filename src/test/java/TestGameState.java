@@ -1,11 +1,10 @@
 package awktal.mule;
 
-import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
-import awktal.mule.GameState;
-import awktal.mule.GameStateConfigException;
-import awktal.mule.Player;
+
+import org.junit.Test;
+
 
 public class TestGameState {
 

@@ -2,25 +2,21 @@ package awktal.mule;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.Background;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.GridPane;
 
 public class TownController extends PlayerTurnSceneController {
 
     @FXML
-    private Button return_button;
-    @FXML
-    private AnchorPane main_pane;
-    @FXML
-    private AnchorPane town_pane;
+    private AnchorPane mainPane;
     @FXML
     private GridPane gridpane;
 
@@ -43,13 +39,12 @@ public class TownController extends PlayerTurnSceneController {
         for (int row = 0; row < 10; row++) {
             for (int col = 0; col < 17; col++) {
                 String path = "town_pictures/town-" + row + "-" + col + ".jpeg";
-                Button button = new Button("");
-                // System.out.println(path);
                 String imagePath = TownController.class.getResource(path).toExternalForm();
                 String style = "";
                 style += "-fx-background-image: url('" + imagePath + "'); ";
                 style += "-fx-background-position: center center; ";
                 style += "-fx-background-size: stretch";
+                Button button = new Button("");
                 button.setStyle(style);
                 button.setMaxWidth(Double.MAX_VALUE);
                 button.setMaxHeight(Double.MAX_VALUE);
@@ -90,20 +85,21 @@ public class TownController extends PlayerTurnSceneController {
     }
 
     private void initKeyListeners() {
-        main_pane.setOnKeyPressed(e -> {
-            switch (e.getCode()) {
-                case UP:
-                    attemptEntrance();
-                    break;
-                case RIGHT:
-                    movePlayerRight();
-                    break;
-                case LEFT:
-                    movePlayerLeft();
-                    break;
-                default: break;
+        mainPane.setOnKeyPressed(e -> {
+                switch (e.getCode()) {
+                    case UP:
+                        attemptEntrance();
+                        break;
+                    case RIGHT:
+                        movePlayerRight();
+                        break;
+                    case LEFT:
+                        movePlayerLeft();
+                        break;
+                    default: break;
+                }
             }
-        });
+        );
     }
 
     private void attemptEntrance() {
@@ -114,7 +110,7 @@ public class TownController extends PlayerTurnSceneController {
                 break;
             case STORE:
                 // System.out.println("Entering store");
-                SceneManager.loadScene(GameScene.STORE); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
+                SceneManager.loadScene(GameScene.STORE);
                 break;
             default: break;
         }

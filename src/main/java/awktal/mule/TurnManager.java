@@ -1,13 +1,15 @@
 package awktal.mule;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
+
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javafx.animation.*;
-import javafx.beans.property.*;
-import javafx.event.*;
-import javafx.util.Duration;
-import java.util.List;
 
 public class TurnManager {
     private static TurnManager instance;
@@ -19,8 +21,10 @@ public class TurnManager {
     private Timeline timeline;
     private PlayerTurnSceneController currentScene;
     private int currentTurnTime;
-    // private int currentPlayerIndex;
 
+    /**
+     * Gets the single instance of turn manager.
+    */
     public static TurnManager getInstance() {
         if (instance == null) {
             instance = new TurnManager();
@@ -49,34 +53,18 @@ public class TurnManager {
         timeline.setCycleCount(Timeline.INDEFINITE);
     }
 
-    // public void beginPlayerTurns() {
-    //     gameState.resetRound();
-    //     if (gameState.isGameOver()) {
-    //         System.out.println("Game is over");
-    //         return;
-    //     }
-    //     // currentPlayerIndex = 0;
-    //     Collections.sort(gameState.getPlayers());
-    //     beginPlayerTurn(gameState.getCurrentPlayer());
-    // }
-
+    /**
+     * Starts the clock ticking for the current player.
+     * Time is calculated based on food.
+    */
     public void startCurrentPlayerClock() {
         Player player = gameState.getCurrentPlayer();
         currentTurnTime = calculatePlayerTurnTime(player);
         timeline.play();
     }
-    // public void beginPlayerTurn(Player player) {
-    //     currentTurnTime = calculatePlayerTurnTime(player);
-    //     loadScene(GameScene.WORLD_VIEW);
-    //     timeline.play();
-    // }
-
-    // public void startPlayerTime() {
-    //     timeline.play();
-    // }
 
     private int calculatePlayerTurnTime(Player player) {
-        int foodRequirement = roundFoodRequirements[gameState.getRound()-1];
+        int foodRequirement = roundFoodRequirements[gameState.getRound() - 1];
         int foodValue = player.getResource(Resource.FOOD);
         int turnTime;
         if (foodValue >= foodRequirement) {
@@ -90,11 +78,6 @@ public class TurnManager {
         }
         return turnTime;
     }
-
-    // public void loadScene(GameScene scene) {
-    //     currentScene = (PlayerTurnSceneController) SceneManager.loadScene(scene);
-    //     currentScene.updateTurnTimer(currentTurnTime);
-    // }
 
     public void setCurrentScene(PlayerTurnSceneController currentScene) {
         this.currentScene = currentScene;
@@ -111,6 +94,10 @@ public class TurnManager {
         }
     }
 
+    /**
+     * Ends a player's turn and sets up the next screen.
+     * The next screen can be to start another round, another player's turn, or to end the game.
+    */
     public void endPlayerTurn() {
         timeline.stop();
         gameState.endPlayerTurn();
@@ -118,18 +105,8 @@ public class TurnManager {
             SceneManager.loadScene(GameScene.START_ROUND);
         } else {
             SceneManager.loadScene(GameScene.START_TURN);
-            // beginPlayerTurn(gameState.getCurrentPlayer());
         }
     }
-
-    // private void endPlayerTurns() {
-    //     gameState.newRound();
-    //     SceneManager.loadScene(GameScene.START_ROUND);
-    // }
-
-    // public Player getCurrentPlayer() {
-    //     return gameState.getPlayers().get(currentPlayerIndex);
-    // }
 
     public Player getCurrentPlayer() {
         return gameState.getCurrentPlayer();
