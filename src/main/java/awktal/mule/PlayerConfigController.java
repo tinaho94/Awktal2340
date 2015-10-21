@@ -1,6 +1,5 @@
 package awktal.mule;
 
-import awktal.mule.Race;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;

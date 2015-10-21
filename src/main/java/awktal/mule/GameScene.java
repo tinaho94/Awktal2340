@@ -2,7 +2,7 @@ package awktal.mule;
 
 /**
  * Represents the possible scenes that the game can be in.
- * Allows for getFXML() to return the FXML file that matched the scene.
+ * Allows for getFxml() to return the FXML file that matched the scene.
 */
 public enum GameScene {
     GAME_CONFIG,
@@ -33,7 +33,7 @@ public enum GameScene {
      * Gets the path to the fxml file for this scene.
      * @return the path to the FXML file.
     */
-    public String getFXML() {
+    public String getFxml() {
         return fxml;
     }
 }

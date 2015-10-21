@@ -1,19 +1,22 @@
 package awktal.mule;
 
-import javafx.fxml.*;
+
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.ImageCursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.Node;
-import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
+
+import java.net.URL;
 import java.util.ArrayList;
-import javafx.scene.ImageCursor;
+import java.util.ResourceBundle;
 
 
 public class WorldViewController extends PlayerTurnSceneController implements Initializable {
@@ -24,7 +27,7 @@ public class WorldViewController extends PlayerTurnSceneController implements In
     private Map currMap;
 
     /**
-    * These variables refer to the tiles that were clicked
+    * These variables refer to the tiles that were clicked.
     */
     private int rowClicked;
     private int colClicked;
@@ -35,12 +38,9 @@ public class WorldViewController extends PlayerTurnSceneController implements In
     private boolean hasMule;
     private ArrayList<Tile> tiles;
 
-
-
-    public WorldViewController() {
-
-    }
-
+    /**
+     * Runs after the constructor in order to set everything up for the scene.
+    **/
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         loadPlayerData();
@@ -49,7 +49,8 @@ public class WorldViewController extends PlayerTurnSceneController implements In
         if (gameState.getCurrentPlayer().getMule() == null) {
             System.out.println("No mule");
         } else {
-            System.out.println("Player has mule " + gameState.getCurrentPlayer().getMule().getType());
+            System.out.println("Player has mule "
+                + gameState.getCurrentPlayer().getMule().getType());
         }
     }
 
@@ -63,34 +64,36 @@ public class WorldViewController extends PlayerTurnSceneController implements In
             String path = TileType.valueOf(type).getPath();
             Button button = new Button("");
             String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
-            button.setStyle("-fx-background-image: url('" + imagePath + "'); " +
-            "-fx-background-position: center center; " +
-            "-fx-background-size: stretch");
+            button.setStyle("-fx-background-image: url('" + imagePath + "'); "
+                + "-fx-background-position: center center; "
+                + "-fx-background-size: stretch");
             if (t.isOwned()) {
-                button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor()) + ";" +
-                    "-fx-border-width: 5px;" +
-                    "-fx-background-image: url('" + imagePath + "'); " +
-                    "-fx-background-position: center center; " +
-                    "-fx-background-size: stretch;");
+                button.setStyle("-fx-border-color: "
+                    + colorToHexString(t.getOwner().getColor()) + ";"
+                    + "-fx-border-width: 5px;"
+                    + "-fx-background-image: url('" + imagePath + "'); "
+                    + "-fx-background-position: center center; "
+                    + "-fx-background-size: stretch;");
             }
             button.setMaxWidth(Double.MAX_VALUE);
             button.setMaxHeight(Double.MAX_VALUE);
             button.setId(type);
             gridpane.add(button, t.getX(), t.getY(), 1, 1);
-            if(t.hasMule()) {
-                    installMule(t, t.getMule());
+            if (t.hasMule()) {
+                installMule(t, t.getMule());
             }
         }
     }
 
     private String colorToHexString(Color color) {
-        return String.format("#%02X%02X%02X", (int) (color.getRed()*255), (int)(color.getGreen()*255), (int)(color.getBlue()*255));
+        return String.format("#%02X%02X%02X", (int) (color.getRed() * 255),
+            (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
     }
 
     /**
-     * Checks for Tile Clicks and changes border color
+     * Checks for Tile Clicks and changes border color.
      * Right now, I only changed to coral but later on
-     * change to the current player
+     * change to the current player.
     */
     private void registerOnClick() {
         currPlayer = TurnManager.getInstance().getCurrentPlayer();
@@ -98,22 +101,23 @@ public class WorldViewController extends PlayerTurnSceneController implements In
         for (Node node: gridpane.getChildren()) {
             if (node instanceof Button) {
                 Button newNode = (Button)node;
-                newNode.setOnAction (e -> {
-                    rowClicked = gridpane.getRowIndex(newNode);
-                    colClicked = gridpane.getColumnIndex(newNode);
-                    onTileClicked(rowClicked, colClicked, newNode);
-                    if(currPlayer.hasMule()) {
-                        Tile tile = currMap.getTile(colClicked, rowClicked);
-                        if(tiles.contains(tile) && !tile.hasMule()) {
-                            installMule(tile);
-                        } else if(tile.hasMule()) {
-                            System.out.println("Tile already has mule!");
-                            killMule();
-                        } else {
-                            killMule();
+                newNode.setOnAction(e -> {
+                        rowClicked = gridpane.getRowIndex(newNode);
+                        colClicked = gridpane.getColumnIndex(newNode);
+                        onTileClicked(rowClicked, colClicked, newNode);
+                        if (currPlayer.hasMule()) {
+                            Tile tile = currMap.getTile(colClicked, rowClicked);
+                            if (tiles.contains(tile) && !tile.hasMule()) {
+                                installMule(tile);
+                            } else if (tile.hasMule()) {
+                                System.out.println("Tile already has mule!");
+                                killMule();
+                            } else {
+                                killMule();
+                            }
                         }
                     }
-                });
+                );
             }
         }
     }
@@ -125,9 +129,9 @@ public class WorldViewController extends PlayerTurnSceneController implements In
 
     //initial install of mule
     private void installMule(Tile tile) {
-        Mule m = currPlayer.takeMule();
-        tile.setMule(m);
-        String type = m.getType().toString();
+        Mule mule = currPlayer.takeMule();
+        tile.setMule(mule);
+        String type = mule.getType().toString();
         String path = MuleType.valueOf(type).getPath();
         String imagePath = WorldViewController.class.getResource(path).toExternalForm();
         Image image = new Image(imagePath);
@@ -155,7 +159,4 @@ public class WorldViewController extends PlayerTurnSceneController implements In
             SceneManager.loadScene(GameScene.TOWN);
         }
     }
-
-
-
 }

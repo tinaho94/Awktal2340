@@ -11,7 +11,7 @@ import java.util.Set;
 public class Inventory {
     private HashMap<Resource, Integer> resources;
 
-    public Inventory(){
+    public Inventory() {
         this(0,0,0,0);//
     }
     /**
@@ -29,20 +29,25 @@ public class Inventory {
         resources.put(Resource.ORE, ore);
     }
 
-    public int getResource(Resource r) {
-        return this.resources.get(r);
+    public int getResource(Resource resource) {
+        return this.resources.get(resource);
     }
 
-    public void takeResource(Resource r, int quantity) {
-        this.resources.put(r, resources.get(r) - quantity);
+    public void takeResource(Resource resource, int quantity) {
+        this.resources.put(resource, resources.get(resource) - quantity);
     }
 
-    public void giveResource(Resource r, int quantity) {
-        this.resources.put(r, resources.get(r) + quantity);
+    public void giveResource(Resource resource, int quantity) {
+        this.resources.put(resource, resources.get(resource) + quantity);
     }
 
-    public void giveResources(Inventory i) {
-        for (Map.Entry<Resource, Integer> pair : i.resources.entrySet()) {
+    /**
+     * Gives the resources from one inventory to another.
+     * <strong> NOTE: this does not take the resources form the other inventory. </strong>
+     * @param inventory the inventory to add resources from.
+    */
+    public void giveResources(Inventory inventory) {
+        for (Map.Entry<Resource, Integer> pair : inventory.resources.entrySet()) {
             this.giveResource(pair.getKey(), pair.getValue());
         }
     }
@@ -51,14 +56,23 @@ public class Inventory {
         return resources.entrySet();
     }
 
-    public Inventory scaleResource(double scale, Resource resource) {
-        Inventory i = this.copy();
-        int r = i.resources.get(resource);
-        r *= scale;
-        i.resources.put(resource, r);
-        return i;
+    /**
+     * Gets a copy of the inventory with one resource scaled by the certain factor.
+     * @param scale the amount to scale the resource.
+     * @param type the resource type that you want to scale.
+    */
+    public Inventory scaleResource(double scale, Resource type) {
+        Inventory inventory = this.copy();
+        int resource = inventory.resources.get(type);
+        resource *= scale;
+        inventory.resources.put(type, resource);
+        return inventory;
     }
 
+    /**
+     * Gets a copy of this inventory.
+     * @return a deep copy of this inventory.
+    */
     public Inventory copy() {
         return new Inventory(this.getResource(Resource.MONEY),
             this.getResource(Resource.FOOD), this.getResource(Resource.ENERGY),

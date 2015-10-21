@@ -1,18 +1,21 @@
 package awktal.mule;
 
-import javafx.fxml.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.Node;
-import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
+
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 
 public class LandSelectionController extends SceneController implements Initializable {
 
@@ -38,9 +41,6 @@ public class LandSelectionController extends SceneController implements Initiali
 
     private int numPasses;
 
-    /**
-    * These variables refer to the tiles that were clicked
-    */
     private int rowClicked;
     private int colClicked;
     private TileType typeClicked;
@@ -59,9 +59,10 @@ public class LandSelectionController extends SceneController implements Initiali
         loadPlayerData();
         createImageViews();
         registerOnClick();
-        passButton.setOnAction (e -> {
-            onPassClick();
-        });
+        passButton.setOnAction(e -> {
+                onPassClick();
+            }
+        );
     }
 
     /**
@@ -75,27 +76,28 @@ public class LandSelectionController extends SceneController implements Initiali
             String path = TileType.valueOf(type).getPath();
             Button button = new Button("");
             String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
-            button.setStyle("-fx-background-image: url('" + imagePath + "'); " +
-            "-fx-background-position: center center; " +
-            "-fx-background-size: stretch");
+            button.setStyle("-fx-background-image: url('" + imagePath + "'); "
+                + "-fx-background-position: center center; "
+                + "-fx-background-size: stretch");
             if (t.isOwned()) {
-                button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor()) + ";" +
-                    "-fx-border-width: 5px;" +
-                    "-fx-background-image: url('" + imagePath + "'); " +
-                    "-fx-background-position: center center; " +
-                    "-fx-background-size: stretch;");
+                button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor())
+                    + ";"
+                    + "-fx-border-width: 5px;"
+                    + "-fx-background-image: url('" + imagePath + "'); "
+                    + "-fx-background-position: center center; "
+                    + "-fx-background-size: stretch;");
             }
             button.setMaxWidth(Double.MAX_VALUE);
             button.setMaxHeight(Double.MAX_VALUE);
             button.setId(type);
             gridpane.add(button, t.getX(), t.getY(), 1, 1);
-            if(t.hasMule()) {
+            if (t.hasMule()) {
                 installMule(t, t.getMule());
             }
         }
     }
 
-    // for redraw of mule
+    // for redraw of mule.
     private void installMule(Tile tile, Mule mule) {
         String type = mule.getType().toString();
         String path = MuleType.valueOf(type).getPath();
@@ -109,7 +111,7 @@ public class LandSelectionController extends SceneController implements Initiali
 
 
     /**
-     * Checks for Tile Clicks and changes border color
+     * Checks for Tile Clicks and changes border color.
      * Right now, I only changed to coral but later on
      * change to the current player
     */
@@ -117,19 +119,21 @@ public class LandSelectionController extends SceneController implements Initiali
     private void registerOnClick() {
         for (Node node: gridpane.getChildren()) {
             if (node instanceof Button) {
-                Button newNode = (Button)node;
-                newNode.setOnAction (e -> {
-                    rowClicked = gridpane.getRowIndex(newNode);
-                    colClicked = gridpane.getColumnIndex(newNode);
-                    onTileClicked(rowClicked, colClicked, newNode);
-                });
+                Button newNode = (Button) node;
+                newNode.setOnAction(e -> {
+                        rowClicked = gridpane.getRowIndex(newNode);
+                        colClicked = gridpane.getColumnIndex(newNode);
+                        onTileClicked(rowClicked, colClicked, newNode);
+                    }
+                );
             }
         }
 
     }
 
     private String colorToHexString(Color color) {
-        return String.format("#%02X%02X%02X", (int) (color.getRed()*255), (int)(color.getGreen()*255), (int)(color.getBlue()*255));
+        return String.format("#%02X%02X%02X", (int) (color.getRed() * 255),
+            (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
     }
 
 
@@ -138,7 +142,7 @@ public class LandSelectionController extends SceneController implements Initiali
         Player currentPlayer = gameState.getCurrentPlayer();
 
         Tile tile = gameState.getMap().getTile(col, row);
-        if(tile.isOwned()) {
+        if (tile.isOwned()) {
             System.out.println("already owned");
             return;
         }
@@ -146,8 +150,8 @@ public class LandSelectionController extends SceneController implements Initiali
             System.out.println("cannot buy the town");
             return;
         }
-        if(gameState.getRound() > 2) {
-            if(currentPlayer.getResource(Resource.MONEY) < 300){
+        if (gameState.getRound() > 2) {
+            if (currentPlayer.getResource(Resource.MONEY) < 300) {
                 System.out.println("You aint got no $$$");
                 return;
             } else {
@@ -160,15 +164,15 @@ public class LandSelectionController extends SceneController implements Initiali
         String path = TileType.valueOf(typeClicked.toString()).getPath();
         String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
 
-        tileView.setStyle("-fx-border-color: " + colorToHexString(currentPlayer.getColor()) + ";" +
-        "-fx-border-width: 5px;" +
-        "-fx-background-image: url('" + imagePath + "'); " +
-        "-fx-background-position: center center; " +
-        "-fx-background-size: stretch;");
+        tileView.setStyle("-fx-border-color: " + colorToHexString(currentPlayer.getColor()) + ";"
+            + "-fx-border-width: 5px;"
+            + "-fx-background-image: url('" + imagePath + "'); "
+            + "-fx-background-position: center center; "
+            + "-fx-background-size: stretch;");
 
         gameState.endPlayerTurn();
 
-        if(gameState.isRoundOver()) {
+        if (gameState.isRoundOver()) {
             gameState.resetRound();
             SceneManager.loadScene(GameScene.START_TURN);
             // TurnManager.getInstance().beginPlayerTurns();
@@ -185,6 +189,9 @@ public class LandSelectionController extends SceneController implements Initiali
         scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
     }
 
+    /**
+     * Handles if a player passes on land select.
+    */
     @FXML
     public void onPassClick() {
         gameState.endPlayerTurn();
@@ -192,7 +199,7 @@ public class LandSelectionController extends SceneController implements Initiali
         if (numPasses == players.size()) {
             gameState.setPropertySelectionEnabled(false);
         }
-        if(gameState.isRoundOver()) {
+        if (gameState.isRoundOver()) {
             gameState.resetRound();
             SceneManager.loadScene(GameScene.START_ROUND);
         }

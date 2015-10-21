@@ -1,8 +1,9 @@
 package awktal.mule;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import com.google.gson.Gson;
 
 /**
  * Represents the state of the game.
@@ -52,7 +53,8 @@ public class GameState {
 
     /**
      * Gets the players that are in the game.
-     * If getPlayers.size() is not equal to getNumPlayers() then the GameState has not been fully initialized.
+     * If getPlayers.size() is not equal to getNumPlayers() then the GameState has not
+     * been fully initialized.
      * @return a list of players that are currently playing in no guaranteed order.
     */
     public ArrayList<Player> getPlayers() {
@@ -69,7 +71,8 @@ public class GameState {
 
     /**
      * Gets the number of players.
-     * If this is not equal to getPlayers().size() then the GameState has not been initialized fully.
+     * If this is not equal to getPlayers().size() then the GameState has not been initialized
+     * fully.
      * @return the number of players.
     */
     public int getNumPlayers() {
@@ -115,15 +118,13 @@ public class GameState {
         try {
             validateNewPlayer(player);
             players.add(player);
-        } catch(GameStateConfigException e) {
+        } catch (GameStateConfigException e) {
             throw e;
         }
     }
 
     /**
      * Checks if adding a player is valid.
-     * @param player the player to validate.
-     * @throws GameStateConfigException if the player does not match the criteria listed.
      * The players must:
      * <ul>
      *  <li> Not have the same name as any other players </li>
@@ -131,6 +132,8 @@ public class GameState {
      *  <li> Not have the same color as another player </li>
      *  <li> The name must not be empty or be longer than 15 characters. </li>
      * </ul>
+     * @param player the player to validate.
+     * @throws GameStateConfigException if the player does not match the criteria listed.
     */
     private void validateNewPlayer(Player player) throws GameStateConfigException {
         // TODO(alex): Implement this.
@@ -170,9 +173,9 @@ public class GameState {
      * Progresses the current player to the next player.
     */
     public void endPlayerTurn() {
-        Player p = getCurrentPlayer();
-        if (p.hasMule()) {
-            p.takeMule();
+        Player player = getCurrentPlayer();
+        if (player.hasMule()) {
+            player.takeMule();
             System.out.println("Mule killed at end of turn");
         }
         currentPlayerIndex++;
@@ -203,11 +206,11 @@ public class GameState {
         }
     }
 
-    public int getRound(){
+    public int getRound() {
         return round;
     }
 
-     public void recalculatePlayerOrder() {
+    public void recalculatePlayerOrder() {
         Collections.sort(players);
     }
 

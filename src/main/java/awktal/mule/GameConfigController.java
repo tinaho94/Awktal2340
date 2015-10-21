@@ -1,13 +1,11 @@
 package awktal.mule;
 
-import awktal.mule.GameScene;
-import awktal.mule.GameState;
 import javafx.fxml.FXML;
-import javafx.scene.control.Slider;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.Toggle;
 import javafx.scene.Scene;
+import javafx.scene.control.Slider;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * GameConfigController controls the game configuration screen.
