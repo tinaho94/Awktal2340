@@ -13,8 +13,8 @@ public class Map implements Iterable<Tile> {
         this.tiles = tiles;
     }
 
-    public Tile getTile(int xLoc, int yLoc) {
-        return this.tiles[xLoc][yLoc];
+    public Tile getTile(int xpos, int ypos) {
+        return this.tiles[xpos][ypos];
     }
 
     public Iterator<Tile> iterator() {

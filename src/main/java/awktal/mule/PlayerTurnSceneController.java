@@ -1,19 +1,19 @@
 package awktal.mule;
 
-import javafx.fxml.*;
+import javafx.fxml.FXML;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.Node;
-import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
-import java.util.ArrayList;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 
 public abstract class PlayerTurnSceneController extends SceneController {

@@ -1,6 +1,7 @@
 package awktal.mule;
 
 import javafx.fxml.FXML;
+
 import java.util.Random;
 
 /**
@@ -24,12 +25,18 @@ public class PubController extends PlayerTurnSceneController {
         loadPlayerData();
     }
 
+    /**
+     * Gambles for the player.
+     * This will expend the remaining time that the player
+     * has in order to obtain money. The more time left the more money they get.
+    */
     @FXML
     public void gamble() {
         int moneyEarned = calculateGamblingEarnings();
         Player currentPlayer = TurnManager.getInstance().getCurrentPlayer();
         currentPlayer.giveResource(Resource.MONEY, moneyEarned);
-        System.out.println(currentPlayer.getName() + " has earned " + moneyEarned + " spacebucks gambling!");
+        System.out.println(currentPlayer.getName() + " has earned " + moneyEarned
+            + " spacebucks gambling!");
         TurnManager.getInstance().endPlayerTurn();
     }
 

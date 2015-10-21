@@ -1,14 +1,14 @@
 package awktal.mule;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.image.Image;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.control.Label;
 
 public class StoreController extends PlayerTurnSceneController {
 
@@ -21,25 +21,25 @@ public class StoreController extends PlayerTurnSceneController {
 
 
     @FXML
-    private Label food_price_label;
+    private Label foodPriceLabel;
 
     @FXML
-    private Label food_stock_label;
+    private Label foodStockLabel;
 
     @FXML
-    private Label energy_price_label;
+    private Label energyPriceLabel;
 
     @FXML
-    private Label energy_stock_label;
+    private Label energyStockLabel;
 
     @FXML
-    private Label ore_price_label;
+    private Label orePriceLabel;
 
     @FXML
-    private Label ore_stock_label;
+    private Label oreStockLabel;
 
     @FXML
-    private Label mule_stock_label;
+    private Label muleStockLabel;
 
     @FXML
     private AnchorPane anchorPane;
@@ -57,17 +57,17 @@ public class StoreController extends PlayerTurnSceneController {
     @FXML
     private void loadMulePics() {
         ToggleGroup muleTypes = new ToggleGroup();
-        for(MuleType m: MuleType.values()) {
-            if(m != MuleType.NONE) {
+        for (MuleType m: MuleType.values()) {
+            if (m != MuleType.NONE) {
                 String path = m.getPath();
                 String imagePath = StoreController.class.getResource(path).toExternalForm();
                 ToggleButton mule = new ToggleButton("PICK ME!");
                 mule.setToggleGroup(muleTypes);
                 mule.setPrefWidth(150);
                 mule.setPrefHeight(150);
-                mule.setStyle("-fx-background-image: url('" + imagePath + "'); " +
-                    "-fx-background-position: center center; " +
-                    "-fx-background-size: cover");
+                mule.setStyle("-fx-background-image: url('" + imagePath + "'); "
+                    + "-fx-background-position: center center; "
+                    + "-fx-background-size: cover");
                 mule.setMaxWidth(Double.MAX_VALUE);
                 mule.setMaxHeight(Double.MAX_VALUE);
                 mule.setId(m.name());
@@ -82,9 +82,10 @@ public class StoreController extends PlayerTurnSceneController {
         for (Node node: hbox.getChildren()) {
             if (node instanceof ToggleButton) {
                 ToggleButton newNode = (ToggleButton)node;
-                newNode.setOnAction (e -> {
-                    onMuleClicked(newNode.getId());
-                });
+                newNode.setOnAction(e -> {
+                        onMuleClicked(newNode.getId());
+                    }
+                );
             }
         }
     }
@@ -92,7 +93,8 @@ public class StoreController extends PlayerTurnSceneController {
     @FXML
     private void onMuleClicked(String muleType) {
         currMule = MuleType.valueOf(muleType);
-        muleTypeText = new TextArea("SELECTED " + muleType + " MULE!\nCOST: " + store.getMuleCost(currMule) + " space-bucks");
+        muleTypeText = new TextArea("SELECTED " + muleType + " MULE!\nCOST: "
+            + store.getMuleCost(currMule) + " space-bucks");
         muleTypeText.setEditable(false);
         muleTypeText.setPrefHeight(50);
         AnchorPane.setBottomAnchor(muleTypeText, 10.0);
@@ -103,29 +105,29 @@ public class StoreController extends PlayerTurnSceneController {
     @FXML
     public void attemptExit() {
         System.out.println("Entering town");
-        SceneManager.loadScene(GameScene.TOWN); // replace PLACEHOLDER with whatever name you added to the GameScene for store (probably "STORE") and then uncomment this line.
+        SceneManager.loadScene(GameScene.TOWN);
     }
 
 
-    private void buyResource(Resource r) {
+    private void buyResource(Resource resource) {
         try {
-            store.buyResource(r, 1, currentPlayer);
-        } catch(RuntimeException e) {
+            store.buyResource(resource, 1, currentPlayer);
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
         loadStoreData();
     }
 
-    private void sellResource(Resource r) {
+    private void sellResource(Resource resource) {
         try {
-            store.sellResource(r, 1, currentPlayer);
-        } catch(RuntimeException e) {
+            store.sellResource(resource, 1, currentPlayer);
+        } catch (RuntimeException e) {
             System.out.println(e.getMessage());
         }
         loadStoreData();
     }
 
-    public void buyFood() {//check if they have enough $$ to buy food
+    public void buyFood() {
         buyResource(Resource.FOOD);
     }
 
@@ -134,7 +136,7 @@ public class StoreController extends PlayerTurnSceneController {
         sellResource(Resource.FOOD);
     }
 
-    public void buyEnergy() {//check if they have enough $$ to buy food
+    public void buyEnergy() {
         buyResource(Resource.ENERGY);
     }
 
@@ -143,7 +145,7 @@ public class StoreController extends PlayerTurnSceneController {
         sellResource(Resource.ENERGY);
     }
 
-    public void buyOre() {//check if they have enough $$ to buy food
+    public void buyOre() {
         buyResource(Resource.ORE);
     }
 
@@ -154,15 +156,18 @@ public class StoreController extends PlayerTurnSceneController {
 
     private void loadStoreData() {
         loadPlayerData();
-        mule_stock_label.setText(String.valueOf(store.getNumMules()));
-        food_price_label.setText(String.valueOf(store.getResourceCost(Resource.FOOD)));
-        food_stock_label.setText(String.valueOf(store.getStock(Resource.FOOD)));
-        energy_price_label.setText(String.valueOf(store.getResourceCost(Resource.ENERGY)));
-        energy_stock_label.setText(String.valueOf(store.getStock(Resource.ENERGY)));
-        ore_price_label.setText(String.valueOf(store.getResourceCost(Resource.ORE)));
-        ore_stock_label.setText(String.valueOf(store.getStock(Resource.ORE)));
+        muleStockLabel.setText(String.valueOf(store.getNumMules()));
+        foodPriceLabel.setText(String.valueOf(store.getResourceCost(Resource.FOOD)));
+        foodStockLabel.setText(String.valueOf(store.getStock(Resource.FOOD)));
+        energyPriceLabel.setText(String.valueOf(store.getResourceCost(Resource.ENERGY)));
+        energyStockLabel.setText(String.valueOf(store.getStock(Resource.ENERGY)));
+        orePriceLabel.setText(String.valueOf(store.getResourceCost(Resource.ORE)));
+        oreStockLabel.setText(String.valueOf(store.getStock(Resource.ORE)));
     }
 
+    /**
+     * Attempts to buy a mule for the player.
+    */
     public void buyMule() {
         try {
             store.buyMule(currentPlayer, currMule);

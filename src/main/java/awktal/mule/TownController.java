@@ -30,12 +30,13 @@ public class TownController extends PlayerTurnSceneController {
     private static final int PLAYER_ROW  = 4;
     private static final int LEFT_BOUNDRY = 1;
     private static final int RIGHT_BOUNDRY = 15;
-    private static final BuildingType[] BUILDING_RANGES = { BuildingType.NONE, BuildingType.PUB, BuildingType.PUB,
-                                                            BuildingType.NONE, BuildingType.LAND, BuildingType.LAND,
-                                                            BuildingType.NONE, BuildingType.AUCTION, BuildingType.AUCTION, BuildingType.NONE,
-                                                            BuildingType.NONE, BuildingType.STORE, BuildingType.STORE,
-                                                            BuildingType.NONE, BuildingType.ASSAY, BuildingType.ASSAY,
-                                                            BuildingType.NONE};
+    private static final BuildingType[] BUILDING_RANGES = {
+        BuildingType.NONE, BuildingType.PUB, BuildingType.PUB,
+        BuildingType.NONE, BuildingType.LAND, BuildingType.LAND,
+        BuildingType.NONE, BuildingType.AUCTION, BuildingType.AUCTION, BuildingType.NONE,
+        BuildingType.NONE, BuildingType.STORE, BuildingType.STORE,
+        BuildingType.NONE, BuildingType.ASSAY, BuildingType.ASSAY,
+        BuildingType.NONE};
 
     @FXML
     private void initialize() {

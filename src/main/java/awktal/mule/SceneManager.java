@@ -34,9 +34,11 @@ public class SceneManager {
             controller = (SceneController) loader.getController();
             Scene scene = new Scene(screen, stage.getWidth(), stage.getHeight());
             stage.setScene(scene);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Cannot load scene " + gameScene.toString() + ". Check if file " + gameScene.getFxml() + "exists. \n" + " error: " + e.toString());
+            throw new RuntimeException("Cannot load scene " + gameScene.toString()
+                + ". Check if file " + gameScene.getFxml() + "exists. \n" + " error: "
+                + e.toString());
         }
         return controller;
     }

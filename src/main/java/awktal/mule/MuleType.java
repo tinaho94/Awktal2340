@@ -10,13 +10,13 @@ public enum MuleType {
     private Resource productionType;
 
     private MuleType(String path, Resource productionType) {
-		this.path = path;
+        this.path = path;
         this.productionType = productionType;
-	}
+    }
 
-	public String getPath() {
-		return path;
-	}
+    public String getPath() {
+        return path;
+    }
 
     public Resource getProductionType() {
         return productionType;

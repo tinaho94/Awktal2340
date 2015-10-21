@@ -1,11 +1,7 @@
 package awktal.mule;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Map.Entry;
-import java.util.ResourceBundle;
-
-import javafx.fxml.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.ImageCursor;
 import javafx.scene.Node;
@@ -18,6 +14,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Map.Entry;
+import java.util.ResourceBundle;
+
+
 public class StartRoundController extends SceneController implements Initializable {
 
     @FXML
@@ -25,6 +27,9 @@ public class StartRoundController extends SceneController implements Initializab
 
     private Map currMap;
 
+    /**
+     * Initialize the scene.
+    */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         createImageViews();
@@ -32,32 +37,31 @@ public class StartRoundController extends SceneController implements Initializab
         for (Tile t : currMap) {
             Player owner = t.getOwner();
             if (owner != null && t.getMule() != null && owner.getResource(Resource.ENERGY) > 0) {
-                Inventory i = t.calculateProduction();
+                Inventory inventory = t.calculateProduction();
                 owner.takeResource(Resource.ENERGY, 1);
                 System.out.println("taking energy from player " + owner.getName());
-                String text = createIncomeLabel(i);
+                String text = createIncomeLabel(inventory);
                 Label label = new Label(text);
-                owner.giveResources(i);
-                //label.setStyle("-fx-text-fill: " + colorToHexString(t.getOwner().getColor()) + ";");
+                owner.giveResources(inventory);
                 gridpane.add(label, t.getX(), t.getY(), 1, 1);
             }
         }
         gameState.recalculatePlayerOrder();
     }
 
-    private String createIncomeLabel(Inventory i) {
+    private String createIncomeLabel(Inventory inventory) {
         StringBuffer message = new StringBuffer();
-        for (Entry<Resource, Integer> e : i.getResourcePairs()) {
-            int q = e.getValue();
-            Resource r = e.getKey();
-            if (q > 0) {
+        for (Entry<Resource, Integer> entry : inventory.getResourcePairs()) {
+            int quantity = entry.getValue();
+            Resource resource = entry.getKey();
+            if (quantity > 0) {
                 message.append("+ ");
-            } else if (q < 0) {
+            } else if (quantity < 0) {
                 message.append("- ");
             } else {
                 continue;
             }
-            message.append(q + " " + r.name());
+            message.append(quantity + " " + resource.name());
             message.append("\n");
         }
         message.append("- 1 Energy");
@@ -75,22 +79,23 @@ public class StartRoundController extends SceneController implements Initializab
             String path = TileType.valueOf(type).getPath();
             Button button = new Button("");
             String imagePath = StartRoundController.class.getResource(path).toExternalForm();
-            button.setStyle("-fx-background-image: url('" + imagePath + "'); " +
-            "-fx-background-position: center center; " +
-            "-fx-background-size: stretch");
+            button.setStyle("-fx-background-image: url('" + imagePath + "'); "
+                + "-fx-background-position: center center; "
+                + "-fx-background-size: stretch");
             if (t.isOwned()) {
-                button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor()) + ";" +
-                    "-fx-border-width: 5px;" +
-                    "-fx-background-image: url('" + imagePath + "'); " +
-                    "-fx-background-position: center center; " +
-                    "-fx-background-size: stretch;");
+                button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor())
+                    + ";"
+                    + "-fx-border-width: 5px;"
+                    + "-fx-background-image: url('" + imagePath + "'); "
+                    + "-fx-background-position: center center; "
+                    + "-fx-background-size: stretch;");
             }
             button.setMaxWidth(Double.MAX_VALUE);
             button.setMaxHeight(Double.MAX_VALUE);
             button.setId(type);
             gridpane.add(button, t.getX(), t.getY(), 1, 1);
-            if(t.hasMule()) {
-                    installMule(t, t.getMule());
+            if (t.hasMule()) {
+                installMule(t, t.getMule());
             }
         }
     }
@@ -108,9 +113,14 @@ public class StartRoundController extends SceneController implements Initializab
     }
 
     private String colorToHexString(Color color) {
-        return String.format("#%02X%02X%02X", (int) (color.getRed()*255), (int)(color.getGreen()*255), (int)(color.getBlue()*255));
+        return String.format("#%02X%02X%02X", (int) (color.getRed() * 255),
+            (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
     }
 
+    /**
+     * Handles what happens when the round is acknowledged by the players.
+     * (When they press the continue button)
+    */
     @FXML
     public void continueOn() {
         if (!gameState.getPropertySelectionEnabled()) {

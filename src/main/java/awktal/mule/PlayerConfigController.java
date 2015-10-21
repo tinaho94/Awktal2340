@@ -48,8 +48,8 @@ public class PlayerConfigController extends SceneController {
                 SceneManager.loadScene(GameScene.PLAYER_CONFIG);
                 return;
             }
-        } catch(GameStateConfigException e) {
-            // TODO(hvpeteet): replace this with creating an error message and setting a class = error.
+        } catch (GameStateConfigException e) {
+            // TODO(hvpeteet): replace this with creating a pretty error.
             System.out.println(e.toString());
             nameInput.setStyle("-fx-border-color: red;");
         }
@@ -58,12 +58,12 @@ public class PlayerConfigController extends SceneController {
     /**
      * Validated the current configuration options.
      * @throws GameStateConfigException if the configuration is invalid.
-     * TODO(hvpeteet): make this return useful error messages.
     */
     private void validatePlayerConfig() throws GameStateConfigException {
         String raceString = ((ToggleButton)race.getSelectedToggle()).getId();
         Race raceVal = Race.valueOf(raceString);
-        gameState.addPlayer(new Player(nameInput.getCharacters().toString(), colorInput.getValue(), raceVal));
+        gameState.addPlayer(new Player(nameInput.getCharacters().toString(),
+            colorInput.getValue(), raceVal));
         System.out.println(gameState.getPlayers());
     }
 }

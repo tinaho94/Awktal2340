@@ -19,7 +19,7 @@
                         <Button id="done" layoutX="274.0" layoutY="314.0" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
                         <Button layoutX="222.0" layoutY="314.0" mnemonicParsing="false" onAction="#buyMule" text="Buy" />
                         <Label layoutX="462.0" layoutY="46.0" text="Stock: " />
-                        <Label fx:id="mule_stock_label" layoutX="504.0" layoutY="46.0" text="stock_here" />
+                        <Label fx:id="muleStockLabel" layoutX="504.0" layoutY="46.0" text="stock_here" />
                      </children>
                   </AnchorPane>
                </content>
@@ -38,13 +38,13 @@
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Label text="Price: " />
-                                          <Label fx:id="food_price_label" text="price_here" />
+                                          <Label fx:id="foodPriceLabel" text="price_here" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Label text="Stock: " />
-                                          <Label fx:id="food_stock_label" text="stock_here" />
+                                          <Label fx:id="foodStockLabel" text="stock_here" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -69,13 +69,13 @@
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Label text="Price: " />
-                                          <Label fx:id="energy_price_label" text="price_here" />
+                                          <Label fx:id="energyPriceLabel" text="price_here" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Label text="Stock: " />
-                                          <Label fx:id="energy_stock_label" text="stock_here" />
+                                          <Label fx:id="energyStockLabel" text="stock_here" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -100,13 +100,13 @@
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Label text="Price: " />
-                                          <Label fx:id="ore_price_label" text="price_here" />
+                                          <Label fx:id="orePriceLabel" text="price_here" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
                                           <Label text="Stock: " />
-                                          <Label fx:id="ore_stock_label" text="stock_here" />
+                                          <Label fx:id="oreStockLabel" text="stock_here" />
                                        </children>
                                     </HBox>
                                  </children>
