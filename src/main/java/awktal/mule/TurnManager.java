@@ -12,6 +12,7 @@ import java.util.TimerTask;
 
 
 public class TurnManager {
+
     private static TurnManager instance;
 
     private static GameState gameState;
@@ -19,7 +20,9 @@ public class TurnManager {
     private static final int[] roundFoodRequirements = {3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5};
 
     private Timeline timeline;
+
     private PlayerTurnSceneController currentScene;
+
     private int currentTurnTime;
 
     /**

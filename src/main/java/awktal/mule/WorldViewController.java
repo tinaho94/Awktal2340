@@ -31,7 +31,6 @@ public class WorldViewController extends PlayerTurnSceneController implements In
     */
     private int rowClicked;
     private int colClicked;
-    private TileType typeClicked;
     private int currentPlayerIndex;
     private ArrayList<Player> players;
     private Player currPlayer;
@@ -44,7 +43,7 @@ public class WorldViewController extends PlayerTurnSceneController implements In
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         loadPlayerData();
-        createImageViews();
+        FxMapRenderer.renderMap(gridpane, currMap);
         registerOnClick();
         if (gameState.getCurrentPlayer().getMule() == null) {
             System.out.println("No mule");
@@ -52,42 +51,6 @@ public class WorldViewController extends PlayerTurnSceneController implements In
             System.out.println("Player has mule "
                 + gameState.getCurrentPlayer().getMule().getType());
         }
-    }
-
-    /**
-     * Creates an ImageView from Tile's path to picture and places the
-     * ImageView in Button then add to parent GridPane.
-    */
-    private void createImageViews() {
-        for (Tile t: currMap) {
-            String type = t.getType().toString();
-            String path = TileType.valueOf(type).getPath();
-            Button button = new Button("");
-            String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
-            button.setStyle("-fx-background-image: url('" + imagePath + "'); "
-                + "-fx-background-position: center center; "
-                + "-fx-background-size: stretch");
-            if (t.isOwned()) {
-                button.setStyle("-fx-border-color: "
-                    + colorToHexString(t.getOwner().getColor()) + ";"
-                    + "-fx-border-width: 5px;"
-                    + "-fx-background-image: url('" + imagePath + "'); "
-                    + "-fx-background-position: center center; "
-                    + "-fx-background-size: stretch;");
-            }
-            button.setMaxWidth(Double.MAX_VALUE);
-            button.setMaxHeight(Double.MAX_VALUE);
-            button.setId(type);
-            gridpane.add(button, t.getX(), t.getY(), 1, 1);
-            if (t.hasMule()) {
-                installMule(t, t.getMule());
-            }
-        }
-    }
-
-    private String colorToHexString(Color color) {
-        return String.format("#%02X%02X%02X", (int) (color.getRed() * 255),
-            (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
     }
 
     /**
@@ -139,18 +102,6 @@ public class WorldViewController extends PlayerTurnSceneController implements In
         muleImage.setFitWidth(50);
         muleImage.setFitHeight(50);
         gridpane.add(muleImage,colClicked, rowClicked);
-    }
-
-    // for redraw of mule
-    private void installMule(Tile tile, Mule mule) {
-        String type = mule.getType().toString();
-        String path = MuleType.valueOf(type).getPath();
-        String imagePath = WorldViewController.class.getResource(path).toExternalForm();
-        Image image = new Image(imagePath);
-        ImageView muleImage = new ImageView(image);
-        muleImage.setFitWidth(50);
-        muleImage.setFitHeight(50);
-        gridpane.add(muleImage,tile.getX(), tile.getY());
     }
 
     private void onTileClicked(int row, int col, Node tileView) {

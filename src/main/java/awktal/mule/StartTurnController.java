@@ -33,39 +33,12 @@ public class StartTurnController extends SceneController implements Initializabl
     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
-        createImageViews();
+        FxMapRenderer.renderMap(gridpane, currMap);
         // gameState.saveGame();
         if (gameState.getRound() > 1) {
             processRandomEvent();
         }
 
-    }
-
-    private void createImageViews() {
-        for (Tile t: currMap) {
-            String type = t.getType().toString();
-            String path = TileType.valueOf(type).getPath();
-            Button button = new Button("");
-            String imagePath = StartTurnController.class.getResource(path).toExternalForm();
-            button.setStyle("-fx-background-image: url('" + imagePath + "'); "
-                + "-fx-background-position: center center; "
-                + "-fx-background-size: stretch");
-            if (t.isOwned()) {
-                button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor())
-                    + ";"
-                    + "-fx-border-width: 5px;"
-                    + "-fx-background-image: url('" + imagePath + "'); "
-                    + "-fx-background-position: center center; "
-                    + "-fx-background-size: stretch;");
-            }
-            button.setMaxWidth(Double.MAX_VALUE);
-            button.setMaxHeight(Double.MAX_VALUE);
-            button.setId(type);
-            gridpane.add(button, t.getX(), t.getY(), 1, 1);
-            if (t.hasMule()) {
-                installMule(t, t.getMule());
-            }
-        }
     }
 
     private void processRandomEvent() {
@@ -79,15 +52,14 @@ public class StartTurnController extends SceneController implements Initializabl
         if (randomNum <= RANDOM_EVENT_PROB) {
             randomNum = generator.nextInt(7);
             //randomNum = 5; // get event by default
-            if (randomNum > 3) {
-                if (gameState.getCurrentPlayerIndex() == 0) {
-                    processRandomEvent();
-                }
+            if (randomNum > 3 && gameState.getCurrentPlayerIndex() == 0) {
+                processRandomEvent();
             }
             RandomEvent randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {
                 Inventory newResources = new Inventory();
-                newResources.giveResource(Resource.FOOD, (int) (currentPlayer.getResource(Resource.FOOD) * -0.5));
+                newResources.giveResource(Resource.FOOD,
+                    (int) (currentPlayer.getResource(Resource.FOOD) * -0.5));
 
                 currentPlayer.giveResources(newResources);
                 displayRandomEvent(randomEvent, 0);
@@ -148,21 +120,4 @@ public class StartTurnController extends SceneController implements Initializabl
         SceneManager.loadScene(GameScene.WORLD_VIEW);
         TurnManager.getInstance().startCurrentPlayerClock();
     }
-
-    private String colorToHexString(Color color) {
-        return String.format("#%02X%02X%02X", (int) (color.getRed() * 255),
-            (int)(color.getGreen() * 255), (int)(color.getBlue() * 255));
-    }
-
-    private void installMule(Tile tile, Mule mule) {
-        String type = mule.getType().toString();
-        String path = MuleType.valueOf(type).getPath();
-        String imagePath = WorldViewController.class.getResource(path).toExternalForm();
-        Image image = new Image(imagePath);
-        ImageView muleImage = new ImageView(image);
-        muleImage.setFitWidth(50);
-        muleImage.setFitHeight(50);
-        gridpane.add(muleImage,tile.getX(), tile.getY());
-    }
-
 }
