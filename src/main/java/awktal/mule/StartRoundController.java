@@ -31,6 +31,7 @@ public class StartRoundController extends SceneController implements Initializab
      * Initialize the scene.
     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        gameState.saveGame();
         currMap = gameState.getMap();
         FxMapRenderer.renderMap(gridpane, currMap);
         gameState.newRound();

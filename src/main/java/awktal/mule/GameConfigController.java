@@ -7,6 +7,8 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
+import java.io.IOException;
+
 /**
  * GameConfigController controls the game configuration screen.
 */
@@ -41,5 +43,17 @@ public class GameConfigController extends SceneController {
         Map map = MapGenerator.generateMap(MapType.valueOf(mapTypeStr));
         gameState.setMap(map);
         SceneManager.loadScene(GameScene.PLAYER_CONFIG);
+    }
+
+    @FXML
+    public void loadFromFile() {
+        try {
+            SceneController.setGameState(GameState.fromSavedGame("save.json"));
+            System.out.println("Loaded game");
+            SceneManager.loadScene(GameScene.START_ROUND);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            // Continue on with player input;
+        }
     }
 }

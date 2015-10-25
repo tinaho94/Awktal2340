@@ -34,7 +34,6 @@ public class StartTurnController extends SceneController implements Initializabl
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         FxMapRenderer.renderMap(gridpane, currMap);
-        // gameState.saveGame();
         if (gameState.getRound() > 1) {
             processRandomEvent();
         }

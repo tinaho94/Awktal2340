@@ -36,6 +36,7 @@ public class TurnManager {
     }
 
     public static void setGameState(GameState gameState) {
+        TurnManager.getInstance();
         TurnManager.gameState = gameState;
     }
 

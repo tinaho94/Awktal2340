@@ -17,6 +17,7 @@ jar {
                'Main-CLass': mainClassName,
     )
   }
+  from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
 
 repositories {

@@ -41,10 +41,13 @@ public class WorldViewController extends PlayerTurnSceneController implements In
      * Runs after the constructor in order to set everything up for the scene.
     **/
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("init start");
         currMap = gameState.getMap();
         loadPlayerData();
         FxMapRenderer.renderMap(gridpane, currMap);
+        System.out.println("rendered map");
         registerOnClick();
+        System.out.println("registered");
         if (gameState.getCurrentPlayer().getMule() == null) {
             System.out.println("No mule");
         } else {
@@ -59,7 +62,7 @@ public class WorldViewController extends PlayerTurnSceneController implements In
      * change to the current player.
     */
     private void registerOnClick() {
-        currPlayer = TurnManager.getInstance().getCurrentPlayer();
+        currPlayer = gameState.getCurrentPlayer();
         tiles = currPlayer.getTiles();
         for (Node node: gridpane.getChildren()) {
             if (node instanceof Button) {

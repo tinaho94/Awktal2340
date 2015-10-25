@@ -67,7 +67,12 @@
                   </VBox>
                   <VBox alignment="CENTER">
                      <children>
-                        <Button id="done-button" fx:id="done" mnemonicParsing="false" onAction="#selectionFinished" text="Done" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button id="done-button" fx:id="done" mnemonicParsing="false" onAction="#selectionFinished" text="Done" />
+                              <Button id="done-button" fx:id="load" mnemonicParsing="false" onAction="#loadFromFile" text="Load" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

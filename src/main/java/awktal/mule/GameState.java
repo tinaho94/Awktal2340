@@ -4,6 +4,10 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 /**
  * Represents the state of the game.
@@ -220,6 +224,42 @@ public class GameState {
 
     public void saveGame() {
         Gson converter = new Gson();
-        System.out.println(converter.toJson(this));
+        try {
+            File file = new File("save.json");
+            PrintWriter out = new PrintWriter(file);
+            out.println(converter.toJson(this));
+            out.close();
+        } catch (Exception e) {
+            System.out.println("you are boned");
+        }
+    }
+
+    public static GameState fromSavedGame(String path) throws IOException {
+        File file = new File(path);
+        FileInputStream fis = new FileInputStream(file);
+        byte[] data = new byte[(int) file.length()];
+        fis.read(data);
+        fis.close();
+        String json = new String(data, "UTF-8");
+
+        Gson converter = new Gson();
+        GameState state = converter.fromJson(json, GameState.class);
+
+        fixLostReferences(state);
+        return state;
+    }
+
+    private static void fixLostReferences(GameState state) {
+        TurnManager instance = TurnManager.getInstance();
+        instance.setGameState(state);
+        for (Player p: state.getPlayers()) {
+            ArrayList<Tile> realTiles = new ArrayList<>();
+            for (Tile t: p.getTiles()) {
+                Tile realTile = state.map.getTile(t.getX(), t.getY());
+                realTile.setOwner(p);
+                realTiles.add(realTile);
+            }
+            p.setTiles(realTiles);
+        }
     }
 }

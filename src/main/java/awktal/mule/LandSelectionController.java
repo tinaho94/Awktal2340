@@ -42,7 +42,9 @@ public class LandSelectionController extends SceneController implements Initiali
     private int numPasses;
 
     private int rowClicked;
+
     private int colClicked;
+
     private ArrayList<Player> players;
 
 
@@ -113,7 +115,6 @@ public class LandSelectionController extends SceneController implements Initiali
         if (gameState.isRoundOver()) {
             gameState.resetRound();
             SceneManager.loadScene(GameScene.START_TURN);
-            // TurnManager.getInstance().beginPlayerTurns();
         } else {
             loadPlayerData();
         }

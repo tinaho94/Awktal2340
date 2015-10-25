@@ -47,7 +47,7 @@ public abstract class PlayerTurnSceneController extends SceneController {
     }
 
     protected void loadPlayerData() {
-        Player currentPlayer = TurnManager.getInstance().getCurrentPlayer();
+        Player currentPlayer = gameState.getCurrentPlayer();
         playerLabel.setText(currentPlayer.getName());
         scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
         timeLabel.setText(String.valueOf(TurnManager.getInstance().getCurrentTurnTime()));

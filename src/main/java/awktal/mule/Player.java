@@ -122,6 +122,10 @@ public class Player implements Comparable<Player> {
         return tiles;
     }
 
+    protected void setTiles(ArrayList<Tile> tiles) {
+        this.tiles = tiles;
+    }
+
     /**
      * Takes and returns the mule that the player has.
      * @return the taken mule.
