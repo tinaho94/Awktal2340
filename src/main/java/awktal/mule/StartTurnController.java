@@ -35,7 +35,7 @@ public class StartTurnController extends SceneController implements Initializabl
         currMap = gameState.getMap();
         createImageViews();
         // gameState.saveGame();
-        if (gameState.getRound() > 1 && gameState.getCurrentPlayerIndex() != 0) {
+        if (gameState.getRound() > 1) {
             processRandomEvent();
         }
 
@@ -78,10 +78,18 @@ public class StartTurnController extends SceneController implements Initializabl
         int randomNum = generator.nextInt(100) + 1;
         if (randomNum <= RANDOM_EVENT_PROB) {
             randomNum = generator.nextInt(7);
+            //randomNum = 5; // get event by default
+            if (randomNum > 3) {
+                if (gameState.getCurrentPlayerIndex() == 0) {
+                    processRandomEvent();
+                }
+            }
             RandomEvent randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {
-                currentPlayer.giveResources(
-                    randomEvent.inventory.scaleResource(0.5, Resource.FOOD));
+                Inventory newResources = new Inventory();
+                newResources.giveResource(Resource.FOOD, (int) (currentPlayer.getResource(Resource.FOOD) * -0.5));
+
+                currentPlayer.giveResources(newResources);
                 displayRandomEvent(randomEvent, 0);
             } else {
                 Inventory newResources = randomEvent.getInventory().scaleResource(
