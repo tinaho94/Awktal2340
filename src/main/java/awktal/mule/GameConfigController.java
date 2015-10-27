@@ -45,6 +45,9 @@ public class GameConfigController extends SceneController {
         SceneManager.loadScene(GameScene.PLAYER_CONFIG);
     }
 
+    /**
+     * Loads the game from a file named "save.json".
+    */
     @FXML
     public void loadFromFile() {
         try {

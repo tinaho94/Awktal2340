@@ -2,12 +2,12 @@ package awktal.mule;
 
 import com.google.gson.Gson;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.io.File;
-import java.io.PrintWriter;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents the state of the game.
@@ -33,8 +33,7 @@ public class GameState {
 
     /**
      * The constructor for a GameState.
-     * This can only be called once as this class should be a singleton.
-     * If called again this will throw an exception.
+     * By default nothing is valid.
     */
     public GameState() {
         players = new ArrayList<>();
@@ -46,10 +45,17 @@ public class GameState {
         store = new Store();
     }
 
+    /**
+     * Checks if the game is over.
+    */
     public boolean isGameOver() {
         return round >= maxRounds && currentPlayerIndex > players.size();
     }
 
+    /**
+     * Gets the store.
+     * @return the store object for the town's store.
+    */
     public Store getStore() {
         return this.store;
     }
@@ -57,26 +63,30 @@ public class GameState {
 
     /**
      * Gets the players that are in the game.
-     * If getPlayers.size() is not equal to getNumPlayers() then the GameState has not
-     * been fully initialized.
      * @return a list of players that are currently playing in no guaranteed order.
     */
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * Checks if land grants are active.
+     * @return if land grants are active.
+    */
     public boolean getPropertySelectionEnabled() {
         return propertySelectionEnabled;
     }
 
+    /**
+     * Sets if land grants are active.
+     * @param enabled if land grants should be enabled.
+    */
     public void setPropertySelectionEnabled(Boolean enabled) {
         propertySelectionEnabled = enabled;
     }
 
     /**
      * Gets the number of players.
-     * If this is not equal to getPlayers().size() then the GameState has not been initialized
-     * fully.
      * @return the number of players.
     */
     public int getNumPlayers() {
@@ -97,6 +107,9 @@ public class GameState {
 
     /**
      * Sets the limit for the number of players.
+     * This is for initializing the players.
+     * TODO(henry): make a factory class for game state
+     * to avoid bad construction patterns.
      * @param numPlayers the max number of players allowed.
     */
     protected void setMaxPlayers(int numPlayers) {
@@ -140,7 +153,6 @@ public class GameState {
      * @throws GameStateConfigException if the player does not match the criteria listed.
     */
     private void validateNewPlayer(Player player) throws GameStateConfigException {
-        // TODO(alex): Implement this.
         if (player.getName().equals("")) {
             throw new GameStateConfigException("empty name");
         }
@@ -195,6 +207,10 @@ public class GameState {
     }
 
 
+    /**
+     * Alows the round count to be reset.
+     * NOTE: this does not undo everything done in that round.
+    */
     public void resetRound() {
         currentPlayerIndex = 0;
     }
@@ -210,18 +226,32 @@ public class GameState {
         }
     }
 
+    /**
+     * Gets the current round.
+     * @return the current round number.
+    */
     public int getRound() {
         return round;
     }
 
+    /**
+     * Sorts the players by score (Lowest first).
+    */
     public void recalculatePlayerOrder() {
         Collections.sort(players);
     }
 
+    /**
+     * Gets the current player index.
+     * @return the turn number within the current round.
+    */
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
     }
 
+    /**
+     * Saves the game to a file called "save.json".
+    */
     public void saveGame() {
         Gson converter = new Gson();
         try {
@@ -234,6 +264,13 @@ public class GameState {
         }
     }
 
+    /**
+     * Factory method for the game state.
+     * Allows a game state to be made from a json file.
+     * @param path the path to the json file.
+     * @return The created GameState object.
+     * @throws IOException if the file does not exist.
+    */
     public static GameState fromSavedGame(String path) throws IOException {
         File file = new File(path);
         FileInputStream fis = new FileInputStream(file);
@@ -249,6 +286,12 @@ public class GameState {
         return state;
     }
 
+    /**
+     * Helper method for loading from the saved game.
+     * During jsonification some references must be lost to avoid circular references.
+     * This method restores any missing references.
+     * @param state the GameState that needs it's references fixed.
+    */
     private static void fixLostReferences(GameState state) {
         TurnManager instance = TurnManager.getInstance();
         instance.setGameState(state);
