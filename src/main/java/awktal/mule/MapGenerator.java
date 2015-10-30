@@ -13,6 +13,7 @@ public class MapGenerator {
 
     /**
      * Creates a map of the given type.
+     * @param type the type of map to generate.
      * @return a new map of the given type.
     */
     public static Map generateMap(MapType type) {

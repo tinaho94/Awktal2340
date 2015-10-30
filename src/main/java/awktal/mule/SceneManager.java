@@ -25,6 +25,7 @@ public class SceneManager {
     /**
      * Loads a new scene onto the stage.
      * @param gameScene the gameScene to be loaded.
+     * @return the controller that was given control.
     */
     public static SceneController loadScene(GameScene gameScene) {
         SceneController controller = null;

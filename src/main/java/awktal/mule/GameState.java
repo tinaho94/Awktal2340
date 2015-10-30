@@ -47,6 +47,7 @@ public class GameState {
 
     /**
      * Checks if the game is over.
+     * @return if the game is over.
     */
     public boolean isGameOver() {
         return round >= maxRounds && currentPlayerIndex > players.size();

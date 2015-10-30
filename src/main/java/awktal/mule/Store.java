@@ -27,6 +27,11 @@ public class Store {
 
     /**
      * Creates a store.
+     * @param money the starting amount of money.
+     * @param food the starting amount of food;
+     * @param energy the starting amount of energy;
+     * @param ore the starting amount of ore;
+     * @param numMules the starting amount of mules;
     */
     public Store(int money, int food, int energy, int ore, int numMules) {
         this.inventory = new Inventory(money, food, energy, ore);
@@ -79,7 +84,16 @@ public class Store {
 
     /**
      * Attempt to buy a mule for the player.
+     * Preconditions:
+     * <ul>
+     *   <li> player has enough resources. </li>
+     *   <li> store has enough mules. </li>
+     *   <li> player does not already have a mule. </li>
+     * </ul>
      * Throws a runtime exception if there are no mules left or the player has insufficient funds.
+     * @param player the player that is trying to buy the mule.
+     * @param type the type of mule that the player wants to buy.
+     * @throws RuntimeException if the player or store does not have all required preconditions.
     */
     public void buyMule(Player player, MuleType type) {
         int cost = getMuleCost(type);
@@ -107,8 +121,16 @@ public class Store {
     }
 
     /**
-     * Attempt to buy a resource for the player.
-     * Throws a runtime exception if there are not enough or the player has insufficient funds.
+     * Attempt to buy a mule for the player.
+     * Preconditions:
+     * <ul>
+     *   <li> player has enough money. </li>
+     *   <li> store has enough of the resource. </li>
+     * </ul>
+     * @param resource the type of resource to buy.
+     * @param player the player that is trying to buy resources.
+     * @param quantity the amount of the resource to buy.
+     * @throws RuntimeException if the player or store does not have all required preconditions.
     */
     public void buyResource(Resource resource, int quantity, Player player) {
         if (getStock(resource) < quantity) {
@@ -125,8 +147,15 @@ public class Store {
     }
 
     /**
-     * Attempts to sell resources to the store.
-     * Throws a runtime exception if the player does not have enough of the resource.
+     * Attempt to buy a mule for the player.
+     * Preconditions:
+     * <ul>
+     *   <li> player has enough of the resource. </li>
+     * </ul>
+     * @param resource the type of resource to sell.
+     * @param player the player that is trying to sell resources.
+     * @param quantity the amount of the resource to sell.
+     * @throws RuntimeException if the player or store does not have all required preconditions.
     */
     public void sellResource(Resource resource, int quantity, Player player) {
         if (player.getResource(resource) < quantity) {

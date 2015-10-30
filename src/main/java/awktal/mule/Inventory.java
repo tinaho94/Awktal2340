@@ -60,6 +60,7 @@ public class Inventory {
      * Gets a copy of the inventory with one resource scaled by the certain factor.
      * @param scale the amount to scale the resource.
      * @param type the resource type that you want to scale.
+     * @return a copy of the inventory with one resource scaled by the specified amount.
     */
     public Inventory scaleResource(double scale, Resource type) {
         Inventory inventory = this.copy();

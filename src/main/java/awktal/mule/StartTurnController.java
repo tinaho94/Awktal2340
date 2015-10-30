@@ -53,6 +53,7 @@ public class StartTurnController extends SceneController implements Initializabl
             //randomNum = 5; // get event by default
             if (randomNum > 3 && gameState.getCurrentPlayerIndex() == 0) {
                 processRandomEvent();
+                return;
             }
             RandomEvent randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {

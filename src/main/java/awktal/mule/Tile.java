@@ -10,6 +10,9 @@ public class Tile {
 
     /**
      * Creates a new tile.
+     * @param xloc the x location of the tile.
+     * @param yloc the y location of the tile.
+     * @param type the type of tile.
     */
     public Tile(int xloc, int yloc, TileType type) {
         this.xloc = xloc;

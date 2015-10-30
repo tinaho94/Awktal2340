@@ -27,6 +27,7 @@ public class TurnManager {
 
     /**
      * Gets the single instance of turn manager.
+     * @return the single instance of the turn manager.
     */
     public static TurnManager getInstance() {
         if (instance == null) {
