@@ -3,6 +3,11 @@ package awktal.mule;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+* Maintains the store content in the game. 
+* Example: A player enters the store and attempts to purchase a mule. The mule is purchased, and the resources of the player 
+* and the store are updated. 
+*/
 public class Store {
 
     private Inventory inventory;
