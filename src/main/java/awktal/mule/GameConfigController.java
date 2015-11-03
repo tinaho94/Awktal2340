@@ -1,5 +1,7 @@
 package awktal.mule;
 
+
+
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
@@ -7,6 +9,9 @@ import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.IOException;
 
 /**
@@ -51,7 +56,26 @@ public class GameConfigController extends SceneController {
     @FXML
     public void loadFromFile() {
         try {
-            SceneController.setGameState(GameState.fromSavedGame("save.json"));
+            File file = new File("save.json");
+            FileInputStream fis = new FileInputStream(file);
+            byte[] data = new byte[(int) file.length()];
+            try {
+                fis.read(data);
+            } catch (IOException e) {
+                fis.close();
+                // TODO: alert the user here.
+                System.out.println("no file to load from.");
+                return;
+            }
+            fis.close();
+            String json = new String(data, "UTF-8");
+
+            GameState state = GameStateFactory.getInstance().fromJsonString(json);
+            SceneController.setGameState(state);
+
+            TurnManager instance = TurnManager.getInstance();
+            instance.setGameState(state);
+
             System.out.println("Loaded game");
             SceneManager.loadScene(GameScene.START_ROUND);
         } catch (IOException e) {

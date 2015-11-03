@@ -4,8 +4,13 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -30,7 +35,20 @@ public class GameState {
 
     private Store store;
 
-
+    /**
+     * Constructs a GameState from a list of players and a map.
+     * @param players the players.
+     * @param map the map.
+    */
+    public GameState(ArrayList<Player> players, Map map) {
+        this.players = players;
+        this.map = map;
+        this.currentPlayerIndex = 0;
+        this.round = 0;
+        this.propertySelectionEnabled = true;
+        this.maxRounds = 12;
+        this.store = new Store();
+    }
     /**
      * The constructor for a GameState.
      * By default nothing is valid.
@@ -254,56 +272,18 @@ public class GameState {
      * Saves the game to a file called "save.json".
     */
     public void saveGame() {
+
         Gson converter = new Gson();
         try {
             File file = new File("save.json");
-            PrintWriter out = new PrintWriter(file);
+            Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+            PrintWriter out = new PrintWriter(writer);
             out.println(converter.toJson(this));
             out.close();
-        } catch (Exception e) {
-            System.out.println("you are boned");
-        }
-    }
-
-    /**
-     * Factory method for the game state.
-     * Allows a game state to be made from a json file.
-     * @param path the path to the json file.
-     * @return The created GameState object.
-     * @throws IOException if the file does not exist.
-    */
-    public static GameState fromSavedGame(String path) throws IOException {
-        File file = new File(path);
-        FileInputStream fis = new FileInputStream(file);
-        byte[] data = new byte[(int) file.length()];
-        fis.read(data);
-        fis.close();
-        String json = new String(data, "UTF-8");
-
-        Gson converter = new Gson();
-        GameState state = converter.fromJson(json, GameState.class);
-
-        fixLostReferences(state);
-        return state;
-    }
-
-    /**
-     * Helper method for loading from the saved game.
-     * During jsonification some references must be lost to avoid circular references.
-     * This method restores any missing references.
-     * @param state the GameState that needs it's references fixed.
-    */
-    private static void fixLostReferences(GameState state) {
-        TurnManager instance = TurnManager.getInstance();
-        instance.setGameState(state);
-        for (Player p: state.getPlayers()) {
-            ArrayList<Tile> realTiles = new ArrayList<>();
-            for (Tile t: p.getTiles()) {
-                Tile realTile = state.map.getTile(t.getX(), t.getY());
-                realTile.setOwner(p);
-                realTiles.add(realTile);
-            }
-            p.setTiles(realTiles);
+        } catch (FileNotFoundException e) {
+            System.out.println("could not create the save file");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("encoding not supported");
         }
     }
 }
