@@ -70,6 +70,7 @@ public class GameStateFactory {
 
     /**
      * Creates a GameState from a JSON string.
+     * @param json the JSON representation as a string.
      * @return the created GameState.
     */
     public GameState fromJsonString(String json) {
