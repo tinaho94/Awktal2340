@@ -1,5 +1,7 @@
 package awktal.mule;
 
+import com.google.gson.Gson;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -14,6 +16,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map.Entry;
@@ -31,7 +42,7 @@ public class StartRoundController extends SceneController implements Initializab
      * Initialize the scene.
     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        gameState.saveGame();
+        saveGame(gameState);
         currMap = gameState.getMap();
         FxMapRenderer.renderMap(gridpane, currMap);
         gameState.newRound();
@@ -48,6 +59,21 @@ public class StartRoundController extends SceneController implements Initializab
             }
         }
         gameState.recalculatePlayerOrder();
+    }
+
+    private void saveGame(GameState state) {
+        Gson converter = new Gson();
+        try {
+            File file = new File("save.json");
+            Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
+            PrintWriter out = new PrintWriter(writer);
+            out.println(converter.toJson(state));
+            out.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("could not create the save file");
+        } catch (UnsupportedEncodingException e) {
+            System.out.println("encoding not supported");
+        }
     }
 
     private String createIncomeLabel(Inventory inventory) {

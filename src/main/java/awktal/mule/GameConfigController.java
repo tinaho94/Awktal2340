@@ -43,10 +43,13 @@ public class GameConfigController extends SceneController {
      * This is registered as a handler in the FXML.
     */
     public void selectionFinished() {
-        gameState.setMaxPlayers((int) numPlayers.getValue());
+        GameStateFactory fact = GameStateFactory.getInstance();
+        fact.setNumPlayers((int) numPlayers.getValue());
         String mapTypeStr = ((ToggleButton)mapType.getSelectedToggle()).getId();
         Map map = MapGenerator.generateMap(MapType.valueOf(mapTypeStr));
-        gameState.setMap(map);
+        fact.setMap(map);
+        System.out.println(fact.getMap() == null);
+        System.out.println(GameStateFactory.getInstance().getMap() == null);
         SceneManager.loadScene(GameScene.PLAYER_CONFIG);
     }
 

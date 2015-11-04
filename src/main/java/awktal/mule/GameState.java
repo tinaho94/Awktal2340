@@ -1,16 +1,5 @@
 package awktal.mule;
 
-import com.google.gson.Gson;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -18,8 +7,6 @@ import java.util.Collections;
  * Represents the state of the game.
 */
 public class GameState {
-
-    private int maxPlayers;
 
     private ArrayList<Player> players;
 
@@ -55,7 +42,6 @@ public class GameState {
     */
     public GameState() {
         players = new ArrayList<>();
-        maxPlayers = 0;
         currentPlayerIndex = 0;
         round = 0;
         propertySelectionEnabled = true;
@@ -122,70 +108,6 @@ public class GameState {
             throw new NoNextPlayerException("Round is over, no next player.");
         }
         return players.get(currentPlayerIndex);
-    }
-
-    /**
-     * Sets the limit for the number of players.
-     * This is for initializing the players.
-     * TODO(henry): make a factory class for game state
-     * to avoid bad construction patterns.
-     * @param numPlayers the max number of players allowed.
-    */
-    protected void setMaxPlayers(int numPlayers) {
-        maxPlayers = numPlayers;
-    }
-
-    /**
-     * Gets the max number of players that are allowed to be playing.
-     * Usually only set at game config.
-     * @return the max number of players for this game.
-    */
-    protected int getMaxPlayers() {
-        return maxPlayers;
-    }
-
-    /**
-     * Add a player to the game.
-     * Requires that there are not numPlayers already in the game. (AKA just for initialization).
-     * @param player the player to add to the game.
-     * @throws GameStateConfigException if there is invalid input.
-    */
-    protected void addPlayer(Player player) throws GameStateConfigException {
-        try {
-            validateNewPlayer(player);
-            players.add(player);
-        } catch (GameStateConfigException e) {
-            throw e;
-        }
-    }
-
-    /**
-     * Checks if adding a player is valid.
-     * The players must:
-     * <ul>
-     *  <li> Not have the same name as any other players </li>
-     *  <li> Not exceed the max number of players </li>
-     *  <li> Not have the same color as another player </li>
-     *  <li> The name must not be empty or be longer than 15 characters. </li>
-     * </ul>
-     * @param player the player to validate.
-     * @throws GameStateConfigException if the player does not match the criteria listed.
-    */
-    private void validateNewPlayer(Player player) throws GameStateConfigException {
-        if (player.getName().equals("")) {
-            throw new GameStateConfigException("empty name");
-        }
-        for (Player p : players) {
-            if (player.getName().equals(p.getName())) {
-                throw new GameStateConfigException("duplicate name");
-            }
-            if (player.getColor().equals(p.getColor())) {
-                throw new GameStateConfigException("duplicate color");
-            }
-        }
-        if (player.getName().length() > 15) {
-            throw new GameStateConfigException("name is too long");
-        }
     }
 
     /**
@@ -266,24 +188,5 @@ public class GameState {
     */
     public int getCurrentPlayerIndex() {
         return currentPlayerIndex;
-    }
-
-    /**
-     * Saves the game to a file called "save.json".
-    */
-    public void saveGame() {
-
-        Gson converter = new Gson();
-        try {
-            File file = new File("save.json");
-            Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
-            PrintWriter out = new PrintWriter(writer);
-            out.println(converter.toJson(this));
-            out.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("could not create the save file");
-        } catch (UnsupportedEncodingException e) {
-            System.out.println("encoding not supported");
-        }
     }
 }

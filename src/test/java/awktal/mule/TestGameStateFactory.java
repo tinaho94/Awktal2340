@@ -6,13 +6,14 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 
-public class TestGameState {
+public class TestGameStateFactory {
 
     @Test
     public void testAddPlayerFail() {
         try {
-            GameState state = new GameState();
-            state.addPlayer(new Player("", null, Race.HUMAN));
+            GameStateFactory fact = new GameStateFactory();
+            fact.setNumPlayers(1);
+            fact.addPlayer(new Player("", null, Race.HUMAN));
             fail("addPlayer did not fail when player had empty string for name.");
         } catch (GameStateConfigException e) {
             // test passes.

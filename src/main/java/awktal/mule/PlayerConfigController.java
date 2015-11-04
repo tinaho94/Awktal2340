@@ -39,9 +39,17 @@ public class PlayerConfigController extends SceneController {
      * This is registered as a handler in the FXML.
     */
     public void selectionFinished() {
+        GameStateFactory fact = GameStateFactory.getInstance();
+        System.out.println(fact.getMap() == null);
         try {
             validatePlayerConfig();
-            if (gameState.getMaxPlayers() == gameState.getNumPlayers()) {
+            if (fact.getNumPlayers() == fact.getPlayers().size()) {
+                GameState state = fact.createGameState();
+                System.out.println(fact.getMap() == null);
+                System.out.println(state.getMap() == null);
+                SceneController.setGameState(state);
+                TurnManager instance = TurnManager.getInstance();
+                instance.setGameState(state);
                 SceneManager.loadScene(GameScene.START_ROUND);
                 return;
             } else {
@@ -60,10 +68,11 @@ public class PlayerConfigController extends SceneController {
      * @throws GameStateConfigException if the configuration is invalid.
     */
     private void validatePlayerConfig() throws GameStateConfigException {
+        GameStateFactory fact = GameStateFactory.getInstance();
         String raceString = ((ToggleButton)race.getSelectedToggle()).getId();
         Race raceVal = Race.valueOf(raceString);
-        gameState.addPlayer(new Player(nameInput.getCharacters().toString(),
+        fact.addPlayer(new Player(nameInput.getCharacters().toString(),
             colorInput.getValue(), raceVal));
-        System.out.println(gameState.getPlayers());
+        System.out.println(fact.getPlayers());
     }
 }
