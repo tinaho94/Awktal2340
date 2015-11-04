@@ -119,6 +119,10 @@ public class GameStateFactory {
      * @throws GameStateConfigException if the player does not match the criteria listed.
     */
     private void validateNewPlayer(Player player) throws GameStateConfigException {
+        if (numPlayers <= players.size()) {
+            throw new UncheckedGameStateConfigException("too many players, restricted to "
+                + numPlayers);
+        }
         if (player.getName().equals("")) {
             throw new GameStateConfigException("empty name");
         }
