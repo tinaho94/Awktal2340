@@ -48,46 +48,46 @@ public class TestProcessRandomEvent {
 
     @Test
     public void testEventOne() {
-        int rand = controller.processRandomEvent(1);
+        controller.processRandomEvent(1);
         assertEquals(controller.getRandomEvent().getMessage(),
             "YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.");
     }
 
     @Test
     public void testEventTwo() {
-        int rand = controller.processRandomEvent(2);
+        controller.processRandomEvent(2);
         assertEquals(controller.getRandomEvent().getMessage(),
             "A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY LEAVING TWO BARS OF ORE.");
     }
 
     @Test
     public void testEventThree() {
-        int rand = controller.processRandomEvent(3);
+        controller.processRandomEvent(3);
         assertTrue(controller.getRandomEvent().getInventory().equals(new Inventory(8, 0, 0, 0)));
     }
 
     @Test
     public void testEventFour() {
-        int rand = controller.processRandomEvent(4);
+        controller.processRandomEvent(4);
         assertTrue(controller.getRandomEvent().getInventory().equals(new Inventory(2, 0, 0, 0)));
     }
 
     @Test
     public void testEventFive() {
-        int rand = controller.processRandomEvent(5);
+        controller.processRandomEvent(5);
         assertTrue(controller.getRandomEvent().getInventory().equals(new Inventory(-4, 0, 0, 0)));
     }
 
     @Test
     public void testEventSix() {
-        int rand = controller.processRandomEvent(6);
+        controller.processRandomEvent(6);
         assertEquals(controller.getRandomEvent().getMessage(),
             "MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.");
     }
 
     @Test
     public void testEventSeven() {
-        int rand = controller.processRandomEvent(7);
+        controller.processRandomEvent(7);
         assertTrue(controller.getRandomEvent().getInventory().equals(new Inventory(-6, 0, 0, 0)));
     }
 }
