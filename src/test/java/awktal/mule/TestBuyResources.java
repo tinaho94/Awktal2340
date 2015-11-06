@@ -27,19 +27,17 @@ public class TestBuyResources {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        
+
     }
 
     @Test
     public void testPlayerWithNoMoney() {
         try {
             Player currentPlayer = gameState.getCurrentPlayer();
-            int moohlah = currentPlayer.getResource(Resource.MONEY);
+            currentPlayer.takeResource(Resource.MONEY, currentPlayer.getResource(Resource.MONEY));
             Store store = gameState.getStore();
-            store.buyResource(Resource.FOOD, 16, currentPlayer);
-            store.buyResource(Resource.ENERGY, 4, currentPlayer);
             store.buyResource(Resource.ENERGY, 1, currentPlayer);
-            assertEquals(currentPlayer.getResource(Resource.MONEY), 20);
+            fail("Should have thrown a RuntimeException, player did not have enough money.");
         } catch(RuntimeException e) {
             return;
         }
