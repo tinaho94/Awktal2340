@@ -14,6 +14,10 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+/**
+ * This class is run at the start of each player's turn and calculates
+ * their random events.
+ */
 
 public class StartTurnController extends SceneController implements Initializable {
 
@@ -23,6 +27,8 @@ public class StartTurnController extends SceneController implements Initializabl
     private TextArea messageTextArea;
 
     private Map currMap;
+
+    private RandomEvent randomEvent;
 
     private static final int RANDOM_EVENT_PROB = 100;
 
@@ -35,45 +41,60 @@ public class StartTurnController extends SceneController implements Initializabl
         currMap = gameState.getMap();
         FxMapRenderer.renderMap(gridpane, currMap);
         if (gameState.getRound() > 1) {
-            processRandomEvent();
+            int moneyAdded = processRandomEvent(-1);
+            if (randomEvent != null) {
+                displayRandomEvent(randomEvent, moneyAdded);
+            }
         }
 
     }
 
-    private void processRandomEvent() {
-        // depending on event, call scale on enum's inventory and then give it to player
+    /**
+     * Processes random events for the current player.
+     * @param event A given random event (for testing purposes)
+     * @return The money added during the random event
+     */
+    public int processRandomEvent(int event) {
         RandomEvent[] events = {RandomEvent.ONE, RandomEvent.TWO, RandomEvent.THREE,
             RandomEvent.FOUR, RandomEvent.FIVE, RandomEvent.SIX, RandomEvent.SEVEN};
-        Random generator = new Random();
         int currentM = m[gameState.getRound() - 1];
         Player currentPlayer = gameState.getCurrentPlayer();
+        Random generator = new Random();
         int randomNum = generator.nextInt(100) + 1;
         if (randomNum <= RANDOM_EVENT_PROB) {
-            randomNum = generator.nextInt(7);
-            //randomNum = 5; // get event by default
-            if (randomNum > 3 && gameState.getCurrentPlayerIndex() == 0) {
-                processRandomEvent();
-                return;
+            if (event > 0) {
+                randomNum = event - 1;
+            } else {
+                randomNum = generator.nextInt(7);
             }
-            RandomEvent randomEvent = events[randomNum];
+            if (randomNum > 3 && gameState.getCurrentPlayerIndex() == 0) {
+                processRandomEvent(-1);
+            }
+            randomEvent = events[randomNum];
             if (randomEvent == RandomEvent.SIX) {
                 Inventory newResources = new Inventory();
                 newResources.giveResource(Resource.FOOD,
                     (int) (currentPlayer.getResource(Resource.FOOD) * -0.5));
 
                 currentPlayer.giveResources(newResources);
-                displayRandomEvent(randomEvent, 0);
+                return 0;
             } else {
                 Inventory newResources = randomEvent.getInventory().scaleResource(
                     currentM, Resource.MONEY);
                 currentPlayer.giveResources(newResources);
                 int moneyAdded = Math.abs(newResources.getResource(Resource.MONEY));
-                displayRandomEvent(randomEvent, moneyAdded);
+                return moneyAdded;
             }
+        } else {
+            randomEvent = null;
+            return 0;
         }
     }
 
-    private enum RandomEvent {
+    /**
+     * Describes the random events that can happen.
+     */
+    public enum RandomEvent {
         ONE ("YOU JUST RECEIVED A PACKAGE FROM THE GT ALUMNI CONTAINING 3 FOOD AND 2 ENERGY UNITS.",
             new Inventory(0, 3, 2, 0)),
         TWO ("A WANDERING TECH STUDENT REPAID YOUR HOSPITALITY BY LEAVING TWO BARS OF ORE.",
@@ -97,16 +118,28 @@ public class StartTurnController extends SceneController implements Initializabl
             this.inventory = inventory;
         }
 
-        private Inventory getInventory() {
+        /**
+         * Constructs a random event.
+         * @return the inventory of the random event
+         */
+        public Inventory getInventory() {
             return inventory;
         }
 
-        private String getMessage() {
+        /**
+         * Constructs a random event.
+         * @return the message of the random event
+         */
+        public String getMessage() {
             return message;
         }
-
     }
 
+    /**
+     * Displays random events for the current player.
+     * @param randomEvent A given random event
+     * @param moneyAdded The money added during a given random event
+     */
     private void displayRandomEvent(RandomEvent randomEvent, int moneyAdded) {
         String message = randomEvent.getMessage();
         if (randomEvent == RandomEvent.THREE || randomEvent == RandomEvent.FOUR
@@ -116,8 +149,19 @@ public class StartTurnController extends SceneController implements Initializabl
         messageTextArea.setText(message);
     }
 
+    /**
+     * On clicking the continue button will go to World View.
+     */
     public void continueOn() {
         SceneManager.loadScene(GameScene.WORLD_VIEW);
         TurnManager.getInstance().startCurrentPlayerClock();
+    }
+
+    /**
+     * Returns the random event for the current player.
+     * @return The random event for the current player.
+     */
+    public RandomEvent getRandomEvent() {
+        return randomEvent;
     }
 }

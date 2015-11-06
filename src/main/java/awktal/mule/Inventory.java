@@ -79,4 +79,34 @@ public class Inventory {
             this.getResource(Resource.FOOD), this.getResource(Resource.ENERGY),
             this.getResource(Resource.ORE));
     }
+
+    /**
+     * Overrides equals method.
+     * @param other The object to compare to.
+     * @return Whether or not the two objects are equal.
+     */
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof Inventory)) {
+            return false;
+        }
+        Inventory otherInventory = (Inventory) other;
+        for (Map.Entry<Resource, Integer> pair: otherInventory.getResourcePairs()) {
+            if (!(pair.getValue().equals(this.getResource(pair.getKey())))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Overrides hashCode method.
+     * @return the hashcode of the object.
+     */
+    public int hashCode() {
+        String code = "";
+        for (Map.Entry<Resource, Integer> pair: this.getResourcePairs()) {
+            code += pair.getValue();
+        }
+        return code.hashCode();
+    }
 }
