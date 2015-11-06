@@ -13,6 +13,9 @@ public class TestBuyResources {
 
     private GameState gameState;
 
+    /**
+     * Sets up before each test.
+    */
     @Before
     public void setup() {
         try {
@@ -38,7 +41,7 @@ public class TestBuyResources {
             Store store = gameState.getStore();
             store.buyResource(Resource.ENERGY, 1, currentPlayer);
             fail("Should have thrown a RuntimeException, player did not have enough money.");
-        } catch(RuntimeException e) {
+        } catch (RuntimeException e) {
             return;
         }
     }
@@ -51,9 +54,18 @@ public class TestBuyResources {
             currentPlayer.giveResource(Resource.MONEY, 1000);
             store.buyResource(Resource.FOOD, 16, currentPlayer);
             store.buyResource(Resource.FOOD, 1, currentPlayer);
-            assertEquals(currentPlayer.getResource(Resource.MONEY), 520);
-        } catch(RuntimeException e) {
+            fail("Should have thrown a RuntimeException, store has no more resources");
+        } catch (RuntimeException e) {
             return;
         }
+    }
+
+    @Test
+    public void testForNormalBuying() {
+        Player currentPlayer = gameState.getCurrentPlayer();
+        Store store = gameState.getStore();
+        store.buyResource(Resource.FOOD, 1, currentPlayer);
+        assertEquals(store.getStock(Resource.FOOD), 15);
+        assertEquals(currentPlayer.getResource(Resource.MONEY), 570);
     }
 }

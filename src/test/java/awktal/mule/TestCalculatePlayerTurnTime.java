@@ -13,6 +13,9 @@ public class TestCalculatePlayerTurnTime {
 
     private GameState gameState;
 
+    /**
+     * Sets up before each test.
+    */
     @Before
     public void setup() {
         try {
@@ -28,7 +31,7 @@ public class TestCalculatePlayerTurnTime {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        
+
     }
 
     @Test
