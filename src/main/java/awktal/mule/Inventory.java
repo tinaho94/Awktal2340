@@ -103,10 +103,10 @@ public class Inventory {
      * @return the hashcode of the object.
      */
     public int hashCode() {
-        String code = "";
+        StringBuilder code = new StringBuilder();
         for (Map.Entry<Resource, Integer> pair: this.getResourcePairs()) {
-            code += pair.getValue();
+            code.append(pair.getValue().toString());
         }
-        return code.hashCode();
+        return code.toString().hashCode();
     }
 }
