@@ -51,9 +51,18 @@ public class TestBuyResources {
             currentPlayer.giveResource(Resource.MONEY, 1000);
             store.buyResource(Resource.FOOD, 16, currentPlayer);
             store.buyResource(Resource.FOOD, 1, currentPlayer);
-            assertEquals(currentPlayer.getResource(Resource.MONEY), 520);
+            fail("Should have thrown a RuntimeException, store has no more resources");
         } catch(RuntimeException e) {
             return;
         }
+    }
+
+    @Test
+    public void testForNormalBuying() {
+        Player currentPlayer = gameState.getCurrentPlayer();
+        Store store = gameState.getStore();
+        store.buyResource(Resource.FOOD, 1, currentPlayer);
+        assertEquals(store.getStock(Resource.FOOD), 15);
+        assertEquals(currentPlayer.getResource(Resource.MONEY), 570);
     }
 }
