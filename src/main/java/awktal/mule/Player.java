@@ -152,6 +152,7 @@ public class Player implements Comparable<Player> {
         return inventory.getResource(resource);
     }
 
+
     public void giveResource(Resource resource, int quantity) {
         inventory.giveResource(resource, quantity);
     }
