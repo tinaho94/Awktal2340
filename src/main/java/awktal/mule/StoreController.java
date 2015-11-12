@@ -9,6 +9,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class StoreController extends PlayerTurnSceneController {
 
@@ -19,6 +20,8 @@ public class StoreController extends PlayerTurnSceneController {
     HBox hbox = new HBox();
     TextArea muleTypeText = new TextArea();
 
+    @FXML
+    private VBox centerViewMuleTab;
 
     @FXML
     private Label foodPriceLabel;
@@ -67,14 +70,19 @@ public class StoreController extends PlayerTurnSceneController {
                 mule.setPrefHeight(150);
                 mule.setStyle("-fx-background-image: url('" + imagePath + "'); "
                     + "-fx-background-position: center center; "
-                    + "-fx-background-size: cover");
+                    + "-fx-background-size: stretch");
                 mule.setMaxWidth(Double.MAX_VALUE);
                 mule.setMaxHeight(Double.MAX_VALUE);
                 mule.setId(m.name());
                 hbox.getChildren().add(mule);
             }
         }
-        anchorPane.getChildren().add(hbox);
+        centerViewMuleTab.getChildren().add(hbox);
+        muleTypeText = new TextArea("No mule selected");
+
+        muleTypeText.setEditable(false);
+        muleTypeText.setPrefHeight(50);
+        centerViewMuleTab.getChildren().add(muleTypeText);
     }
 
     @FXML
@@ -93,13 +101,8 @@ public class StoreController extends PlayerTurnSceneController {
     @FXML
     private void onMuleClicked(String muleType) {
         currMule = MuleType.valueOf(muleType);
-        muleTypeText = new TextArea("SELECTED " + muleType + " MULE!\nCOST: "
+        muleTypeText.setText("SELECTED " + muleType + " MULE!\nCOST: "
             + store.getMuleCost(currMule) + " space-bucks");
-        muleTypeText.setEditable(false);
-        muleTypeText.setPrefHeight(50);
-        AnchorPane.setBottomAnchor(muleTypeText, 10.0);
-        anchorPane.getChildren().add(muleTypeText);
-
     }
 
     @FXML
