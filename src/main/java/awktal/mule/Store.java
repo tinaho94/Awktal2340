@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
-* Maintains the store content in the game. 
-* Example: A player enters the store and attempts to purchase a mule. 
-* The mule is purchased, and the resources of the player 
-* and the store are updated. 
+* Maintains the store content in the game.
+* Example: A player enters the store and attempts to purchase a mule.
+* The mule is purchased, and the resources of the player
+* and the store are updated.
 */
 public class Store {
 
@@ -112,7 +112,7 @@ public class Store {
         player.takeResource(Resource.MONEY, cost);
         Mule mule = mules.remove(mules.size() - 1);
         mule.outfit(type);
-        if (player.hasMule()) {//can remove this condition....has no purpose
+        if (player.hasMule()) { //can remove this condition....has no purpose
             System.out.println("Current mule was lost");
         }
         player.giveMule(mule);
