@@ -1,7 +1,5 @@
 package awktal.mule;
 
-
-
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
