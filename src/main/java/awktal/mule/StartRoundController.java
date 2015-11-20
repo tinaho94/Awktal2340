@@ -9,7 +9,6 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -34,6 +33,9 @@ import java.util.ResourceBundle;
 public class StartRoundController extends SceneController implements Initializable {
 
     @FXML
+    private Label eventLabel;
+
+    @FXML
     private GridPane gridpane;
 
     private Map currMap;
@@ -44,6 +46,12 @@ public class StartRoundController extends SceneController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
         saveGame(gameState);
         currMap = gameState.getMap();
+
+        RoundRandomEvent event = generateRoundRandomEvent();
+        event.execute(gameState);
+        eventLabel.setText(event.getDescription());
+
+
         FxMapRenderer.renderMap(gridpane, currMap);
         gameState.newRound();
         for (Tile t : currMap) {
@@ -107,5 +115,10 @@ public class StartRoundController extends SceneController implements Initializab
         } else {
             SceneManager.loadScene(GameScene.LAND_SELECTION);
         }
+    }
+
+    private RoundRandomEvent generateRoundRandomEvent() {
+        RoundRandomEvent event = RoundRandomEventGenerator.getRandomEvent();
+        return event;
     }
 }

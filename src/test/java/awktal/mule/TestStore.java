@@ -11,12 +11,10 @@ import org.junit.Test;
 /**
 * JUnit to test the Store class.
 * @author: Stephen Zolnik
-* 11/4/2015
 */
 public class TestStore {
 
     private Store store;
-    private Inventory inventory;
     private Player player;
 
     private static final int FOOD_MULE = 125;   // 100 + 25~outfit
@@ -28,7 +26,7 @@ public class TestStore {
     public static final int TIMEOUT = 200;
 
     /**
-    * Calculates the players money after the mule purchase
+    * Calculates the players money after the mule purchase.
     * @param type is the mule type
     * @param palyersMoney is the money the player currently has
     * @return money that the player should now have
@@ -39,21 +37,22 @@ public class TestStore {
     }
 
 
+    /**
+     * Sets up for each test.
+    */
     @Before
     public void setUp() throws Exception {
         store = new Store();
-        this.inventory = new Inventory();
         player = new Player("Steve", new Color(0.0, 0.0, 0.0, 0.0), Race.HUMAN);
     }
 
 
     @Test (timeout = TIMEOUT)
     public void testPlayerMoney() throws Exception {
-           try {
+        try {
             store.buyMule(player, MuleType.FOOD);
-            fail("Player should have had enough money but did not.");
         } catch (RuntimeException e) {
-            //test passes
+            fail("Player should have had enough money but did not.");
             return;
         }
     }
@@ -76,7 +75,7 @@ public class TestStore {
         try {
             //check when the player has or has not enough $$ 2 cases
             //test the bndry case when the store runs out of mules...1 mule left vs 0 left
-            //add a set mule method to the store to set the # of mules...private... put it in the 
+            //add a set mule method to the store to set the # of mules...private... put it in the
             //package protected...classes in the same package can call the method variable
             //making the method protected...encapculation idea.
             store.buyMule(player, MuleType.ORE);
@@ -95,5 +94,6 @@ public class TestStore {
 }
 
 /*
-1) for each branch condition.... check all of the post conditins...(players $, whether or not the player has a mule, )
+1) for each branch condition.... check all of the post conditins...
+(players $, whether or not the player has a mule, )
 */
