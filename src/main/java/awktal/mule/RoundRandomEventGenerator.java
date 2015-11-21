@@ -4,12 +4,14 @@ import java.util.Random;
 
 /**
  * A round random event generator.
- * This is an example of using a strategy patern.
+ * This is an example of using a strategy pattern.
  * It allows us to define a strategy at runtime (at the start of each round).
 */
 public class RoundRandomEventGenerator {
     static RoundRandomEvent[] events = {
         new EarthquakeEvent(),
+        new FloodEvent(),
+        new CorrosivePlantsEvent(),
     };
 
     /**

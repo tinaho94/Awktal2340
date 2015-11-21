@@ -27,7 +27,9 @@ import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.ResourceBundle;
+
 
 
 public class StartRoundController extends SceneController implements Initializable {
@@ -39,6 +41,8 @@ public class StartRoundController extends SceneController implements Initializab
     private GridPane gridpane;
 
     private Map currMap;
+
+    static final int ROUND_RANDOM_EVENT_PROBABILITY = 30;
 
     /**
      * Initialize the scene.
@@ -118,7 +122,10 @@ public class StartRoundController extends SceneController implements Initializab
     }
 
     private RoundRandomEvent generateRoundRandomEvent() {
-        RoundRandomEvent event = RoundRandomEventGenerator.getRandomEvent();
-        return event;
+        Random generator = new Random();
+        if (generator.nextInt(100) < ROUND_RANDOM_EVENT_PROBABILITY) {
+            return RoundRandomEventGenerator.getRandomEvent();
+        }
+        return new NullRandomEvent();
     }
 }
