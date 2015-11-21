@@ -2,6 +2,7 @@ package awktal.mule;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import javafx.scene.paint.Color;
 
@@ -28,7 +29,7 @@ public class TestStore {
         player = new Player("Steve", new Color(0.0, 0.0, 0.0, 0.0), Race.HUMAN);
     }
 
-    @Test (timeout = TIMEOUT)
+    @Test (timeout = TIMEOUT) // expected exception type...no need for the catch
     public void testPlayerWithoutMoney() {
         try {
             player.takeResource(Resource.MONEY, player.getResource(Resource.MONEY));
@@ -53,28 +54,14 @@ public class TestStore {
     }
 
     @Test (timeout = TIMEOUT)
-    public void testPlayerHasMule() throws Exception {
-        try {
-            assertEquals(player.hasMule(), false);
-            store.buyMule(player, MuleType.ENERGY);
-            assertEquals(player.hasMule(), true);
-        } catch (RuntimeException e) {
-            fail("There were not enough mules left.");
-            return;
-        }
-    }
-
-
-    @Test (timeout = TIMEOUT)
     public void testBuyMule() throws Exception {
         try {   
-            assertEquals(player.hasMule(), false);
             store.buyMule(player, MuleType.FOOD);
-            assertEquals(player.getResource(Resource.MONEY), 475);
+            assertEquals(player.getResource(Resource.MONEY), 475);//use constance instead of #
             store.buyMule(player, MuleType.ORE);
             assertEquals(store.getNumMules(), 23);
             store.buyMule(player, MuleType.FOOD);
-            assertEquals(player.hasMule(), true);
+            assertTrue(player.hasMule());
         } catch (RuntimeException e) {
             fail("The purchased mule was not removed from the store.");
             return;

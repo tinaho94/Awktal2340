@@ -112,9 +112,6 @@ public class Store {
         player.takeResource(Resource.MONEY, cost);
         Mule mule = mules.remove(mules.size() - 1);
         mule.outfit(type);
-        if (player.hasMule()) {//can remove this condition....has no purpose
-            System.out.println("Current mule was lost");
-        }
         player.giveMule(mule);
     }
 
