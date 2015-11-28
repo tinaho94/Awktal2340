@@ -1,10 +1,20 @@
 package awktal.mule;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+
 public enum MuleType {
     NONE ("yada yada place holder yada", null),
     ENERGY ("store_pictures/mule_types/energy.png", Resource.ENERGY),
     FOOD ("store_pictures/mule_types/food.png", Resource.FOOD),
-    ORE ("store_pictures/mule_types/ore.png", Resource.ORE);
+    ORE ("store_pictures/mule_types/ore.png", Resource.ORE),
+    STINKY ("store_pictures/mule_types/stinky.jpg", Resource.STINKY),
+    PATRIOTIC ("store_pictures/mule_types/patriotic.jpg", Resource.PATRIOTIC),
+    GIRL ("store_pictures/mule_types/girl.jpg", Resource.GIRL),
+    PERSONALITY ("store_pictures/mule_types/personality.jpg", Resource.PERSONALITY),
+    CHILLER ("store_pictures/mule_types/chiller.jpg", Resource.CHILLER);
 
     private String path;
     private Resource productionType;
@@ -20,5 +30,14 @@ public enum MuleType {
 
     public Resource getProductionType() {
         return productionType;
+    }
+
+    private static final List<MuleType> VALUES =
+        Collections.unmodifiableList(Arrays.asList(values()));
+    private static final int SIZE = VALUES.size();
+    private static final Random RANDOM = new Random();
+
+    public static MuleType randomMule()  {
+        return VALUES.get(RANDOM.nextInt(SIZE));
     }
 }

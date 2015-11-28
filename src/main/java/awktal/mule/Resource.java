@@ -4,5 +4,10 @@ public enum Resource {
     MONEY,
     FOOD,
     ENERGY,
-    ORE;
+    ORE,
+    STINKY,
+    PATRIOTIC,
+    GIRL,
+    PERSONALITY,
+    CHILLER;
 }
