@@ -6,11 +6,14 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * GameConfigController controls the game configuration screen.
@@ -34,6 +37,14 @@ public class GameConfigController extends SceneController {
     */
     @FXML
     private void initialize() {
+        try {
+            String mp3_file = "src/main/resources/awktal/mule/music/test.mp3";
+            Media song = new Media(Paths.get(mp3_file).toUri().toString());
+            MediaPlayer player = new MediaPlayer(song);
+            player.play();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     /**
