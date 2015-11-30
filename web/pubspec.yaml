@@ -1,0 +1,4 @@
+name: mule_reborn
+description: Mule on the web
+dependencies:
+  browser: ^0.10.0+2
