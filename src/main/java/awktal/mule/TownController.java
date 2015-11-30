@@ -31,7 +31,7 @@ public class TownController extends PlayerTurnSceneController {
         BuildingType.NONE, BuildingType.LAND, BuildingType.LAND,
         BuildingType.NONE, BuildingType.AUCTION, BuildingType.AUCTION, BuildingType.NONE,
         BuildingType.NONE, BuildingType.STORE, BuildingType.STORE,
-        BuildingType.NONE, BuildingType.ASSAY, BuildingType.ASSAY,
+        BuildingType.NONE, BuildingType.ASSAY, BuildingType.ASSAY, //MINI_GAME
         BuildingType.NONE};
 
     @FXML
@@ -112,6 +112,10 @@ public class TownController extends PlayerTurnSceneController {
                 // System.out.println("Entering store");
                 SceneManager.loadScene(GameScene.STORE);
                 break;
+            // case MINI_GAME:
+            //     // System.out.println("Entering mini game");
+            //     SceneManager.loadScene(GameScene.MINI_GAME);
+            //     break;
             default: break;
         }
     }

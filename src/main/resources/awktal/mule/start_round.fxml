@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="600.0" maxWidth="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.StartRoundController">
+<BorderPane maxHeight="600.0" maxWidth="600.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@flat.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.StartRoundController">
    <center>
       <GridPane fx:id="gridpane" BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -33,6 +33,11 @@
       <Button mnemonicParsing="false" onAction="#continueOn" text="Continue" BorderPane.alignment="CENTER" />
    </bottom>
    <top>
-      <Label text="Round Start" BorderPane.alignment="CENTER" />
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Round Start" />
+            <Label fx:id="eventLabel" />
+         </children>
+      </VBox>
    </top>
 </BorderPane>

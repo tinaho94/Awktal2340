@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
-* Maintains the store content in the game. 
-* Example: A player enters the store and attempts to purchase a mule. 
-* The mule is purchased, and the resources of the player 
-* and the store are updated. 
+* Maintains the store content in the game.
+* Example: A player enters the store and attempts to purchase a mule.
+* The mule is purchased, and the resources of the player
+* and the store are updated.
 */
 public class Store {
 
@@ -30,6 +30,11 @@ public class Store {
     private static final int DEFAULT_FOOD_OUTFIT_COST = 25;
     private static final int DEFAULT_ENERGY_OUTFIT_COST = 50;
     private static final int DEFAULT_ORE_OUTFIT_COST = 75;
+    private static final int DEFAULT_STINKY_OUTFIT_COST = 20;
+    private static final int DEFAULT_PATRIOTIC_OUTFIT_COST = 80;
+    private static final int DEFAULT_GIRL_OUTFIT_COST = 100;
+    private static final int DEFAULT_PERSONALITY_OUTFIT_COST = 60;
+    private static final int DEFAULT_CHILLER_OUTFIT_COST = 15;
 
     /**
      * Creates a store.
@@ -73,6 +78,11 @@ public class Store {
         costs.put(MuleType.FOOD, DEFAULT_FOOD_OUTFIT_COST);
         costs.put(MuleType.ENERGY, DEFAULT_ENERGY_OUTFIT_COST);
         costs.put(MuleType.ORE, DEFAULT_ORE_OUTFIT_COST);
+        costs.put(MuleType.STINKY, DEFAULT_STINKY_OUTFIT_COST);
+        costs.put(MuleType.PATRIOTIC, DEFAULT_PATRIOTIC_OUTFIT_COST);
+        costs.put(MuleType.GIRL, DEFAULT_GIRL_OUTFIT_COST);
+        costs.put(MuleType.PERSONALITY, DEFAULT_PERSONALITY_OUTFIT_COST);
+        costs.put(MuleType.CHILLER, DEFAULT_CHILLER_OUTFIT_COST);
         return costs;
     }
 

@@ -9,7 +9,6 @@ import javafx.scene.ImageCursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -28,15 +27,22 @@ import java.io.Writer;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map.Entry;
+import java.util.Random;
 import java.util.ResourceBundle;
+
 
 
 public class StartRoundController extends SceneController implements Initializable {
 
     @FXML
+    private Label eventLabel;
+
+    @FXML
     private GridPane gridpane;
 
     private Map currMap;
+
+    static final int ROUND_RANDOM_EVENT_PROBABILITY = 30;
 
     /**
      * Initialize the scene.
@@ -44,6 +50,12 @@ public class StartRoundController extends SceneController implements Initializab
     public void initialize(URL url, ResourceBundle resourceBundle) {
         saveGame(gameState);
         currMap = gameState.getMap();
+
+        RoundRandomEvent event = generateRoundRandomEvent();
+        event.execute(gameState);
+        eventLabel.setText(event.getDescription());
+
+
         FxMapRenderer.renderMap(gridpane, currMap);
         gameState.newRound();
         for (Tile t : currMap) {
@@ -107,5 +119,13 @@ public class StartRoundController extends SceneController implements Initializab
         } else {
             SceneManager.loadScene(GameScene.LAND_SELECTION);
         }
+    }
+
+    private RoundRandomEvent generateRoundRandomEvent() {
+        Random generator = new Random();
+        if (generator.nextInt(100) < ROUND_RANDOM_EVENT_PROBABILITY) {
+            return RoundRandomEventGenerator.getRandomEvent();
+        }
+        return new NullRandomEvent();
     }
 }

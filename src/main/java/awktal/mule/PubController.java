@@ -9,6 +9,8 @@ import java.util.Random;
 */
 public class PubController extends PlayerTurnSceneController {
 
+    Music play = new Music();
+    static String lonesomeGamble = "src/main/resources/awktal/mule/music/Gamble.mp3";
     private final int[] roundBonus = {50, 50, 50, 100, 100, 100, 100, 150, 150, 150, 150, 200};
 
     /**
@@ -23,6 +25,7 @@ public class PubController extends PlayerTurnSceneController {
     @FXML
     private void initialize() {
         loadPlayerData();
+        play.musicMp3(lonesomeGamble);
     }
 
     /**

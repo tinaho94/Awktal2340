@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="600.0" maxWidth="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.StoreController">
+<BorderPane maxHeight="600.0" maxWidth="600.0" prefHeight="600.0" prefWidth="600.0" stylesheets="@flat.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.StoreController">
    <center>
       <TabPane prefHeight="400.0" prefWidth="982.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
          <tabs>
@@ -16,10 +16,27 @@
                <content>
                   <AnchorPane id="anchorPane" fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="519.0" prefWidth="981.0">
                      <children>
-                        <Button id="done" layoutX="274.0" layoutY="314.0" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
-                        <Button layoutX="222.0" layoutY="314.0" mnemonicParsing="false" onAction="#buyMule" text="Buy" />
-                        <Label layoutX="462.0" layoutY="46.0" text="Stock: " />
-                        <Label fx:id="muleStockLabel" layoutX="504.0" layoutY="46.0" text="stock_here" />
+                        <BorderPane fx:id="muleViewBorderPane" prefHeight="489.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <bottom>
+                              <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button id="done" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
+                                    <Button mnemonicParsing="false" onAction="#buyMule" text="Buy" />
+                                 </children>
+                              </HBox>
+                           </bottom>
+                           <top>
+                              <HBox alignment="TOP_CENTER" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label text="Stock: " />
+                                    <Label fx:id="muleStockLabel" text="stock_here" />
+                                 </children>
+                              </HBox>
+                           </top>
+                           <center>
+                              <VBox fx:id="centerViewMuleTab" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
                      </children>
                   </AnchorPane>
                </content>
@@ -28,10 +45,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="266.0" layoutY="311.0" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
-                        <Button layoutX="301.0" layoutY="273.0" mnemonicParsing="false" onAction="#sellFood" text="Sell" />
-                        <Button layoutX="242.0" layoutY="273.0" mnemonicParsing="false" onAction="#buyFood" text="Buy" />
-                        <HBox alignment="CENTER" layoutX="191.0" layoutY="71.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" layoutX="191.0" layoutY="71.0" prefHeight="489.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <VBox alignment="CENTER">
                                  <children>
@@ -47,6 +61,13 @@
                                           <Label fx:id="foodStockLabel" text="stock_here" />
                                        </children>
                                     </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#sellFood" text="Sell" />
+                                          <Button mnemonicParsing="false" onAction="#buyFood" text="Buy" />
+                                       </children>
+                                    </HBox>
+                                    <Button mnemonicParsing="false" onAction="#attemptExit" text="Done" />
                                  </children>
                               </VBox>
                            </children>
@@ -59,10 +80,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="266.0" layoutY="311.0" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
-                        <Button layoutX="301.0" layoutY="273.0" mnemonicParsing="false" onAction="#sellEnergy" text="Sell" />
-                        <Button layoutX="242.0" layoutY="273.0" mnemonicParsing="false" onAction="#buyEnergy" text="Buy" />
-                        <HBox alignment="CENTER" layoutX="191.0" layoutY="71.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" layoutX="191.0" layoutY="71.0" prefHeight="489.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <VBox alignment="CENTER">
                                  <children>
@@ -78,6 +96,13 @@
                                           <Label fx:id="energyStockLabel" text="stock_here" />
                                        </children>
                                     </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#sellEnergy" text="Sell" />
+                                          <Button mnemonicParsing="false" onAction="#buyEnergy" text="Buy" />
+                                       </children>
+                                    </HBox>
+                                    <Button mnemonicParsing="false" onAction="#attemptExit" text="Done" />
                                  </children>
                               </VBox>
                            </children>
@@ -90,10 +115,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="266.0" layoutY="311.0" mnemonicParsing="false" onAction="#attemptExit" text="Done" />
-                        <Button layoutX="301.0" layoutY="273.0" mnemonicParsing="false" onAction="#sellOre" text="Sell" />
-                        <Button layoutX="242.0" layoutY="273.0" mnemonicParsing="false" onAction="#buyOre" text="Buy" />
-                        <HBox alignment="CENTER" layoutX="191.0" layoutY="71.0" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" layoutX="191.0" layoutY="71.0" prefHeight="489.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <VBox alignment="CENTER">
                                  <children>
@@ -109,6 +131,13 @@
                                           <Label fx:id="oreStockLabel" text="stock_here" />
                                        </children>
                                     </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#sellOre" text="Sell" />
+                                          <Button mnemonicParsing="false" onAction="#buyOre" text="Buy" />
+                                       </children>
+                                    </HBox>
+                                    <Button mnemonicParsing="false" onAction="#attemptExit" text="Done" />
                                  </children>
                               </VBox>
                            </children>

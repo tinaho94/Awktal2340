@@ -1,23 +1,28 @@
 package awktal.mule;
 
-
-
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * GameConfigController controls the game configuration screen.
 */
 public class GameConfigController extends SceneController {
+
+    Music play = new Music();
+    static String openRange = "src/main/resources/awktal/mule/music/test.mp3";
+
 
     @FXML
     private Slider numPlayers;
@@ -31,11 +36,13 @@ public class GameConfigController extends SceneController {
     public GameConfigController() {
     }
 
+
     /**
      * Will be called after the constructor when the fxml is loaded.
     */
     @FXML
     private void initialize() {
+        play.musicMp3(openRange);
     }
 
     /**
