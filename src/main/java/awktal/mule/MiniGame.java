@@ -1,19 +1,8 @@
 package awktal.mule;
+
 import javafx.fxml.FXML;
 
-
-public class MiniGame extends SceneController{
-	
-
-
-
-
-	public MiniGame() {
-
-	}
-
-
-
+public class MiniGame extends SceneController {
 
     /**
      * Will be called after the constructor when the fxml is loaded.
