@@ -7,29 +7,29 @@ import java.util.Random;
 
 public enum MuleType {
     NONE ("yada yada place holder yada", null),
-    ENERGY ("store_pictures/mule_types/energy.png", Resource.ENERGY),
-    FOOD ("store_pictures/mule_types/food.png", Resource.FOOD),
-    ORE ("store_pictures/mule_types/ore.png", Resource.ORE),
-    STINKY ("store_pictures/mule_types/stinky.jpg", Resource.ORE),
-    PATRIOTIC ("store_pictures/mule_types/patriotic.jpg", Resource.ENERGY),
-    GIRL ("store_pictures/mule_types/girl.jpg", Resource.ENERGY),
-    PERSONALITY ("store_pictures/mule_types/personality.jpg", Resource.ORE),
-    CHILLER ("store_pictures/mule_types/chiller.jpg", Resource.FOOD);
+    ENERGY ("store_pictures/mule_types/energy.png", new Resource[] {Resource.ENERGY}),
+    FOOD ("store_pictures/mule_types/food.png", new Resource[] {Resource.FOOD}),
+    ORE ("store_pictures/mule_types/ore.png", new Resource[] {Resource.ORE}),
+    STINKY ("store_pictures/mule_types/stinky.jpg", new Resource[] {Resource.ORE}),
+    PATRIOTIC ("store_pictures/mule_types/patriotic.jpg", new Resource[] {Resource.ENERGY}),
+    GIRL ("store_pictures/mule_types/girl.jpg", new Resource[] {Resource.ENERGY}),
+    PERSONALITY ("store_pictures/mule_types/personality.jpg", new Resource[] {Resource.ORE}),
+    CHILLER ("store_pictures/mule_types/chiller.jpg", new Resource[] {Resource.FOOD});
 
     private String path;
-    private Resource productionType;
+    private Resource[] productionTypes;
 
-    private MuleType(String path, Resource productionType) {
+    private MuleType(String path, Resource[] productionTypes) {
         this.path = path;
-        this.productionType = productionType;
+        this.productionTypes = productionTypes;
     }
 
     public String getPath() {
         return path;
     }
 
-    public Resource getProductionType() {
-        return productionType;
+    public Resource[] getProductionTypes() {
+        return productionTypes;
     }
 
     private static final List<MuleType> VALUES =
