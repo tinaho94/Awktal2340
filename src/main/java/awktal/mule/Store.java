@@ -30,11 +30,11 @@ public class Store {
     private static final int DEFAULT_FOOD_OUTFIT_COST = 25;
     private static final int DEFAULT_ENERGY_OUTFIT_COST = 50;
     private static final int DEFAULT_ORE_OUTFIT_COST = 75;
-    private static final int DEFAULT_STINKY_OUTFIT_COST = 20;
-    private static final int DEFAULT_PATRIOTIC_OUTFIT_COST = 80;
-    private static final int DEFAULT_GIRL_OUTFIT_COST = 100;
-    private static final int DEFAULT_PERSONALITY_OUTFIT_COST = 60;
-    private static final int DEFAULT_CHILLER_OUTFIT_COST = 15;
+    private static final int DEFAULT_STINKY_OUTFIT_COST = 150;
+    private static final int DEFAULT_PATRIOTIC_OUTFIT_COST = 200;
+    private static final int DEFAULT_GIRL_OUTFIT_COST = 150;
+    private static final int DEFAULT_PERSONALITY_OUTFIT_COST = 150;
+    private static final int DEFAULT_CHILLER_OUTFIT_COST = 150;
 
     /**
      * Creates a store.

@@ -33,7 +33,7 @@ public enum TileType {
 
     /**
      * Calculates the production of the tile if worked for the specific resource.
-     * @param resource the type of resource to calculate production for.
+     * @param resources the type of resource to calculate production for.
      * @return an inventory with the produced resources.
     */
     public Inventory calculateProduction(Resource[] resources) {

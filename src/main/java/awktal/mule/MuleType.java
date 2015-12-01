@@ -10,11 +10,15 @@ public enum MuleType {
     ENERGY ("store_pictures/mule_types/energy.png", new Resource[] {Resource.ENERGY}),
     FOOD ("store_pictures/mule_types/food.png", new Resource[] {Resource.FOOD}),
     ORE ("store_pictures/mule_types/ore.png", new Resource[] {Resource.ORE}),
-    STINKY ("store_pictures/mule_types/stinky.png", new Resource[] {Resource.ORE}),
-    PATRIOTIC ("store_pictures/mule_types/patriotic.png", new Resource[] {Resource.ENERGY}),
-    GIRL ("store_pictures/mule_types/girl.png", new Resource[] {Resource.ENERGY}),
-    PERSONALITY ("store_pictures/mule_types/personality.png", new Resource[] {Resource.ORE}),
-    CHILLER ("store_pictures/mule_types/chiller.png", new Resource[] {Resource.FOOD});
+    STINKY ("store_pictures/mule_types/stinky.png", new Resource[] {Resource.ORE, Resource.ORE}),
+    PATRIOTIC ("store_pictures/mule_types/patriotic.png", new Resource[] {
+        Resource.ENERGY, Resource.ORE, Resource. FOOD}),
+    GIRL ("store_pictures/mule_types/girl.png", new Resource[] {
+        Resource.ENERGY, Resource.ENERGY}),
+    PERSONALITY ("store_pictures/mule_types/personality.png", new Resource[] {
+        Resource.ENERGY, Resource. ORE}),
+    CHILLER ("store_pictures/mule_types/chiller.png", new Resource[] {
+        Resource.FOOD, Resource.FOOD});
 
     private String path;
     private Resource[] productionTypes;
