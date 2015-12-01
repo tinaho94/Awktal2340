@@ -66,7 +66,7 @@ public class Tile {
         if (mule == null) {
             return new Inventory();
         } else {
-            return type.calculateProduction(mule.getType().getProductionType());
+            return type.calculateProduction(mule.getType().getProductionTypes());
         }
     }
 }

@@ -36,9 +36,11 @@ public enum TileType {
      * @param resource the type of resource to calculate production for.
      * @return an inventory with the produced resources.
     */
-    public Inventory calculateProduction(Resource resource) {
+    public Inventory calculateProduction(Resource[] resources) {
         Inventory production = new Inventory();
-        production.giveResource(resource, yields.get(resource));
+        for (Resource resource : resources) {
+            production.giveResource(resource, yields.get(resource));
+        }
         return production;
     }
 }
