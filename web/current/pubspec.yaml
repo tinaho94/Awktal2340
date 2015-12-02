@@ -1,0 +1,13 @@
+name: mule-online
+dependencies:
+    browser: any
+transformers:
+- $dart2js:
+    checked: true
+    csp: false
+    minify: false
+    sourceMaps: true
+    suppressHints: false
+    suppressWarnings: false
+    terse: true
+    verbose: true
