@@ -8,6 +8,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.layout.Pane;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,7 +22,7 @@ import java.nio.file.Paths;
 public class GameConfigController extends SceneController {
 
     Music play = new Music();
-    static String openRange = "src/main/resources/awktal/mule/music/test.mp3";
+    static String openRange = "src/main/resources/awktal/mule/music/Train45Original.mp3";
 
 
     @FXML
@@ -29,6 +30,9 @@ public class GameConfigController extends SceneController {
 
     @FXML
     private ToggleGroup mapType;
+
+    @FXML
+    private Pane pane;
 
     /**
      * Constructor for a GameConfigController.
@@ -42,6 +46,7 @@ public class GameConfigController extends SceneController {
     */
     @FXML
     private void initialize() {
+        pane.setStyle("-fx-background-color: #73CEA5");
         play.musicMp3(openRange);
     }
 

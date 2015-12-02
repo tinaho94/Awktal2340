@@ -7,29 +7,33 @@ import java.util.Random;
 
 public enum MuleType {
     NONE ("yada yada place holder yada", null),
-    ENERGY ("store_pictures/mule_types/energy.png", Resource.ENERGY),
-    FOOD ("store_pictures/mule_types/food.png", Resource.FOOD),
-    ORE ("store_pictures/mule_types/ore.png", Resource.ORE),
-    STINKY ("store_pictures/mule_types/stinky.jpg", Resource.STINKY),
-    PATRIOTIC ("store_pictures/mule_types/patriotic.jpg", Resource.PATRIOTIC),
-    GIRL ("store_pictures/mule_types/girl.jpg", Resource.GIRL),
-    PERSONALITY ("store_pictures/mule_types/personality.jpg", Resource.PERSONALITY),
-    CHILLER ("store_pictures/mule_types/chiller.jpg", Resource.CHILLER);
+    ENERGY ("store_pictures/mule_types/energy.png", new Resource[] {Resource.ENERGY}),
+    FOOD ("store_pictures/mule_types/food.png", new Resource[] {Resource.FOOD}),
+    ORE ("store_pictures/mule_types/ore.png", new Resource[] {Resource.ORE}),
+    STINKY ("store_pictures/mule_types/stinky.png", new Resource[] {Resource.ORE, Resource.ORE}),
+    PATRIOTIC ("store_pictures/mule_types/patriotic.png", new Resource[] {
+        Resource.ENERGY, Resource.ORE, Resource. FOOD}),
+    GIRL ("store_pictures/mule_types/girl.png", new Resource[] {
+        Resource.ENERGY, Resource.ENERGY}),
+    PERSONALITY ("store_pictures/mule_types/personality.png", new Resource[] {
+        Resource.ENERGY, Resource. ORE}),
+    CHILLER ("store_pictures/mule_types/chiller.png", new Resource[] {
+        Resource.FOOD, Resource.FOOD});
 
     private String path;
-    private Resource productionType;
+    private Resource[] productionTypes;
 
-    private MuleType(String path, Resource productionType) {
+    private MuleType(String path, Resource[] productionTypes) {
         this.path = path;
-        this.productionType = productionType;
+        this.productionTypes = productionTypes;
     }
 
     public String getPath() {
         return path;
     }
 
-    public Resource getProductionType() {
-        return productionType;
+    public Resource[] getProductionTypes() {
+        return productionTypes;
     }
 
     private static final List<MuleType> VALUES =

@@ -11,16 +11,18 @@ import java.nio.file.Paths;
 
 public class Music {
 
-	 //static String openRange = "src/main/resources/awktal/mule/music/test.mp3";
-	// static String homeOnTheRangeSong = "src/main/resources/awktal/mule/music/HomeOnTheRange.mp3";
-	static String mp3_file;
-	static Media song;
-	static MediaPlayer player;// = openRange;
+    static String mp3_file;
+    static Media song;
+    static MediaPlayer player;
     static boolean isPlaying = true;
 
-	public Music() {}
+    public Music() {
+    }
 
-	public static void musicMp3(String playSong) {
+    /**
+     * The musicplayer for the game.
+    */
+    public static void musicMp3(String playSong) {
         try {
             if (!isPlaying) {
                 player.pause();
@@ -33,5 +35,5 @@ public class Music {
         } catch (Exception e) {
             System.out.println(e.toString());
         }
-	}
+    }
 }

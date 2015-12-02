@@ -56,7 +56,11 @@ public class StartTurnController extends SceneController implements Initializabl
      */
     public int processRandomEvent(int event) {
         RandomEvent[] events = {RandomEvent.ONE, RandomEvent.TWO, RandomEvent.THREE,
-            RandomEvent.FOUR, RandomEvent.FIVE, RandomEvent.SIX, RandomEvent.SEVEN};
+            RandomEvent.FOUR, RandomEvent.FIVE, RandomEvent.SIX, RandomEvent.SEVEN,
+            RandomEvent.EIGHT, RandomEvent.NINE, RandomEvent.TEN, RandomEvent.ELEVEN,
+            RandomEvent.TWELVE, RandomEvent.THIRTEEN, RandomEvent.FOURTEEN,
+            RandomEvent.FIFTEEN, RandomEvent.SIXTEEN, RandomEvent.SEVENTEEN,
+            RandomEvent.EIGHTEEN, RandomEvent.NINETEEN, RandomEvent.TWENTY};
         int currentM = m[gameState.getRound() - 1];
         Player currentPlayer = gameState.getCurrentPlayer();
         Random generator = new Random();
@@ -65,7 +69,7 @@ public class StartTurnController extends SceneController implements Initializabl
             if (event > 0) {
                 randomNum = event - 1;
             } else {
-                randomNum = generator.nextInt(7);
+                randomNum = generator.nextInt(20);
             }
             if (randomNum > 3 && gameState.getCurrentPlayerIndex() == 0) {
                 processRandomEvent(-1);
@@ -108,7 +112,34 @@ public class StartTurnController extends SceneController implements Initializabl
         SIX ("MISCHIEVOUS UGA STUDENTS BROKE INTO YOUR STORAGE SHED AND STOLE HALF YOUR FOOD.",
             new Inventory(0, -1, 0, 0)),
         SEVEN ("YOUR SPACE GYPSY INLAWS MADE A MESS OF THE TOWN. TO CLEAN IT UP, IT COST YOU $",
-            new Inventory(-6, 0, 0, 0));
+            new Inventory(-6, 0, 0, 0)),
+        EIGHT ("AN ALIEN FROM OUTER SPACE INVADES YOUR STORES AND STEALS 4 FOOD.",
+            new Inventory(0, -4, 0, 0)),
+        NINE ("AN ARMY OF HAMSTERS DECLARES YOU THEIR LEADER AND REWARDS YOU WITH $",
+            new Inventory(10, 0, 0, 0)),
+        TEN ("A STARVING COW REWARDS YOUR KINDNESS WITH 2 FOOD AND $",
+            new Inventory(3, 2, 0, 0)),
+        ELEVEN ("YOU SAVE A BUS FULL OF CHILDREN AND THE TOWN REWARDS YOU WITH $",
+            new Inventory(20, 0, 0, 0)),
+        TWELVE ("THE ECONOMY IS BAD SO YOU GIVE YOUR PARENTS 4 FOOD AND 2 ORE.",
+            new Inventory(0, 4, 0, 2)),
+        THIRTEEN ("YOU ARE CHASED BY A PACK OF WOLVES. INVIGORATED, YOU RECEIVE 5 ENERGY.",
+            new Inventory(0, 0, 5, 0)),
+        FOURTEEN ("A TRAVELING OLD MAN 'LIKES THE LOOK OF YA' AND GIVES YOU 2 FOOD, 2 ORE, AND 2 ENERGY.",
+            new Inventory(0, 2, 2, 2)),
+        FIFTEEN ("THIEVES BREAK INTO YOUR HOUSE AND STEAL 4 ORE.",
+            new Inventory(0, 0, 0, -4)),
+        SIXTEEN ("YOU LOST A BET WITH A FRIEND (AGAIN). YOU LOSE $",
+            new Inventory(-5, 0, 0, 0)),
+        SEVENTEEN ("YOU SPEND YOUR ENTIRE DAY HUNTING DOWN A SINGLE COCKROACH AND LOSE 1 ENERGY.",
+            new Inventory(0, 0, -1, 0)),
+        EIGHTEEN ("YOUR SIGNIFICANT OTHER VISITS YOUR LAND AND DECLARES IT 'ALRIGHT'. YOU LOSE 3 ENERGY.",
+            new Inventory(0, 0, -3, 0)),
+        NINETEEN ("MAYBE YOU'RE NOT CUT OUT TO BE A RANCHER. YOU LOSE 2 FOOD AND 2 ENERGY.",
+            new Inventory(0, -2, -2, 0)),
+        TWENTY ("THE TOWN IS NAMED AFTER YOU AND YOU ARE AWARDED WITH 10 FOOD AND $",
+            new Inventory(4, 10, 0, 0));
+
 
         private String message;
         private Inventory inventory;
@@ -143,7 +174,10 @@ public class StartTurnController extends SceneController implements Initializabl
     private void displayRandomEvent(RandomEvent randomEvent, int moneyAdded) {
         String message = randomEvent.getMessage();
         if (randomEvent == RandomEvent.THREE || randomEvent == RandomEvent.FOUR
-            || randomEvent == RandomEvent.FIVE || randomEvent == RandomEvent.SEVEN) {
+            || randomEvent == RandomEvent.FIVE || randomEvent == RandomEvent.SEVEN
+            || randomEvent == RandomEvent.NINE || randomEvent == RandomEvent.TEN
+            || randomEvent == RandomEvent.ELEVEN || randomEvent == RandomEvent.SIXTEEN
+            || randomEvent == RandomEvent.TWENTY) {
             message = message + moneyAdded + ".";
         }
         messageTextArea.setText(message);

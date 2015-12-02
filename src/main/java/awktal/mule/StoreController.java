@@ -23,7 +23,7 @@ public class StoreController extends PlayerTurnSceneController {
     TextArea muleTypeText = new TextArea();
     HashSet<MuleType> originalMules = new HashSet<MuleType>();
     Music play = new Music();
-    static String homeOnTheRangeSong = "src/main/resources/awktal/mule/music/HomeOnTheRange.mp3";
+    static String homeOnTheRangeSong = "src/main/resources/awktal/mule/music/StandByMe.mp3";
 
 
     @FXML

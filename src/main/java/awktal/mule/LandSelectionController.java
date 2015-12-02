@@ -48,7 +48,7 @@ public class LandSelectionController extends SceneController implements Initiali
     private ArrayList<Player> players;
 
     Music play = new Music();
-    static String openRange = "src/main/resources/awktal/mule/music/test.mp3";
+    static String openRange = "src/main/resources/awktal/mule/music/Train45Original.mp3";
 
     public LandSelectionController() {
         players = gameState.getPlayers();

@@ -5,6 +5,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
 
 /**
  * PlayerConfigController controls the player configuration screen.
@@ -21,6 +22,9 @@ public class PlayerConfigController extends SceneController {
     @FXML
     private ColorPicker colorInput;
 
+    @FXML
+    private Pane pane;
+
     /**
      * Constructor for a PlayerConfigController.
     */
@@ -32,6 +36,7 @@ public class PlayerConfigController extends SceneController {
     */
     @FXML
     private void initialize() {
+        pane.setStyle("-fx-background-color: #73CEA5");
     }
 
     /**
