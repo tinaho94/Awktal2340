@@ -14,7 +14,8 @@ public enum GameScene {
     WORLD_VIEW,
     START_ROUND,
     START_TURN,
-    MINI_GAME;
+    MINI_GAME,
+    TITLE;
 
     private String fxml;
 
@@ -29,6 +30,7 @@ public enum GameScene {
         START_ROUND.fxml = "start_round.fxml";
         START_TURN.fxml = "start_turn.fxml";
         MINI_GAME.fxml = "miniGame.fxml";//new MiniGame();//.fxml = "mini_game.fxml";
+        TITLE.fxml = "title.fxml";
     }
 
     /**
