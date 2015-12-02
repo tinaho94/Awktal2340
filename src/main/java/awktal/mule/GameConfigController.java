@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 public class GameConfigController extends SceneController {
 
     Music play = new Music();
-    static String openRange = "src/main/resources/awktal/mule/music/test.mp3";
+    static String openRange = "src/main/resources/awktal/mule/music/Train45Original.mp3";
 
 
     @FXML
