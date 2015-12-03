@@ -51,8 +51,10 @@ public class TitleController extends SceneController {
 
 	final static Image MULE1 = new Image(TitleController.class.getResource("title/stubborn_mule.png").toExternalForm());
 	final static Image MULE2 = new Image(TitleController.class.getResource("title/stubborn_mule1.png").toExternalForm());
+	final static Image MULE3 = new Image(TitleController.class.getResource("title/stubborn_mule2.png").toExternalForm());
 	final ImageView MULE1IMG = new ImageView(MULE1);
 	final ImageView MULE2IMG = new ImageView(MULE2);
+	final ImageView MULE3IMG = new ImageView(MULE3);
 	private Group muleAnimation;
 
 	Shape muleText;
@@ -70,6 +72,8 @@ public class TitleController extends SceneController {
 	    MULE1IMG.fitHeightProperty().bind(gridpane.heightProperty());
 	    MULE2IMG.fitWidthProperty().bind(gridpane.widthProperty());
 	    MULE2IMG.fitHeightProperty().bind(gridpane.heightProperty());
+	    MULE3IMG.fitWidthProperty().bind(gridpane.widthProperty());
+	    MULE3IMG.fitHeightProperty().bind(gridpane.heightProperty());
 
 	    muleText = generateText();
 	    textAnimation = new Group(muleText);
@@ -106,6 +110,12 @@ public class TitleController extends SceneController {
 					@Override
 					public void handle(ActionEvent t) {
 						muleAnimation.getChildren().setAll(MULE2IMG);
+					}
+				}),
+				new KeyFrame(Duration.millis(300), new EventHandler<ActionEvent>() {
+					@Override
+					public void handle(ActionEvent t) {
+						muleAnimation.getChildren().setAll(MULE3IMG);
 					}
 				})
 			)
