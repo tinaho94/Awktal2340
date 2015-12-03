@@ -15,7 +15,6 @@ class TileRenderer {
 
     static DivElement render(Tile t) {
         DivElement view = new DivElement();
-        // view.style.overflow = "hidden";
         ImageElement tile_image = new ImageElement();
         tile_image.src = tile_images[t.type];
         tile_image.style.height = "100%";

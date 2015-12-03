@@ -5,6 +5,10 @@ import 'GameConfigController.dart';
 import 'PlayerConfigController.dart';
 import 'RoundStartController.dart';
 import 'TurnStartController.dart';
+import 'WorldViewController.dart';
+import 'TownViewController.dart';
+import 'StoreController.dart';
+import 'PubController.dart';
 import 'GameScene.dart';
 import 'GameState.dart';
 import 'Controller.dart';
@@ -15,6 +19,10 @@ class ControllerFactory {
         GameScene.PLAYER_CONFIG: (stage, gameState) => new PlayerConfigController(stage, gameState),
         GameScene.ROUND_START: (stage, gameState) => new RoundStartController(stage, gameState),
         GameScene.TURN_START: (stage, gameState) => new TurnStartController(stage, gameState),
+        GameScene.WORLD_VIEW: (stage, gameState) => new WorldViewController(stage, gameState),
+        GameScene.TOWN_VIEW: (stage, gameState) => new TownViewController(stage, gameState),
+        GameScene.STORE: (stage, gameState) => new StoreController(stage, gameState),
+        GameScene.PUB: (stage, gameState) => new PubController(stage, gameState),
     };
 
     static Controller newController(GameScene scene, DivElement stage, GameState gameState) async {

@@ -24,4 +24,8 @@ class Tile {
     String toString() {
         return "($x, $y)";
     }
+
+    String classString() {
+        return "${type.toString().substring(type.toString().indexOf('.')+1)}";
+    }
 }

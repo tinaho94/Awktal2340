@@ -3,6 +3,7 @@ import 'dart:html';
 import 'GameState.dart';
 import 'Controller.dart';
 import 'SceneManager.dart';
+import 'TurnManager.dart';
 import 'GameScene.dart';
 import 'Player.dart';
 
@@ -43,7 +44,7 @@ class PlayerConfigController extends Controller {
         for (Player p in gameState.players) {
             print(p.name);
         }
-        // TODO(henry): link to the next scene (need to implement round start).
+        TurnManager.setup(gameState);
         SceneManager.loadScene(GameScene.ROUND_START, gameState);
     }
 }

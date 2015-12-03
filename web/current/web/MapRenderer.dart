@@ -18,7 +18,9 @@ class MapRenderer {
             row.style.height = "20%";
             for (Tile t in r) {
                 DivElement t_view = TileRenderer.render(t);
-                t_view.classes.add("${t.type}");
+                t_view.id = "${t.x}-${t.y}";
+                t_view.classes.add("${t.classString()}");
+                t_view.classes.add("tile");
                 t_view.style.display = "inline-block";
                 t_view.style.border = "1px solid black";
                 t_view.style.margin = "0px";
