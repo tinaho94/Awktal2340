@@ -16,7 +16,6 @@ class PubController extends Controller {
     }
 
     void gamble() {
-        gameState.currentPlayerIndex++;
         TurnManager.endTurn();
     }
 }

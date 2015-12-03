@@ -15,13 +15,14 @@ class PlayerConfigController extends Controller {
     }
 
     void attemptAddPlayer() {
-        print("attempt");
-        Player p = new Player(querySelector("#name").value, querySelector("#color").value);
+        InputElement nameField = querySelector("#name");
+        InputElement colorField = querySelector("#color");
+        Player p = new Player(nameField.value, colorField.value);
         if (isValidPlayer(p)) {
             print("added player ${p.name}");
             gameState.players.add(p);
             querySelector("#name").style.borderColor = "";
-            querySelector("#name").value = "";
+            nameField.value = "";
         } else {
             querySelector("#name").style.borderColor = "Red";
         }
