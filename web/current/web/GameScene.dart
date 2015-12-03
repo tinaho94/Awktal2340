@@ -1,5 +1,6 @@
 enum GameScene {
     GAME_CONFIG,
     PLAYER_CONFIG,
-    ROUND_START
+    ROUND_START,
+    TURN_START
 }

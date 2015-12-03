@@ -46,8 +46,8 @@ public class MiniGame extends SceneController {
 
     //enemies
     private static final int ENEMY_NUM = 3;
-    private ImageView[] enemyShips = {null, null, null};// = {ship1, ship2, ship3};
-    
+    private static ImageView[] enemyShips = {null, null, null};
+
     //earth position
     private static final int EARTH_ROW  = 0;
     private static final int EARTH_COL = 0;
@@ -56,7 +56,7 @@ public class MiniGame extends SceneController {
     private void initialize() {
         if (ship1 == null){
             System.out.println("ship1 is null");
-        } 
+        }
         enemyShips[0] = ship1;
         enemyShips[1] = ship2;
         enemyShips[2] = ship3;
@@ -80,7 +80,7 @@ public class MiniGame extends SceneController {
     private void intitializeEnemy() {
         for (int i = 0; i < ENEMY_NUM; i++) {
             enemyShips[i].setX(i + 10);
-            enemyShips[i].setY(i + 10);            
+            enemyShips[i].setY(i + 10);
         }
     }
 
@@ -166,7 +166,7 @@ public class MiniGame extends SceneController {
                 for (int i = 0; i < ENEMY_NUM; i++) {
                     enemyShips[i].setY(row);
                     enemyShips[i].setX(col);
-                } 
+                }
             }
         }
     }
