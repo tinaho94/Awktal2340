@@ -12,26 +12,26 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
-import java.util.*;
+//import java.util.*;
 
 public class MiniGame extends SceneController {
 
     @FXML
     private AnchorPane mainPane;
     @FXML
-    private static ImageView ship1;
+    private ImageView ship1;
     @FXML
-    private static ImageView ship2;
+    private ImageView ship2;
     @FXML
-    private static ImageView ship3;
+    private ImageView ship3;
     @FXML
-    private static ImageView earth;
+    private ImageView earth;
     @FXML
-    private static ImageView playerShip;
+    private ImageView playerShip;
+    //@FXML
+    //private I lowerPane;
     @FXML
-    private static ImageView lowerPane;
-    @FXML
-    private static ImageView space;
+    private ImageView space;
 
     // Current column that the player is in.
     private double playerCol;
@@ -46,19 +46,38 @@ public class MiniGame extends SceneController {
 
     //enemies
     private static final int ENEMY_NUM = 3;
+<<<<<<< HEAD
     private static ImageView[] enemyShips = {ship1, ship2, ship3};
 
+=======
+    private ImageView[] enemyShips = {null, null, null};// = {ship1, ship2, ship3};
+    
+>>>>>>> 0fa56aaf02b0cca0c0a7820890e56a9e1bc8fc70
     //earth position
     private static final int EARTH_ROW  = 0;
     private static final int EARTH_COL = 0;
 
     @FXML
     private void initialize() {
+<<<<<<< HEAD
         // intitializeEnemy();
         // initializePlayer();
         // initializeEarth();
         // setEnemyLocation();
         // initKeyListeners();
+=======
+        if (ship1 == null){
+            System.out.println("ship1 is null");
+        } 
+        enemyShips[0] = ship1;
+        enemyShips[1] = ship2;
+        enemyShips[2] = ship3;
+        intitializeEnemy();
+        initializePlayer();
+        initializeEarth();
+        setEnemyLocation();
+        initKeyListeners();
+>>>>>>> 0fa56aaf02b0cca0c0a7820890e56a9e1bc8fc70
     }
 
     private void initializePlayer() {

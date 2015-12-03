@@ -9,12 +9,12 @@ public enum TileType {
     MOUNTAIN1 ("map_pictures/mount1.png", 1, 1, 2),
     MOUNTAIN2 ("map_pictures/mount2.png", 1, 1, 3),
     MOUNTAIN3 ("map_pictures/mount3.png", 1, 1, 4),
-    BUILDING ("map_pictures/building.png", 0, 0, 0),
     APPLETREE ("map_pictures/appletree.png", 4, 1, 0),
     DESERT ("map_pictures/desert.png", 0, 4, 0),
     FLOWERS ("map_pictures/flowers.png", 2, 2, 0),
     FROZEN ("map_pictures/frozen.png", 0, 1, 4),
-    RAINFOREST ("map_pictures/rainforest.png", 3, 3, 0);
+    RAINFOREST ("map_pictures/rainforest.png", 3, 3, 0),
+    BUILDING ("map_pictures/building.png", 0, 0, 0);
 
     private String path;
     private HashMap<Resource, Integer> yields;
