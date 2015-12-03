@@ -47,18 +47,18 @@ public class MiniGame extends SceneController {
     //enemies
     private static final int ENEMY_NUM = 3;
     private static ImageView[] enemyShips = {ship1, ship2, ship3};
-    
+
     //earth position
     private static final int EARTH_ROW  = 0;
     private static final int EARTH_COL = 0;
 
     @FXML
     private void initialize() {
-        intitializeEnemy();
-        initializePlayer();
-        initializeEarth();
-        setEnemyLocation();
-        initKeyListeners();
+        // intitializeEnemy();
+        // initializePlayer();
+        // initializeEarth();
+        // setEnemyLocation();
+        // initKeyListeners();
     }
 
     private void initializePlayer() {
@@ -74,7 +74,7 @@ public class MiniGame extends SceneController {
     private void intitializeEnemy() {
         for (int i = 0; i < ENEMY_NUM; i++) {
             enemyShips[i].setX(i + 10);
-            enemyShips[i].setY(i + 10);            
+            enemyShips[i].setY(i + 10);
         }
     }
 
@@ -160,7 +160,7 @@ public class MiniGame extends SceneController {
                 for (int i = 0; i < ENEMY_NUM; i++) {
                     enemyShips[i].setY(row);
                     enemyShips[i].setX(col);
-                } 
+                }
             }
         }
     }

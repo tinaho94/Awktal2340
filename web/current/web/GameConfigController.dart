@@ -5,6 +5,7 @@ import 'Controller.dart';
 import 'SceneManager.dart';
 import 'GameScene.dart';
 import 'Player.dart';
+import 'MapGenerator.dart';
 
 class GameConfigController extends Controller {
 
@@ -21,7 +22,7 @@ class GameConfigController extends Controller {
     void setGameStateSettings() {
         RangeInputElement player_input = this.stage.querySelector("#players");
         int num_players = int.parse(player_input.value);
-        this.gameState = new GameState(num_players);
+        this.gameState = new GameState(num_players, MapGenerator.generateMap());
     }
 
 }

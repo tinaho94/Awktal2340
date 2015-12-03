@@ -15,7 +15,7 @@ class PlayerConfigController extends Controller {
 
     void attemptAddPlayer() {
         print("attempt");
-        Player p = new Player(querySelector("#name").value);
+        Player p = new Player(querySelector("#name").value, querySelector("#color").value);
         if (isValidPlayer(p)) {
             print("added player ${p.name}");
             gameState.players.add(p);
@@ -31,7 +31,7 @@ class PlayerConfigController extends Controller {
 
     bool isValidPlayer(Player newPlayer) {
         for (Player p in gameState.players) {
-            if (p.name == newPlayer.name) {
+            if (p.name == newPlayer.name || p.color == newPlayer.color || newPlayer.name.trim() == "") {
                 return false;
             }
         }
@@ -44,6 +44,6 @@ class PlayerConfigController extends Controller {
             print(p.name);
         }
         // TODO(henry): link to the next scene (need to implement round start).
-        // SceneManager.loadScene(GameScene.ROUND_START, gameState);
+        SceneManager.loadScene(GameScene.ROUND_START, gameState);
     }
 }

@@ -3,6 +3,8 @@ import 'dart:async';
 
 import 'GameConfigController.dart';
 import 'PlayerConfigController.dart';
+import 'RoundStartController.dart';
+import 'TurnStartController.dart';
 import 'GameScene.dart';
 import 'GameState.dart';
 import 'Controller.dart';
@@ -11,7 +13,8 @@ class ControllerFactory {
     final static Map<GameScene, Function> constructors = {
         GameScene.GAME_CONFIG: (stage, gameState) => new GameConfigController(stage, gameState),
         GameScene.PLAYER_CONFIG: (stage, gameState) => new PlayerConfigController(stage, gameState),
-        // GameScene.ROUND_START: (stage, gameState) => new RoundStartController(stage, gameState),
+        GameScene.ROUND_START: (stage, gameState) => new RoundStartController(stage, gameState),
+        GameScene.TURN_START: (stage, gameState) => new TurnStartController(stage, gameState),
     };
 
     static Controller newController(GameScene scene, DivElement stage, GameState gameState) async {
