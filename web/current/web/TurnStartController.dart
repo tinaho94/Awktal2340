@@ -18,6 +18,9 @@ class TurnStartController extends Controller {
     TurnStartController(DivElement stage, GameState gameState) : super(stage, gameState) {
         print("Turn Start");
         print(gameState.currentPlayer);
+        DivElement scoreDisplay = new DivElement();
+        scoreDisplay.text = "Score: ${gameState.currentPlayer.score()}";
+        stage.children.insert(0, scoreDisplay);
         stage.children.insert(0, InventoryRenderer.render(gameState.currentPlayer.inventory));
         DivElement playerName = new DivElement();
         playerName.text = "Player : ${gameState.currentPlayer.name}";
