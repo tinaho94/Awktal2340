@@ -1,7 +1,7 @@
 import 'dart:html';
 
 import 'GameState.dart';
-import 'PlayerTurnSceneController.dart';
+import 'Controller.dart';
 import 'SceneManager.dart';
 import 'GameScene.dart';
 import 'Tile.dart';
@@ -9,10 +9,12 @@ import 'MapRenderer.dart';
 import 'Player.dart';
 import 'InventoryRenderer.dart';
 
-class WorldViewController extends PlayerTurnSceneController {
+class LandSelectController extends Controller {
 
-    WorldViewController(DivElement stage, GameState gameState) : super(stage, gameState) {
-        print("Turn Start");
+    int currentPlayerIndex = 0;
+
+    LandSelectController(DivElement stage, GameState gameState) : super(stage, gameState) {
+        print("Land select");
         print(gameState.currentPlayer);
         stage.children.add(MapRenderer.render(gameState.map));
         for (Element e in stage.querySelectorAll(".tile")) {
@@ -29,18 +31,19 @@ class WorldViewController extends PlayerTurnSceneController {
     void onTileClicked(MouseEvent event, DivElement target) {
         DivElement clicked = target;
         if (clicked.classes.contains("BUILDING")) {
-            SceneManager.loadScene(GameScene.TOWN_VIEW, gameState);
+            return;
+        } else {
+            Tile t = getMatchingTile(target);
+            if (t.owner == null) {
+                Player p = gameState.players[currentPlayerIndex];
+                t.owner = p;
+                target.style.borderColor = p.color;
+                target.style.borderWidth = "2px";
+                currentPlayerIndex++;
+                if (currentPlayerIndex >= gameState.players.length) {
+                    SceneManager.loadScene(GameScene.TURN_START, gameState);
+                }
+            }
         }
-        // else if (gameState.currentPlayer.mule != null) {
-        //     Tile t = getMatchingTile(clicked);
-        //     if (t.owner == gameState.currentPlayer) {
-        //         t.mule = gameState.currentPlayer.mule;
-        //         gameState.currentPlayer.mule = null;
-        //         t.mule.tile = t;
-        //     }
-        // } else {
-        //     gameState.currentPlayer.mule = null;
-        //     print("killed mule");
-        // }
     }
 }

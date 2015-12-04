@@ -8,6 +8,7 @@ import 'TurnStartController.dart';
 import 'WorldViewController.dart';
 import 'TownViewController.dart';
 import 'StoreController.dart';
+import 'LandSelectController.dart';
 import 'PubController.dart';
 import 'GameScene.dart';
 import 'GameState.dart';
@@ -23,6 +24,7 @@ class ControllerFactory {
         GameScene.TOWN_VIEW: (stage, gameState) => new TownViewController(stage, gameState),
         GameScene.STORE: (stage, gameState) => new StoreController(stage, gameState),
         GameScene.PUB: (stage, gameState) => new PubController(stage, gameState),
+        GameScene.LAND_SELECT: (stage, gameState) => new LandSelectController(stage, gameState),
     };
 
     static Controller newController(GameScene scene, DivElement stage, GameState gameState) async {

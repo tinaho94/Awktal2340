@@ -13,7 +13,11 @@ class RoundStartController extends Controller {
         gameState.currentPlayerIndex = 0;
         stage.querySelector("#round_number").text = "Round ${gameState.round}";
         sortPlayersByScore(gameState.players);
-        stage.querySelector("#done").onClick.listen((event) => SceneManager.loadScene(GameScene.TURN_START, gameState));
+        if (gameState.round > 2) {
+            stage.querySelector("#done").onClick.listen((event) => SceneManager.loadScene(GameScene.TURN_START, gameState));
+        } else {
+            stage.querySelector("#done").onClick.listen((event) => SceneManager.loadScene(GameScene.LAND_SELECT, gameState));
+        }
     }
 
     void sortPlayersByScore(List<Player> players) {

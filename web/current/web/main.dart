@@ -11,7 +11,7 @@ import 'ResourceType.dart';
 GameState gameState = new GameState(2, MapGenerator.generateMap());//null;
 
 void main() {
-    gameState.players = [new Player("One", "#abcdef"), new Player("Two", "#123456")];
+    gameState.players = [new Player("One", "red"), new Player("Two", "green")];
     TurnManager.setup(gameState);
     SceneManager.loadScene(GameScene.ROUND_START, gameState);
     // SceneManager.loadScene(GameScene.GAME_CONFIG, gameState);
