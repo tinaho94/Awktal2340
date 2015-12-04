@@ -20,6 +20,7 @@ class LandSelectController extends Controller {
         for (Element e in stage.querySelectorAll(".tile")) {
             e.onClick.listen((event) => onTileClicked(event, e));//print("clicked"));//
         }
+        querySelector("#player").text = "Player: ${gameState.currentPlayer.name}";
     }
 
     Tile getMatchingTile(DivElement view) {
@@ -42,6 +43,8 @@ class LandSelectController extends Controller {
                 currentPlayerIndex++;
                 if (currentPlayerIndex >= gameState.players.length) {
                     SceneManager.loadScene(GameScene.TURN_START, gameState);
+                } else {
+                    querySelector("#player").text = "Player: ${gameState.players[currentPlayerIndex].name}";
                 }
             }
         }

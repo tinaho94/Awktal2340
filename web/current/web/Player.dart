@@ -2,6 +2,7 @@ import 'Inventory.dart';
 import 'Mule.dart';
 import 'Tile.dart';
 import 'ResourceType.dart';
+import 'Race.dart';
 
 class Player {
     final String name;
@@ -9,13 +10,22 @@ class Player {
     Mule mule;
     Inventory inventory;
     List<Tile> tiles = [];
+    Race race;
 
-    Player(this.name, this.color) {
-        inventory = new Inventory(10, 10, 10, 1000);
+    static Map<Race, int> startingMoney = {
+        Race.HUMAN: 600,
+        Race.FLAPPER: 1600,
+        Race.BONZOID: 1000,
+        Race.UGAITE: 1000,
+        Race.BUZZITE: 1000,
+    };
+
+    Player(this.name, this.color, this.race) {
+        inventory = new Inventory(8, 4, 0, startingMoney[race]);
     }
 
     String toString() {
-        return "[Name: $name Color: $color]";
+        return "[Name: $name Color: $color, Race: $race]";
     }
 
     int score() {
