@@ -5,6 +5,7 @@ import 'Controller.dart';
 import 'SceneManager.dart';
 import 'GameScene.dart';
 import 'Player.dart';
+import 'ProductionCalculator.dart';
 
 class RoundStartController extends Controller {
 
@@ -18,6 +19,8 @@ class RoundStartController extends Controller {
         } else {
             stage.querySelector("#done").onClick.listen((event) => SceneManager.loadScene(GameScene.LAND_SELECT, gameState));
         }
+        DivElement productionDisplay = ProductionCalculator.calculateAllProduction(gameState);
+        stage.children.add(productionDisplay);
     }
 
     void sortPlayersByScore(List<Player> players) {

@@ -7,5 +7,6 @@ enum GameScene {
     TOWN_VIEW,
     PUB,
     STORE,
-    LAND_SELECT
+    LAND_SELECT,
+    GAME_OVER
 }

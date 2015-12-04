@@ -9,4 +9,14 @@ class Inventory {
         resources[ResourceType.ORE] = ore;
         resources[ResourceType.MONEY] = money;
     }
+
+    void add(Inventory other) {
+        resources.forEach((k, v) {
+            resources[k] += other.resources[k];
+        });
+    }
+
+    String toString() {
+        return "+${resources[ResourceType.FOOD]} food\n+${resources[ResourceType.ENERGY]} energy\n+${resources[ResourceType.ORE]} ore";
+    }
 }

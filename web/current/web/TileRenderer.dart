@@ -19,7 +19,10 @@ class TileRenderer {
         tile_image.src = tile_images[t.type];
         tile_image.style.height = "100%";
         tile_image.style.width = "100%";
+        tile_image.style.position = "absolute";
+        tile_image.style.top = "0px";
         view.children.add(tile_image);
+        view.style.position = "relative";
         return view;
     }
 }

@@ -9,6 +9,7 @@ import 'Player.dart';
 import 'InventoryRenderer.dart';
 import 'Store.dart';
 import 'ResourceType.dart';
+import 'MuleType.dart';
 
 class StoreController extends PlayerTurnSceneController {
 
@@ -26,6 +27,10 @@ class StoreController extends PlayerTurnSceneController {
         querySelector("#sell_food").onClick.listen((event) => sellResource(ResourceType.FOOD));
         querySelector("#sell_energy").onClick.listen((event) => sellResource(ResourceType.ENERGY));
         querySelector("#sell_ore").onClick.listen((event) => sellResource(ResourceType.ORE));
+
+        querySelector("#food_mule").onClick.listen((event) => buyMule(MuleType.FOOD));
+        querySelector("#energy_mule").onClick.listen((event) => buyMule(MuleType.ENERGY));
+        querySelector("#ore_mule").onClick.listen((event) => buyMule(MuleType.ORE));
     }
 
     void buyResource(ResourceType r) {
@@ -43,6 +48,12 @@ class StoreController extends PlayerTurnSceneController {
         querySelector("#food_stock").text = "Food : ${stock[ResourceType.FOOD]}";
         querySelector("#energy_stock").text = "Energy : ${stock[ResourceType.ENERGY]}";
         querySelector("#ore_stock").text = "Ore : ${stock[ResourceType.ORE]}";
+        querySelector("#mule_stock").text = "Mules : ${gameState.store.mules.length}";
+    }
+
+    void buyMule(MuleType r) {
+        gameState.store.buyMule(gameState.currentPlayer, r);
+        SceneManager.loadScene(GameScene.WORLD_VIEW, gameState);
     }
 
 }

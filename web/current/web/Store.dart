@@ -70,13 +70,13 @@ class Store {
 
     void buyMule(Player player, MuleType type) {
         int cost = outfitCosts[type] + MULE_COST;
-        if (player.invetory[Resource.MONEY] < cost) {
+        if (player.inventory.resources[ResourceType.MONEY] < cost) {
             return;
         }
         if (mules.length == 0) {
             return;
         }
-        player.inventory[Resource.MONEY] -= cost;
+        player.inventory.resources[ResourceType.MONEY] -= cost;
         Mule mule = mules.removeLast();
         mule.outfit(type);
         player.mule = mule;

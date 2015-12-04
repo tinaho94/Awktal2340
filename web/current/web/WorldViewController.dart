@@ -30,17 +30,16 @@ class WorldViewController extends PlayerTurnSceneController {
         DivElement clicked = target;
         if (clicked.classes.contains("BUILDING")) {
             SceneManager.loadScene(GameScene.TOWN_VIEW, gameState);
+        } else if (gameState.currentPlayer.mule != null) {
+            Tile t = getMatchingTile(clicked);
+            if (t.owner == gameState.currentPlayer && t.mule == null) {
+                t.mule = gameState.currentPlayer.mule;
+                gameState.currentPlayer.mule = null;
+                target.children.insert(0, MapRenderer.renderMule(t.mule.type));
+            } else {
+                gameState.currentPlayer.mule = null;
+                print("killed mule");
+            }
         }
-        // else if (gameState.currentPlayer.mule != null) {
-        //     Tile t = getMatchingTile(clicked);
-        //     if (t.owner == gameState.currentPlayer) {
-        //         t.mule = gameState.currentPlayer.mule;
-        //         gameState.currentPlayer.mule = null;
-        //         t.mule.tile = t;
-        //     }
-        // } else {
-        //     gameState.currentPlayer.mule = null;
-        //     print("killed mule");
-        // }
     }
 }

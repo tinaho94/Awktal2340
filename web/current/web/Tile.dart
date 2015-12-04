@@ -1,25 +1,25 @@
 import 'Player.dart';
-// import 'Mule.dart';
+import 'Mule.dart';
 import 'TileType.dart';
-// import 'Inventory.dart';
-// import 'ProductionCalculator.dart';
+import 'Inventory.dart';
+import 'ProductionCalculator.dart';
 
 class Tile {
     int x;
     int y;
     Player owner;
     TileType type;
-    // Mule mule;
+    Mule mule;
 
     Tile(int this.x, int this.y, TileType this.type);
 
-    // Inventory calculateProduction() {
-    //     if (this.mule == null) {
-    //         return new Inventory();
-    //     } else {
-    //         ProductionCalculator.calc(this.type, mule.type);
-    //     }
-    // }
+    Inventory calculateProduction() {
+        if (this.mule == null) {
+            return new Inventory();
+        } else {
+            return ProductionCalculator.calc(this.type, mule.type);
+        }
+    }
 
     String toString() {
         return "($x, $y)";

@@ -21,6 +21,10 @@ class TurnManager {
         gameState.currentPlayerIndex++;
         if (gameState.currentPlayerIndex >= gameState.players.length) {
             gameState.currentPlayerIndex = 0;
+            if (gameState.round > 9) {
+                SceneManager.loadScene(GameScene.GAME_OVER, gameState);
+                return;
+            }
             SceneManager.loadScene(GameScene.ROUND_START, gameState);
         } else {
             SceneManager.loadScene(GameScene.TURN_START, gameState);
