@@ -1,7 +1,9 @@
 import 'Player.dart';
 import 'GameMap.dart';
+import 'Store.dart';
 
 class GameState {
+    Store store = new Store();
     List<Player> players = [];
     int num_players = 0;
     int round = 0;

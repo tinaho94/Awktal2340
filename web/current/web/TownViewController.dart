@@ -1,13 +1,14 @@
 import 'dart:html';
 
 import 'GameState.dart';
-import 'Controller.dart';
+import 'PlayerTurnSceneController.dart';
 import 'SceneManager.dart';
 import 'GameScene.dart';
 import 'MapRenderer.dart';
 import 'Player.dart';
+import 'InventoryRenderer.dart';
 
-class TownViewController extends Controller {
+class TownViewController extends PlayerTurnSceneController {
 
     TownViewController(DivElement stage, GameState gameState) : super(stage, gameState) {
         stage.querySelector("#world").onClick.listen((event) => SceneManager.loadScene(GameScene.WORLD_VIEW, gameState));

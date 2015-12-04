@@ -1,14 +1,15 @@
 import 'dart:html';
 
 import 'GameState.dart';
-import 'Controller.dart';
+import 'PlayerTurnSceneController.dart';
 import 'SceneManager.dart';
 import 'GameScene.dart';
 import 'Tile.dart';
 import 'MapRenderer.dart';
 import 'Player.dart';
+import 'InventoryRenderer.dart';
 
-class WorldViewController extends Controller {
+class WorldViewController extends PlayerTurnSceneController {
 
     WorldViewController(DivElement stage, GameState gameState) : super(stage, gameState) {
         print("Turn Start");

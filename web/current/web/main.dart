@@ -6,6 +6,7 @@ import 'SceneManager.dart';
 import 'Player.dart';
 import 'MapGenerator.dart';
 import 'TurnManager.dart';
+import 'ResourceType.dart';
 
 GameState gameState = new GameState(2, MapGenerator.generateMap());//null;
 
