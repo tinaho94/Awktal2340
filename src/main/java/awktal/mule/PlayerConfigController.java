@@ -1,11 +1,11 @@
 package awktal.mule;
 
-import awktal.mule.Race;
 import javafx.fxml.FXML;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Pane;
 
 /**
  * PlayerConfigController controls the player configuration screen.
@@ -22,6 +22,9 @@ public class PlayerConfigController extends SceneController {
     @FXML
     private ColorPicker colorInput;
 
+    @FXML
+    private Pane pane;
+
     /**
      * Constructor for a PlayerConfigController.
     */
@@ -33,6 +36,7 @@ public class PlayerConfigController extends SceneController {
     */
     @FXML
     private void initialize() {
+        pane.setStyle("-fx-background-color: #73CEA5");
     }
 
     /**
@@ -40,17 +44,25 @@ public class PlayerConfigController extends SceneController {
      * This is registered as a handler in the FXML.
     */
     public void selectionFinished() {
+        GameStateFactory fact = GameStateFactory.getInstance();
+        System.out.println(fact.getMap() == null);
         try {
             validatePlayerConfig();
-            if (gameState.getMaxPlayers() == gameState.getNumPlayers()) {
-                SceneManager.loadScene(GameScene.LAND_SELECTION);
+            if (fact.getNumPlayers() == fact.getPlayers().size()) {
+                GameState state = fact.createGameState();
+                System.out.println(fact.getMap() == null);
+                System.out.println(state.getMap() == null);
+                SceneController.setGameState(state);
+                TurnManager instance = TurnManager.getInstance();
+                instance.setGameState(state);
+                SceneManager.loadScene(GameScene.START_ROUND);
                 return;
             } else {
                 SceneManager.loadScene(GameScene.PLAYER_CONFIG);
                 return;
             }
-        } catch(GameStateConfigException e) {
-            // TODO(hvpeteet): replace this with creating an error message and setting a class = error.
+        } catch (GameStateConfigException e) {
+            // TODO(hvpeteet): replace this with creating a pretty error.
             System.out.println(e.toString());
             nameInput.setStyle("-fx-border-color: red;");
         }
@@ -59,12 +71,13 @@ public class PlayerConfigController extends SceneController {
     /**
      * Validated the current configuration options.
      * @throws GameStateConfigException if the configuration is invalid.
-     * TODO(hvpeteet): make this return useful error messages.
     */
     private void validatePlayerConfig() throws GameStateConfigException {
+        GameStateFactory fact = GameStateFactory.getInstance();
         String raceString = ((ToggleButton)race.getSelectedToggle()).getId();
         Race raceVal = Race.valueOf(raceString);
-        gameState.addPlayer(new Player(nameInput.getCharacters().toString(), colorInput.getValue(), raceVal));
-        System.out.println(gameState.getPlayers());
+        fact.addPlayer(new Player(nameInput.getCharacters().toString(),
+            colorInput.getValue(), raceVal));
+        System.out.println(fact.getPlayers());
     }
 }

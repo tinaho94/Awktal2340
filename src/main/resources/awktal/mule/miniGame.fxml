@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.MiniGame">
+   <children>
+      <Pane fx:id="lowerPane" layoutY="370.0" prefHeight="30.0" prefWidth="600.0" />
+      <ImageView fx:id="space" fitHeight="372.0" fitWidth="600.0">
+         <image>
+            <Image url="@minigame_pictures/black.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="earth" fitHeight="65.0" fitWidth="68.0" layoutX="8.0">
+         <image>
+            <Image url="@minigame_pictures/earth.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ship1" fitHeight="65.0" fitWidth="68.0" layoutX="200.0" layoutY="100.0">
+         <image>
+            <Image url="@minigame_pictures/deathStar.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="playerShip" fitHeight="45.0" fitWidth="45.0" layoutX="494.0" layoutY="285.0">
+         <image>
+            <Image url="@minigame_pictures/ship.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ship2" fitHeight="65.0" fitWidth="68.0" layoutX="76.0" layoutY="192.0">
+         <image>
+            <Image url="@minigame_pictures/deathStar.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="ship3" fitHeight="54.0" fitWidth="54.0" layoutX="332.0" layoutY="59.0">
+         <image>
+            <Image url="@minigame_pictures/deathStar.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

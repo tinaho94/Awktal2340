@@ -1,6 +1,7 @@
 package awktal.mule;
 
 import javafx.fxml.FXML;
+
 import java.util.Random;
 
 /**
@@ -8,6 +9,8 @@ import java.util.Random;
 */
 public class PubController extends PlayerTurnSceneController {
 
+    Music play = new Music();
+    static String lonesomeGamble = "src/main/resources/awktal/mule/music/SimpleMan.mp3";
     private final int[] roundBonus = {50, 50, 50, 100, 100, 100, 100, 150, 150, 150, 150, 200};
 
     /**
@@ -22,14 +25,21 @@ public class PubController extends PlayerTurnSceneController {
     @FXML
     private void initialize() {
         loadPlayerData();
+        play.musicMp3(lonesomeGamble);
     }
 
+    /**
+     * Gambles for the player.
+     * This will expend the remaining time that the player
+     * has in order to obtain money. The more time left the more money they get.
+    */
     @FXML
     public void gamble() {
         int moneyEarned = calculateGamblingEarnings();
         Player currentPlayer = TurnManager.getInstance().getCurrentPlayer();
-        currentPlayer.getInventory().depositMoney(moneyEarned);
-        System.out.println(currentPlayer.getName() + " has earned " + moneyEarned + " spacebucks gambling!");
+        currentPlayer.giveResource(Resource.MONEY, moneyEarned);
+        System.out.println(currentPlayer.getName() + " has earned " + moneyEarned
+            + " spacebucks gambling!");
         TurnManager.getInstance().endPlayerTurn();
     }
 
@@ -46,14 +56,14 @@ public class PubController extends PlayerTurnSceneController {
         } else {
             timeBonusMax = 50;
         }
-        int timeBonus = (int) (rand.nextDouble() * timeBonusMax);
+        int timeBonus = rand.nextInt(timeBonusMax);
         int totalBonus = timeBonus + roundBonus[gameState.getRound() - 1];
-        return (totalBonus > 250) ? 250 : totalBonus;
+        return totalBonus > 250 ? 250 : totalBonus;
     }
 
     @FXML
     public void returnToTown() {
-        TurnManager.getInstance().loadScene(GameScene.TOWN);
+        SceneManager.loadScene(GameScene.TOWN);
     }
 
 }

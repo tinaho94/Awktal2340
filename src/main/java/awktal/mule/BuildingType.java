@@ -3,7 +3,7 @@ package awktal.mule;
 public enum BuildingType {
     NONE,
     PUB,
-    ASSAY,
+    MINI_GAME,
     AUCTION,
     LAND,
     STORE;

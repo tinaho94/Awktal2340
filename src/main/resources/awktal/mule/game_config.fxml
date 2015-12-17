@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.web.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@play_1.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.GameConfigController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="awktal.mule.GameConfigController">
    <children>
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -67,7 +68,12 @@
                   </VBox>
                   <VBox alignment="CENTER">
                      <children>
-                        <Button id="done-button" fx:id="done" mnemonicParsing="false" onAction="#selectionFinished" text="Done" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button id="done-button" fx:id="done" mnemonicParsing="false" onAction="#selectionFinished" text="Done" />
+                              <Button id="done-button" fx:id="load" mnemonicParsing="false" onAction="#loadFromFile" text="Load" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
@@ -75,4 +81,8 @@
          </children>
       </VBox>
    </children>
+   <stylesheets>
+      <URL value="@play_1.css" />
+      <URL value="@flat.css" />
+   </stylesheets>
 </AnchorPane>

@@ -1,0 +1,12 @@
+enum GameScene {
+    GAME_CONFIG,
+    PLAYER_CONFIG,
+    ROUND_START,
+    TURN_START,
+    WORLD_VIEW,
+    TOWN_VIEW,
+    PUB,
+    STORE,
+    LAND_SELECT,
+    GAME_OVER
+}

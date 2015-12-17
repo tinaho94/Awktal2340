@@ -2,7 +2,7 @@ package awktal.mule;
 
 /**
  * Represents the possible scenes that the game can be in.
- * Allows for getFXML() to return the FXML file that matched the scene.
+ * Allows for getFxml() to return the FXML file that matched the scene.
 */
 public enum GameScene {
     GAME_CONFIG,
@@ -11,7 +11,11 @@ public enum GameScene {
     TOWN,
     STORE,
     PUB,
-    WORLD_VIEW;
+    WORLD_VIEW,
+    START_ROUND,
+    START_TURN,
+    MINI_GAME,
+    TITLE;
 
     private String fxml;
 
@@ -23,13 +27,17 @@ public enum GameScene {
         STORE.fxml = "store.fxml";
         PUB.fxml = "pub.fxml";
         WORLD_VIEW.fxml = "world_view.fxml";
+        START_ROUND.fxml = "start_round.fxml";
+        START_TURN.fxml = "start_turn.fxml";
+        MINI_GAME.fxml = "miniGame.fxml";//new MiniGame();//.fxml = "mini_game.fxml";
+        TITLE.fxml = "title.fxml";
     }
 
     /**
      * Gets the path to the fxml file for this scene.
      * @return the path to the FXML file.
     */
-    public String getFXML() {
+    public String getFxml() {
         return fxml;
     }
 }

@@ -1,16 +1,18 @@
 package awktal.mule;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.util.Duration;
+
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javafx.animation.*;
-import javafx.beans.property.*;
-import javafx.event.*;
-import javafx.util.Duration;
-import java.util.List;
-import java.util.Collections;
 
 public class TurnManager {
+
     private static TurnManager instance;
 
     private static GameState gameState;
@@ -18,10 +20,15 @@ public class TurnManager {
     private static final int[] roundFoodRequirements = {3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5};
 
     private Timeline timeline;
-    private PlayerTurnSceneController currentScene;
-    private int currentTurnTime;
-    // private int currentPlayerIndex;
 
+    private PlayerTurnSceneController currentScene;
+
+    private int currentTurnTime;
+
+    /**
+     * Gets the single instance of turn manager.
+     * @return the single instance of the turn manager.
+    */
     public static TurnManager getInstance() {
         if (instance == null) {
             instance = new TurnManager();
@@ -30,6 +37,7 @@ public class TurnManager {
     }
 
     public static void setGameState(GameState gameState) {
+        TurnManager.getInstance();
         TurnManager.gameState = gameState;
     }
 
@@ -50,83 +58,60 @@ public class TurnManager {
         timeline.setCycleCount(Timeline.INDEFINITE);
     }
 
-    public void beginPlayerTurns() {
-        gameState.newRound();
-        if (gameState.isGameOver()) {
-            System.out.println("Game is over");
-            return;
-        }
-        // currentPlayerIndex = 0;
-        Collections.sort(gameState.getPlayers());
-        beginPlayerTurn(gameState.getCurrentPlayer());
-    }
-
-    public void beginPlayerTurn(Player player) {
+    /**
+     * Starts the clock ticking for the current player.
+     * Time is calculated based on food.
+    */
+    public void startCurrentPlayerClock() {
+        Player player = gameState.getCurrentPlayer();
         currentTurnTime = calculatePlayerTurnTime(player);
-        loadScene(GameScene.WORLD_VIEW);
         timeline.play();
     }
 
     private int calculatePlayerTurnTime(Player player) {
-        int foodRequirement = roundFoodRequirements[gameState.getRound()-1];
-        int foodValue = player.getInventory().getFood();
+        int foodRequirement = roundFoodRequirements[gameState.getRound() - 1];
+        int foodValue = player.getResource(Resource.FOOD);
         int turnTime;
         if (foodValue >= foodRequirement) {
             turnTime = 50;
-            player.getInventory().withdrawFood(foodRequirement);
+            //player.takeResource(Resource.FOOD, foodRequirement);
         } else if (foodValue > 0) {
             turnTime = 30;
-            player.getInventory().withdrawFood(foodValue);
+            //player.takeResource(Resource.FOOD, foodValue);
         } else {
             turnTime = 5;
         }
         return turnTime;
     }
 
-    public void loadScene(GameScene scene) {
-        currentScene = (PlayerTurnSceneController) SceneManager.loadScene(scene);
-        currentScene.updateTurnTimer(currentTurnTime);
+    public void setCurrentScene(PlayerTurnSceneController currentScene) {
+        this.currentScene = currentScene;
     }
-
-    // public void setCurrentScene(PlayerTurnSceneController currentScene) {
-    //     this.currentScene = currentScene;
-    // }
 
     private void onClockTick() {
         currentTurnTime--;
         if (currentTurnTime == 0) {
             endPlayerTurn();
         } else {
-            currentScene.updateTurnTimer(currentTurnTime);
+            if (currentScene != null) {
+                currentScene.updateTurnTimer(currentTurnTime);
+            }
         }
     }
 
+    /**
+     * Ends a player's turn and sets up the next screen.
+     * The next screen can be to start another round, another player's turn, or to end the game.
+    */
     public void endPlayerTurn() {
         timeline.stop();
         gameState.endPlayerTurn();
-        // currentPlayerIndex++;
-        // if (currentPlayerIndex == gameState.getPlayers().size()) {
         if (gameState.isRoundOver()) {
-            endPlayerTurns();
+            SceneManager.loadScene(GameScene.START_ROUND);
         } else {
-            beginPlayerTurn(gameState.getCurrentPlayer());
+            SceneManager.loadScene(GameScene.START_TURN);
         }
     }
-
-    private void endPlayerTurns() {
-        gameState.newRound();
-        if (!gameState.getPropertySelectionEnabled()) {
-            System.out.println("Land selection has been disabled.");
-            TurnManager.getInstance().beginPlayerTurns();
-        } else {
-            SceneManager.loadScene(GameScene.LAND_SELECTION);
-        }
-
-    }
-
-    // public Player getCurrentPlayer() {
-    //     return gameState.getPlayers().get(currentPlayerIndex);
-    // }
 
     public Player getCurrentPlayer() {
         return gameState.getCurrentPlayer();

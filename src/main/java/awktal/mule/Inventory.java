@@ -1,17 +1,19 @@
 package awktal.mule;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Keeps track of resources that belong to a single game object.
 */
 public class Inventory {
-    private int money;
-    private int food;
-    private int energy;
-    private int ore;
-    private ArrayList<String> history;
+    private HashMap<Resource, Integer> resources;
 
+    public Inventory() {
+        this(0,0,0,0);//
+    }
     /**
      * Constructs a new Inventory.
      * @param money the starting money for the inventory.
@@ -20,115 +22,91 @@ public class Inventory {
      * @param ore the starting ore for the inventory.
     */
     public Inventory(int money, int food, int energy, int ore) {
-        this.money = money;
-        this.food = food;
-        this.energy = energy;
-        this.ore = ore;
-        this.history = new ArrayList<String>();
+        this.resources = new HashMap<>();
+        resources.put(Resource.MONEY, money);
+        resources.put(Resource.FOOD, food);
+        resources.put(Resource.ENERGY, energy);
+        resources.put(Resource.ORE, ore);
+    }
+
+    public int getResource(Resource resource) {
+        return this.resources.get(resource);
+    }
+
+    public void takeResource(Resource resource, int quantity) {
+        this.resources.put(resource, resources.get(resource) - quantity);
+    }
+
+    public void giveResource(Resource resource, int quantity) {
+        this.resources.put(resource, resources.get(resource) + quantity);
     }
 
     /**
-     * Gets the amount of money in the inventory.
-     * @return the amount of money in the inventory.
+     * Gives the resources from one inventory to another.
+     * <strong> NOTE: this does not take the resources form the other inventory. </strong>
+     * @param inventory the inventory to add resources from.
     */
-    public int getMoney() {
-        return money;
+    public void giveResources(Inventory inventory) {
+        for (Map.Entry<Resource, Integer> pair : inventory.resources.entrySet()) {
+            this.giveResource(pair.getKey(), pair.getValue());
+        }
+    }
+
+    public Set<Map.Entry<Resource, Integer>> getResourcePairs() {
+        return resources.entrySet();
     }
 
     /**
-     * Gets the amount of food in the inventory.
-     * @return the amount of food in the inventory.
+     * Gets a copy of the inventory with one resource scaled by the certain factor.
+     * @param scale the amount to scale the resource.
+     * @param type the resource type that you want to scale.
+     * @return a copy of the inventory with one resource scaled by the specified amount.
     */
-    public int getFood() {
-        return food;
+    public Inventory scaleResource(double scale, Resource type) {
+        Inventory inventory = this.copy();
+        int resource = inventory.resources.get(type);
+        resource *= scale;
+        inventory.resources.put(type, resource);
+        return inventory;
     }
 
     /**
-     * Gets the amount of energy in the inventory.
-     * @return the amount of energy in the inventory.
+     * Gets a copy of this inventory.
+     * @return a deep copy of this inventory.
     */
-    public int getEnergy() {
-        return energy;
+    public Inventory copy() {
+        return new Inventory(this.getResource(Resource.MONEY),
+            this.getResource(Resource.FOOD), this.getResource(Resource.ENERGY),
+            this.getResource(Resource.ORE));
     }
 
     /**
-     * Gets the amount of ore in the inventory.
-     * @return the amount of ore in the inventory.
-    */
-    public int getOre() {
-        return ore;
+     * Overrides equals method.
+     * @param other The object to compare to.
+     * @return Whether or not the two objects are equal.
+     */
+    public boolean equals(Object other) {
+        if (other == null || !(other instanceof Inventory)) {
+            return false;
+        }
+        Inventory otherInventory = (Inventory) other;
+        for (Map.Entry<Resource, Integer> pair: otherInventory.getResourcePairs()) {
+            if (!(pair.getValue().equals(this.getResource(pair.getKey())))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
-     * Adds money to the inventory.
-     * @param money the amount of money to add to the inventory.
-    */
-    public void depositMoney(int money) {
-        this.money += money;
-        history.add(String.format("deposited %d Money (Total: %d)", money, this.money));
-    }
-
-    /**
-     * Adds food to the inventory.
-     * @param food the amount of food to add to the inventory.
-    */
-    public void depositFood(int food) {
-        this.food += food;
-    }
-
-    /**
-     * Adds energy to the inventory.
-     * @param energy the amount of energy to add to the inventory.
-    */
-    public void depositEnergy(int energy) {
-        this.energy += energy;
-    }
-
-    /**
-     * Adds ore to the inventory.
-     * @param ore the amount of ore to add to the inventory.
-    */
-    public void depositOre(int ore) {
-        this.ore += ore;
-    }
-
-    /**
-     * Withdraws money from the inventory.
-     * @param money the amount of money to withdraw from the inventory.
-    */
-    public void withdrawMoney(int money) {
-        this.money -= money;
-    }
-
-    /**
-     * Withdraws food from the inventory.
-     * @param food the amount of food to withdraw from the inventory.
-    */
-    public void withdrawFood(int food) {
-        this.food -= food;
-    }
-
-    /**
-     * Withdraws energy from the inventory.
-     * @param energy the amount of energy to withdraw from the inventory.
-    */
-    public void withdrawEnergy(int energy) {
-        this.energy -= energy;
-    }
-
-    /**
-     * Withdraws ore from the inventory.
-     * @param ore the amount of ore to withdraw from the inventory.
-    */
-    public void withdrawOre(int ore) {
-        this.ore -= ore;
-    }
-
-    /**
-     * Returns a history of the transactions that have been done to this inventory.
-     * @return a list of transactions that have been done to this inventory in chronological order.
-    */
-    public String[] getHistory() {
-        return history.toArray(new String[history.size()]);
+     * Overrides hashCode method.
+     * @return the hashcode of the object.
+     */
+    public int hashCode() {
+        StringBuilder code = new StringBuilder();
+        for (Map.Entry<Resource, Integer> pair: this.getResourcePairs()) {
+            code.append(pair.getValue().toString());
+        }
+        return code.toString().hashCode();
     }
 }

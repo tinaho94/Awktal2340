@@ -1,13 +1,12 @@
 package awktal.mule;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents the state of the game.
 */
 public class GameState {
-
-    private int maxPlayers;
 
     private ArrayList<Player> players;
 
@@ -21,44 +20,78 @@ public class GameState {
 
     private int maxRounds;
 
+    private Store store;
+
+    /**
+     * Constructs a GameState from a list of players and a map.
+     * @param players the players.
+     * @param map the map.
+    */
+    public GameState(ArrayList<Player> players, Map map) {
+        this.players = players;
+        this.map = map;
+        this.currentPlayerIndex = 0;
+        this.round = 0;
+        this.propertySelectionEnabled = true;
+        this.maxRounds = 12;
+        this.store = new Store();
+    }
     /**
      * The constructor for a GameState.
-     * This can only be called once as this class should be a singleton.
-     * If called again this will throw an exception.
+     * By default nothing is valid.
     */
     public GameState() {
         players = new ArrayList<>();
-        maxPlayers = 0;
         currentPlayerIndex = 0;
-        round = 1;
+        round = 0;
         propertySelectionEnabled = true;
         maxRounds = 12;
-    }
-
-    public boolean isGameOver() {
-        return round > maxRounds;
+        store = new Store();
     }
 
     /**
+     * Checks if the game is over.
+     * @return if the game is over.
+    */
+    public boolean isGameOver() {
+        return round >= maxRounds && currentPlayerIndex > players.size();
+    }
+
+    /**
+     * Gets the store.
+     * @return the store object for the town's store.
+    */
+    public Store getStore() {
+        return this.store;
+    }
+
+
+    /**
      * Gets the players that are in the game.
-     * If getPlayers.size() is not equal to getNumPlayers() then the GameState has not been fully initialized.
      * @return a list of players that are currently playing in no guaranteed order.
     */
     public ArrayList<Player> getPlayers() {
         return players;
     }
 
+    /**
+     * Checks if land grants are active.
+     * @return if land grants are active.
+    */
     public boolean getPropertySelectionEnabled() {
         return propertySelectionEnabled;
     }
 
+    /**
+     * Sets if land grants are active.
+     * @param enabled if land grants should be enabled.
+    */
     public void setPropertySelectionEnabled(Boolean enabled) {
         propertySelectionEnabled = enabled;
     }
 
     /**
      * Gets the number of players.
-     * If this is not equal to getPlayers().size() then the GameState has not been initialized fully.
      * @return the number of players.
     */
     public int getNumPlayers() {
@@ -75,68 +108,6 @@ public class GameState {
             throw new NoNextPlayerException("Round is over, no next player.");
         }
         return players.get(currentPlayerIndex);
-    }
-
-    /**
-     * Sets the limit for the number of players.
-     * @param numPlayers the max number of players allowed.
-    */
-    protected void setMaxPlayers(int numPlayers) {
-        maxPlayers = numPlayers;
-    }
-
-    /**
-     * Gets the max number of players that are allowed to be playing.
-     * Usually only set at game config.
-     * @return the max number of players for this game.
-    */
-    protected int getMaxPlayers() {
-        return maxPlayers;
-    }
-
-    /**
-     * Add a player to the game.
-     * Requires that there are not numPlayers already in the game. (AKA just for initialization).
-     * @param player the player to add to the game.
-     * @throws GameStateConfigException if there is invalid input.
-    */
-    protected void addPlayer(Player player) throws GameStateConfigException {
-        try {
-            validateNewPlayer(player);
-            players.add(player);
-        } catch(GameStateConfigException e) {
-            throw e;
-        }
-    }
-
-    /**
-     * Checks if adding a player is valid.
-     * @param player the player to validate.
-     * @throws GameStateConfigException if the player does not match the criteria listed.
-     * The players must:
-     * <ul>
-     *  <li> Not have the same name as any other players </li>
-     *  <li> Not exceed the max number of players </li>
-     *  <li> Not have the same color as another player </li>
-     *  <li> The name must not be empty or be longer than 15 characters. </li>
-     * </ul>
-    */
-    private void validateNewPlayer(Player player) throws GameStateConfigException {
-        // TODO(alex): Implement this.
-        if (player.getName().equals("")) {
-            throw new GameStateConfigException("empty name");
-        }
-        for (Player p : players) {
-            if (player.getName().equals(p.getName())) {
-                throw new GameStateConfigException("duplicate name");
-            }
-            if (player.getColor().equals(p.getColor())) {
-                throw new GameStateConfigException("duplicate color");
-            }
-        }
-        if (player.getName().length() > 15) {
-            throw new GameStateConfigException("name is too long");
-        }
     }
 
     /**
@@ -159,6 +130,11 @@ public class GameState {
      * Progresses the current player to the next player.
     */
     public void endPlayerTurn() {
+        Player player = getCurrentPlayer();
+        if (player.hasMule()) {
+            player.takeMule();
+            System.out.println("Mule killed at end of turn");
+        }
         currentPlayerIndex++;
     }
 
@@ -172,6 +148,10 @@ public class GameState {
     }
 
 
+    /**
+     * Alows the round count to be reset.
+     * NOTE: this does not undo everything done in that round.
+    */
     public void resetRound() {
         currentPlayerIndex = 0;
     }
@@ -182,9 +162,31 @@ public class GameState {
     public void newRound() {
         currentPlayerIndex = 0;
         round++;
+        if (round > 2) {
+            propertySelectionEnabled = false;
+        }
     }
 
-    public int getRound(){
+    /**
+     * Gets the current round.
+     * @return the current round number.
+    */
+    public int getRound() {
         return round;
+    }
+
+    /**
+     * Sorts the players by score (Lowest first).
+    */
+    public void recalculatePlayerOrder() {
+        Collections.sort(players);
+    }
+
+    /**
+     * Gets the current player index.
+     * @return the turn number within the current round.
+    */
+    public int getCurrentPlayerIndex() {
+        return currentPlayerIndex;
     }
 }

@@ -1,18 +1,21 @@
 package awktal.mule;
 
-import javafx.fxml.*;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.Node;
-import javafx.geometry.Pos;
 import javafx.scene.paint.Color;
+
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 
 public class LandSelectionController extends SceneController implements Initializable {
 
@@ -32,24 +35,20 @@ public class LandSelectionController extends SceneController implements Initiali
     private Label scoreLabel;
 
     @FXML
-    private Label foodLabel;
-
-    @FXML
     private Button passButton;
 
     private Map currMap;
 
     private int numPasses;
 
-    /**
-    * These variables refer to the tiles that were clicked
-    */
     private int rowClicked;
+
     private int colClicked;
-    private TileType typeClicked;
+
     private ArrayList<Player> players;
 
-
+    Music play = new Music();
+    static String openRange = "src/main/resources/awktal/mule/music/Train45Original.mp3";
 
     public LandSelectionController() {
         players = gameState.getPlayers();
@@ -60,44 +59,17 @@ public class LandSelectionController extends SceneController implements Initiali
     public void initialize(URL url, ResourceBundle resourceBundle) {
         currMap = gameState.getMap();
         loadPlayerData();
-        createImageViews();
+        FxMapRenderer.renderMap(gridpane, currMap);
         registerOnClick();
-        passButton.setOnAction (e -> {
-            onPassClick();
-        });
-    }
-
-    /**
-     * Creates an ImageView from Tile's path to picture and places the
-     * ImageView in Button then add to parent GridPane.
-    */
-    @FXML
-    private void createImageViews() {
-        for (Tile t: currMap) {
-            String type = t.getType().toString();
-            String path = TileType.valueOf(type).getPath();
-            Button button = new Button("");
-            String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
-            button.setStyle("-fx-background-image: url('" + imagePath + "'); " +
-            "-fx-background-position: center center; " +
-            "-fx-background-size: cover");
-            if (t.isOwned()) {
-                button.setStyle("-fx-border-color: " + colorToHexString(t.getOwner().getColor()) + ";" +
-                    "-fx-border-width: 5px;" +
-                    "-fx-background-image: url('" + imagePath + "'); " +
-                    "-fx-background-position: center center; " +
-                    "-fx-background-size: cover;");
+        passButton.setOnAction(e -> {
+                onPassClick();
             }
-            button.setMaxWidth(Double.MAX_VALUE);
-            button.setMaxHeight(Double.MAX_VALUE);
-            button.setId(type);
-            gridpane.add(button, t.getX(), t.getY(), 1, 1);
-        }
+        );
+        play.musicMp3(openRange);
     }
 
-
     /**
-     * Checks for Tile Clicks and changes border color
+     * Checks for Tile Clicks and changes border color.
      * Right now, I only changed to coral but later on
      * change to the current player
     */
@@ -105,28 +77,23 @@ public class LandSelectionController extends SceneController implements Initiali
     private void registerOnClick() {
         for (Node node: gridpane.getChildren()) {
             if (node instanceof Button) {
-                Button newNode = (Button)node;
-                newNode.setOnAction (e -> {
-                    rowClicked = gridpane.getRowIndex(newNode);
-                    colClicked = gridpane.getColumnIndex(newNode);
-                    onTileClicked(rowClicked, colClicked, newNode);
-                });
+                Button newNode = (Button) node;
+                newNode.setOnAction(e -> {
+                        rowClicked = gridpane.getRowIndex(newNode);
+                        colClicked = gridpane.getColumnIndex(newNode);
+                        onTileClicked(rowClicked, colClicked, newNode);
+                    }
+                );
             }
         }
 
     }
 
-    private String colorToHexString(Color color) {
-        return String.format("#%02X%02X%02X", (int) (color.getRed()*255), (int)(color.getGreen()*255), (int)(color.getBlue()*255));
-    }
-
-
-
     private void onTileClicked(int row, int col, Node tileView) {
         Player currentPlayer = gameState.getCurrentPlayer();
 
         Tile tile = gameState.getMap().getTile(col, row);
-        if(tile.isOwned()) {
+        if (tile.isOwned()) {
             System.out.println("already owned");
             return;
         }
@@ -134,30 +101,22 @@ public class LandSelectionController extends SceneController implements Initiali
             System.out.println("cannot buy the town");
             return;
         }
-        if(gameState.getRound() > 2) {
-            if(currentPlayer.getInventory().getMoney() < 300){
+        if (gameState.getRound() > 2) {
+            if (currentPlayer.getResource(Resource.MONEY) < 300) {
                 System.out.println("You aint got no $$$");
                 return;
             } else {
-                currentPlayer.getInventory().withdrawMoney(300);
+                currentPlayer.takeResource(Resource.MONEY, 300);
             }
         }
         tile.setOwner(currentPlayer);
         currentPlayer.addTile(tile);
-        TileType typeClicked = TileType.valueOf(tileView.getId());
-        String path = TileType.valueOf(typeClicked.toString()).getPath();
-        String imagePath = LandSelectionController.class.getResource(path).toExternalForm();
-
-        tileView.setStyle("-fx-border-color: " + colorToHexString(currentPlayer.getColor()) + ";" +
-        "-fx-border-width: 5px;" +
-        "-fx-background-image: url('" + imagePath + "'); " +
-        "-fx-background-position: center center; " +
-        "-fx-background-size: cover;");
-
+        FxMapRenderer.renderTile(gridpane, tile);
         gameState.endPlayerTurn();
 
-        if(gameState.isRoundOver()) {
-            TurnManager.getInstance().beginPlayerTurns();
+        if (gameState.isRoundOver()) {
+            gameState.resetRound();
+            SceneManager.loadScene(GameScene.START_TURN);
         } else {
             loadPlayerData();
         }
@@ -166,12 +125,14 @@ public class LandSelectionController extends SceneController implements Initiali
     private void loadPlayerData() {
         Player currentPlayer = gameState.getCurrentPlayer();
         playerLabel.setText(currentPlayer.getName());
-        moneyLabel.setText(String.valueOf(currentPlayer.getInventory().getMoney()));
-        foodLabel.setText(String.valueOf(currentPlayer.getInventory().getFood()));
+        moneyLabel.setText(String.valueOf(currentPlayer.getResource(Resource.MONEY)));
         roundLabel.setText(String.valueOf(gameState.getRound()));
         scoreLabel.setText(String.valueOf(currentPlayer.getScore()));
     }
 
+    /**
+     * Handles if a player passes on land select.
+    */
     @FXML
     public void onPassClick() {
         gameState.endPlayerTurn();
@@ -179,9 +140,9 @@ public class LandSelectionController extends SceneController implements Initiali
         if (numPasses == players.size()) {
             gameState.setPropertySelectionEnabled(false);
         }
-        if(gameState.isRoundOver()) {
+        if (gameState.isRoundOver()) {
             gameState.resetRound();
-            TurnManager.getInstance().beginPlayerTurns();
+            SceneManager.loadScene(GameScene.START_ROUND);
         }
         loadPlayerData();
     }
